@@ -12,3 +12,88 @@
 body {
 	font-family: 'Lato', sans-serif;
 }
+
+/* Header */
+
+#header {
+	background-color: #455A64;
+}
+
+#header h1 {
+	margin-top: 50px;
+	font-weight: 300;
+	font-size: 50px;
+}
+
+#header h1 span {
+	font-weight: 300;
+	font-size: 40px;
+}
+
+#header a {
+	color: #FFFFFF;
+	letter-spacing: 1.2px;
+}
+
+#header a:hover {
+	opacity: 0.7;
+	text-decoration: none;
+}
+
+/* Login */
+
+#login {
+	padding: 20px 0;
+}
+
+#login h2 {
+	text-align: center;
+}
+
+#login form {
+	/*border: 1px solid #ccc;*/
+}
+
+#login form input {
+	padding: 0 5px;
+	background-color: #e8f0fe;
+	border: 1px solid #607D8B;
+	color: black;
+}
+
+#login form .btn {
+	border-radius: 0px;
+	padding: 5px 20px;
+}
+
+#login form .btn-primary {
+	background-color: #455A64;
+}
+
+#login form .btn-cancel, #login form .btn-xtra-info {
+	background-color: #EEEEEE;
+	color: black;
+}
+
+/* Footer */
+
+footer {
+	background-color: #607D8B;
+	padding: 20px 0;
+}
+
+footer span {
+	display: block
+}
+
+footer a {
+	color: white;
+	font-weight: 300;
+	padding: 5px;
+}
+
+footer a:hover {
+	text-decoration: none;
+	opacity: 0.7;
+	color: white;
+}
