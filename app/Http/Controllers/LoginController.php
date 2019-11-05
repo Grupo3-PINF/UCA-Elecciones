@@ -31,6 +31,7 @@ class LoginController extends Controller {
   			}
   			//unset($_SESSION['usernotfound']);
   		} else {
+  			//Os dejo varias formas de hacerla
   			$mensaje = "El usuario o la contraseña son erróneos";
   			//$_SESSION['usernotfound'] = $mensaje;
   			//O
