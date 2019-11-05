@@ -1,10 +1,10 @@
-@extends('header')
-
-@section('login')
+<?php $titulo = "Login"; ?>
+@extends('layouts/layout')
+@section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<form action="{{ url('/LoginController') }}" method="POST">
+			<form action="{{ url('/login') }}" method="POST">
 				<div class="form-group">
 					<input placeholder="Username" type="text" name="username">
 					<input placeholder="Password" type="password" name="password">
@@ -15,6 +15,4 @@
 	</div>
 </div>
 
-@endsection
-
-@extends('footer')
+@stop
