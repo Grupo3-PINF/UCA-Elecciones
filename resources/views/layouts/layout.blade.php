@@ -12,7 +12,7 @@
 		<link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
 
 		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
 		<!-- Scripts -->
@@ -20,6 +20,7 @@
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	</head>
 	<body>
+		@include('layouts/header')
 		@yield('content')
 		@include('layouts/footer')
 	</body>

@@ -1,18 +1,43 @@
 <?php $titulo = "Login"; ?>
 @extends('layouts/layout')
 @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<form action="{{ url('/login') }}" method="POST">
-				<div class="form-group">
-					<input placeholder="Username" type="text" name="username">
-					<input placeholder="Password" type="password" name="password">
-					<button type="submit" class="btn btn-primary">Enviar</button>
+<div id="login">
+	<form action="{{ url('/login') }}" method="POST">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-10 col-8 offset-2 offset-xs-1">
+			        <h2 class="form-title">Acceso privado</h2>
+		            <div class="form-info"><p>Indique su identificador y clave única de acceso a servicios (Campus virtual, servicios de personal, CAU...).</p></div>
+					<div class="form-group container">
+						<div class="row">
+							<label class="col-xs-12 col-5" for="username">Nombre de usuario</label>
+							<input class="col-xs-12 col-7" type="text" placeholder="Nombre de usuario" name="username" value="">
+						</div>
+					</div>
+					<div class="form-group container">
+						<div class="row">
+							<label class="col-xs-12 col-5" for="password">Clave de acceso</label>
+							<input class="col-xs-12 col-7" type="password" id="password" placeholder="Clave de acceso" name="password">
+						</div>
+					</div>
+					<div class="form-group container">
+						<div class="row">
+							<div class="col-12 text-right">
+								<button type="submit" class="btn btn-primary" aria-label="Acceder">Acceder</button>
+								<a href="http://www.uca.es" class="btn btn-cancel" role="button" aria-label="Cancelar">Cancelar</a>
+							</div>
+						</div>
+					</div>
+					<div class="form-group container">
+						<div class="row text-center">
+							<div class="col-12">
+								<a href="#" class="btn btn-xtra-info"><em>¿Problemas con la clave de acceso?</em></a>
+							</div>
+						</div>
+					</div>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
+	</form>
 </div>
-
 @stop
