@@ -21,6 +21,15 @@
 							<input class="col-xs-12 col-7" type="password" id="password" placeholder="Clave de acceso" name="password">
 						</div>
 					</div>
+					@if(Session::has('mensaje'))
+					<div class="form-group container">
+						<div class="row">
+							<div class="col-12 alert alert-danger">
+								<p>{{Session::get('mensaje')}}</p>
+							</div>
+						</div>
+					</div>
+					@endif
 					<div class="form-group container">
 						<div class="row">
 							<div class="col-12 text-right">

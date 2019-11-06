@@ -79,14 +79,9 @@ class LoginController extends Controller
                 $mensaje = "El usuario o la contraseña son erróneos";
                 return Redirect::to('login')->with('mensaje',$mensaje);
             }
-            //unset($_SESSION['usernotfound']);
         } else {
-            //Os dejo varias formas de hacerla
-            $mensaje = "El usuario o la contraseña son erróneos";
-            //$_SESSION['usernotfound'] = $mensaje;
-            //O
+            $mensaje = "El usuario o la contraseña son obligatorios";
             //Session::flash('message',$mensaje);
-            //O
             return Redirect::to('login')->with('mensaje',$mensaje);
         }
     }
