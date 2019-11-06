@@ -6,6 +6,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-10 col-8 offset-2 offset-xs-1">
+					@csrf
 			        <h2 class="form-title">Acceso privado</h2>
 		            <div class="form-info"><p>Indique su identificador y clave única de acceso a servicios (Campus virtual, servicios de personal, CAU...).</p></div>
 					<div class="form-group container">
