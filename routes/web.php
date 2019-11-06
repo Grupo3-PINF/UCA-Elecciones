@@ -26,17 +26,8 @@ Route::group(
         Route::get('logout','Auth\LoginController@logout');
         Route::get('/', function () 
         {
-            return view('welcome');
+            return view('index');
         });
-        Route::get('/lasllavesabajo',function()
-            {
-                return 'Lokito';
-            }
-        );
     });
 
-//Prueba
-Route::get('/guest',function()
-{
-    return 'Invitado necesita logearse.';
-});
+Route::view('/', 'index');
