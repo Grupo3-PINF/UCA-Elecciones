@@ -11,9 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('login','Auth\LoginController@index');
+
+
+
+Route::get('login','Auth\LoginController@index')->name('login');
 Route::post('login','Auth\LoginController@login');
+
+Route::group(
+    [
+    'middleware'=>'auth'
+    ],function()
+    {
+        Route::get('logout','Auth\LoginController@logout');
+        Route::get('/', function () 
+        {
+            return view('welcome');
+        });
+        Route::get('/lasllavesabajo',function()
+            {
+                return 'Lokito';
+            }
+        );
+    });
+
+//Prueba
+Route::get('/guest',function()
+{
+    return 'Invitado necesita logearse.';
+});
