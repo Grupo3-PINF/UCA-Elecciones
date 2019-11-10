@@ -196,6 +196,7 @@ footer a:hover {
 }
 
 #crearvotacion .step-one, #crearvotacion .step-two, #crearvotacion .step-three, #crearvotacion .step-four {
+	display: flex;
 	transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear; /* Firefox 4 */
     -webkit-transition: all 0.3s linear; /* Safari and Chrome */
@@ -205,4 +206,8 @@ footer a:hover {
 
 #crearvotacion .step-one.hide, #crearvotacion .step-two.hide, #crearvotacion .step-three.hide, #crearvotacion .step-four.hide {
 	display: none;
+}
+
+#crearvotacion #crearvotacion-helper {
+	min-height: 300px;
 }
