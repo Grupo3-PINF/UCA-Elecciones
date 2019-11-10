@@ -81,7 +81,6 @@ class LoginController extends Controller
             }
         } else {
             $mensaje = "El usuario o la contraseña son obligatorios";
-            //Session::flash('message',$mensaje);
             return Redirect::to('login')->with('mensaje',$mensaje);
         }
     }

@@ -1,4 +1,4 @@
-	@if (Auth::check())
+	{{--@if (Auth::check())--}}
 	<footer id="footer">
 		<div class="container">
 			<div class="row">
@@ -18,5 +18,5 @@
 			</div>
 		</div>
 	</footer>
-	@endif
+	{{--@endif--}}
 </html>

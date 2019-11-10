@@ -34,7 +34,7 @@
 						<div class="row">
 							<div class="col-12 text-right">
 								<button type="submit" class="btn btn-primary" aria-label="Acceder">Acceder</button>
-								<a href="http://www.uca.es" class="btn btn-cancel" role="button" aria-label="Cancelar">Cancelar</a>
+								<a href="{{url('/login')}}" class="btn btn-cancel" role="button" aria-label="Cancelar">Cancelar</a>
 							</div>
 						</div>
 					</div>
