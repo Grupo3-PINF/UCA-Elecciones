@@ -5,20 +5,20 @@
 	<form action="{{ url('/login') }}" method="POST">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-10 col-8 offset-2 offset-xs-1">
+				<div class="col-10 col-sm-8 offset-sm-2 offset-1">
 					@csrf
 			        <h2 class="form-title">Acceso privado</h2>
 		            <div class="form-info"><p>Indique su identificador y clave única de acceso a servicios (Campus virtual, servicios de personal, CAU...).</p></div>
 					<div class="form-group container">
 						<div class="row">
-							<label class="col-xs-12 col-5" for="username">Nombre de usuario</label>
-							<input class="col-xs-12 col-7" type="text" placeholder="Nombre de usuario" name="username" value="">
+							<label class="col-12 col-sm-5" for="username">Nombre de usuario</label>
+							<input class="col-12 col-sm-7" type="text" placeholder="Nombre de usuario" name="username" value="">
 						</div>
 					</div>
 					<div class="form-group container">
 						<div class="row">
-							<label class="col-xs-12 col-5" for="password">Clave de acceso</label>
-							<input class="col-xs-12 col-7" type="password" id="password" placeholder="Clave de acceso" name="password">
+							<label class="col-12 col-sm-5" for="password">Clave de acceso</label>
+							<input class="col-12 col-sm-7" type="password" id="password" placeholder="Clave de acceso" name="password">
 						</div>
 					</div>
 					@if(Session::has('mensaje'))

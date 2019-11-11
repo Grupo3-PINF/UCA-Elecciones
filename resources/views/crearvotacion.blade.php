@@ -11,21 +11,21 @@
 		</div>
 		<div id="crearvotacion-helper">
 			<div class="step-one row">
-				<div class="col-xs-12 col-4">
+				<div class="col-12 col-sm-4">
 					<div class="votacion">
 						<h4>Preguntas</h4>
 						<i class="far fa-question-circle"></i>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae congue sem, eu dignissim urna.</p>
 					</div>
 				</div>
-				<div class="col-xs-12 col-4">
+				<div class="col-12 col-sm-4">
 					<div class="votacion">
 						<h4>Encuesta</h4>
 						<i class="far fa-envelope"></i>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae congue sem, eu dignissim urna.</p>
 					</div>
 				</div>
-				<div class="col-xs-12 col-4">
+				<div class="col-12 col-sm-4">
 					<div class="votacion">
 						<h4>Desarrollo</h4>
 						<i class="far fa-file-code"></i>
@@ -38,11 +38,11 @@
 					<h4>¿Quieres que sea vinculante?</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae congue sem, eu dignissim urna.</p>
 				</div>
-				<div class="col-xs-12 col-4 offset-1 votacion">
+				<div class="col-12 col-sm-4 offset-sm-1 votacion">
 					<h5>Sí</h5>
 					<i class="far fa-check-circle"></i>
 				</div>
-				<div class="col-xs-12 col-4 offset-2 votacion">
+				<div class="col-12 col-sm-4 offset-sm-2 votacion">
 					<h5>No</h5>
 					<i class="far fa-times-circle"></i>
 				</div>
@@ -52,11 +52,11 @@
 					<h4>¿Quieres que sea compleja?</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae congue sem, eu dignissim urna.</p>
 				</div>
-				<div class="col-xs-12 col-4 offset-1 votacion">
+				<div class="col-12 col-sm-4 offset-sm-1 votacion">
 					<h5>Sí</h5>
 					<i class="far fa-check-circle"></i>
 				</div>
-				<div class="col-xs-12 col-4 offset-2 votacion">
+				<div class="col-12 col-sm-4 offset-sm-2 votacion">
 					<h5>No</h5>
 					<i class="far fa-times-circle"></i>
 				</div>
@@ -66,11 +66,11 @@
 					<h4>¿Quieres que sea restringida?</h4>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae congue sem, eu dignissim urna.</p>
 				</div>
-				<div class="col-xs-12 col-4 offset-1 votacion">
+				<div class="col-12 col-sm-4 offset-sm-1 votacion">
 					<h5>Sí</h5>
 					<i class="far fa-check-circle"></i>
 				</div>
-				<div class="col-xs-12 col-4 offset-2 votacion">
+				<div class="col-12 col-sm-4 offset-sm-2 votacion">
 					<h5>No</h5>
 					<i class="far fa-times-circle"></i>
 				</div>

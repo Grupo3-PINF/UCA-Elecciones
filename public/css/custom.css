@@ -46,6 +46,7 @@ body {
 
 #header .header-icons {
 	margin-top: 80px;
+	float: right;
 }
 
 /* Subheader */
@@ -197,6 +198,7 @@ footer a:hover {
 
 #crearvotacion .step-one, #crearvotacion .step-two, #crearvotacion .step-three, #crearvotacion .step-four {
 	display: flex;
+	cursor: pointer;
 	transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear; /* Firefox 4 */
     -webkit-transition: all 0.3s linear; /* Safari and Chrome */
@@ -210,4 +212,22 @@ footer a:hover {
 
 #crearvotacion #crearvotacion-helper {
 	min-height: 300px;
+}
+
+/* Media query movil */
+
+@media (max-width: 600px) {
+	#header h1 {
+		margin-top: 30px;
+		font-size: 30px;
+	}
+
+	#header h1 span {
+		font-size: 20px;
+	}
+
+	#header .header-icons {
+		margin-top: 10px;
+		float: none;
+	}
 }
