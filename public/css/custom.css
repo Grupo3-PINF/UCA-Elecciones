@@ -170,7 +170,7 @@ footer a:hover {
 
 #crearvotacion .votacion {
 	padding: 10px 40px;
-	border: 3px solid #eee;
+	border: 3px solid #455A64;
 	text-align: center;
 	margin-top: 20px;
 }
@@ -200,11 +200,11 @@ footer a:hover {
 	font-weight: 600;
 }
 
-#crearvotacion .step-five label {
+#crearvotacion .step-5 label {
 	margin-right: 10px;
 }
 
-#crearvotacion .step-five textarea {
+#crearvotacion .step-5 textarea {
 	padding: 5px;
     background-color: #e8f0fe;
     border: 1px solid #607D8B;
@@ -212,19 +212,19 @@ footer a:hover {
     min-width: 300px;
 }
 
-#crearvotacion .step-five .btn {
+#crearvotacion .step-5 .btn {
 	border-radius: 0px;
     padding: 5px 20px;
 }
 
-#crearvotacion .step-five .btn-primary {
+#crearvotacion .step-5 .btn-primary {
 	margin-top: 10px;
 	background-color: #455A64;
+	color: white;
 }
 
-#crearvotacion .step-one, #crearvotacion .step-two, #crearvotacion .step-three, #crearvotacion .step-four {
+#crearvotacion .step-1, #crearvotacion .step-2, #crearvotacion .step-3, #crearvotacion .step-4 {
 	display: flex;
-	cursor: pointer;
 	transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear; /* Firefox 4 */
     -webkit-transition: all 0.3s linear; /* Safari and Chrome */
@@ -232,7 +232,12 @@ footer a:hover {
     -ms-transition: all 0.3s linear; /* Explorer 10 */
 }
 
-#crearvotacion #crearvotacion-helper {
+#crearvotacion .votacion, #steps-pregunta .votacion {
+	cursor: pointer !important;
+}
+
+#crearvotacion .helper {
+	margin-top: 20px;
 	min-height: 300px;
 }
 

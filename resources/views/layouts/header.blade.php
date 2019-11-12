@@ -13,8 +13,8 @@
 					</a>
 					@else
 					<a href="{{url ('/login') }}">
-						<span>Iniciar sesión</span>
-						<i class="fas fa-sign-in-alt"></i>
+						<i class="fas fa fa-lock"></i>
+						<span>Acceso</span>
 					</a>
 					@endif
 				</div>
