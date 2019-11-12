@@ -13,6 +13,14 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
+.flex {
+	display: inline-flex;
+}
+
+.hide {
+	display: none !important;
+}
+
 /* Header */
 
 #header {
@@ -38,6 +46,11 @@ body {
 #header a:hover, #sub-header a:hover {
 	opacity: 0.7;
 	text-decoration: none;
+}
+
+#header .header-icons {
+	margin-top: 80px;
+	float: right;
 }
 
 /* Subheader */
@@ -147,4 +160,101 @@ footer a:hover {
 	height: 500px;
 	width: 100%;
 	object-fit: cover;
+}
+
+/* Encuesta */
+
+#crearvotacion {
+	padding: 40px 0;
+}
+
+#crearvotacion .votacion {
+	padding: 10px 40px;
+	border: 3px solid #455A64;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#crearvotacion .votacion h4 {
+	color: #212121;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#crearvotacion .votacion i {
+	opacity: 0.7;
+	font-size: 96px;
+	color: #212121;
+	margin-bottom: 20px;
+}
+
+#crearvotacion .votacion p {
+	color: #161616;
+}
+
+#crearvotacion .votacion h5 {
+	text-transform: uppercase;
+	font-size: 38px;
+	font-weight: 600;
+}
+
+#crearvotacion .step-5 label {
+	margin-right: 10px;
+}
+
+#crearvotacion .step-5 textarea {
+	padding: 5px;
+    background-color: #e8f0fe;
+    border: 1px solid #607D8B;
+    color: black;
+    min-width: 300px;
+}
+
+#crearvotacion .step-5 .btn {
+	border-radius: 0px;
+    padding: 5px 20px;
+}
+
+#crearvotacion .step-5 .btn-primary {
+	margin-top: 10px;
+	background-color: #455A64;
+	color: white;
+}
+
+#crearvotacion .step-1, #crearvotacion .step-2, #crearvotacion .step-3, #crearvotacion .step-4 {
+	display: flex;
+	transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear; /* Firefox 4 */
+    -webkit-transition: all 0.3s linear; /* Safari and Chrome */
+    -o-transition: all 0.3s linear; /* Opera */
+    -ms-transition: all 0.3s linear; /* Explorer 10 */
+}
+
+#crearvotacion .votacion, #steps-pregunta .votacion {
+	cursor: pointer !important;
+}
+
+#crearvotacion .helper {
+	margin-top: 20px;
+	min-height: 300px;
+}
+
+/* Media query movil */
+
+@media (max-width: 600px) {
+	#header h1 {
+		margin-top: 10px;
+		font-size: 30px;
+	}
+
+	#header h1 span {
+		font-size: 20px;
+	}
+
+	#header .header-icons {
+		margin-top: 10px;
+		float: none;
+	}
 }
