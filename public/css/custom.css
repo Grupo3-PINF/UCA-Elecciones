@@ -241,6 +241,36 @@ footer a:hover {
 	min-height: 300px;
 }
 
+/* Home */
+
+#home .col-novedades {
+	margin: 20px auto;
+	padding: 20px auto;
+	text-align: center;
+}
+
+#home .col-novedades h3 {
+	width: fit-content;
+	text-align: center;
+	color: #455A64;
+	font-size: 44px;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #eee;
+	margin: 20px auto;
+}
+
+#home .col-novedades h4 {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 22px;
+}
+
+#home .col-novedades img {
+	margin: 20px;
+	min-height: 115px;
+}
+
 /* Media query movil */
 
 @media (max-width: 600px) {
