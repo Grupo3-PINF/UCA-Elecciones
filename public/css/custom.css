@@ -12,3 +12,279 @@
 body {
 	font-family: 'Lato', sans-serif;
 }
+
+.flex {
+	display: inline-flex;
+}
+
+.hide {
+	display: none !important;
+}
+
+/* Header */
+
+#header {
+	background-color: #455A64;
+}
+
+#header h1 {
+	margin-top: 50px;
+	font-weight: 300;
+	font-size: 50px;
+}
+
+#header h1 span {
+	font-weight: 300;
+	font-size: 40px;
+}
+
+#header a {
+	color: #FFFFFF;
+	letter-spacing: 1.2px;
+}
+
+#header a:hover, #sub-header a:hover {
+	opacity: 0.7;
+	text-decoration: none;
+}
+
+#header .header-icons {
+	margin-top: 80px;
+	float: right;
+}
+
+/* Subheader */
+
+#sub-header {
+	background-color: #607D8B;
+	padding-top: 0;
+}
+
+#sub-header a {
+	color: #FFFFFF;
+	letter-spacing: 1.1px;
+}
+
+#sub-header h2 {
+	font-weight: 300;
+	font-size: 35px;
+	padding-top: 8px;
+}
+
+#sub-header h2 span {
+	font-weight: 300;
+	font-size: 25px;
+}
+
+#sub-header ul {
+	flex-wrap: nowrap;
+}
+
+#sub-header ul li a {
+	text-transform: uppercase;
+	font-weight: 500;
+	padding-top: 21px;
+}
+
+#sub-header ul li a.active, #sub-header ul li a:hover {
+	border-top: 5px solid white;
+	padding-top: 16px;
+}
+
+/* Login */
+
+#login {
+	padding: 20px 0;
+}
+
+#login h2 {
+	text-align: center;
+}
+
+#login form {
+	/*border: 1px solid #ccc;*/
+}
+
+#login form input {
+	padding: 0 5px;
+	background-color: #e8f0fe;
+	border: 1px solid #607D8B;
+	color: black;
+}
+
+#login form .btn {
+	border-radius: 0px;
+	padding: 5px 20px;
+}
+
+#login form .btn-primary {
+	background-color: #455A64;
+}
+
+#login form .btn-cancel, #login form .btn-xtra-info {
+	background-color: #EEEEEE;
+	color: black;
+}
+
+/* Footer */
+
+footer {
+	background-color: #607D8B;
+	padding: 20px 0;
+}
+
+footer span {
+	display: block
+}
+
+footer a {
+	color: white;
+	font-weight: 300;
+	padding: 5px;
+}
+
+footer a:hover {
+	text-decoration: none;
+	opacity: 0.7;
+	color: white;
+}
+
+/* Carousel */
+
+#carousel {
+	max-height: 500px;
+	width: 100%;
+}
+
+#carousel img {
+	height: 500px;
+	width: 100%;
+	object-fit: cover;
+}
+
+/* Encuesta */
+
+#crearvotacion {
+	padding: 40px 0;
+}
+
+#crearvotacion .votacion {
+	padding: 10px 40px;
+	border: 3px solid #455A64;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#crearvotacion .votacion h4 {
+	color: #212121;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+#crearvotacion .votacion i {
+	opacity: 0.7;
+	font-size: 96px;
+	color: #212121;
+	margin-bottom: 20px;
+}
+
+#crearvotacion .votacion p {
+	color: #161616;
+}
+
+#crearvotacion .votacion h5 {
+	text-transform: uppercase;
+	font-size: 38px;
+	font-weight: 600;
+}
+
+#crearvotacion .step-5 label {
+	margin-right: 10px;
+}
+
+#crearvotacion .step-5 textarea {
+	padding: 5px;
+    background-color: #e8f0fe;
+    border: 1px solid #607D8B;
+    color: black;
+    min-width: 300px;
+}
+
+#crearvotacion .step-5 .btn {
+	border-radius: 0px;
+    padding: 5px 20px;
+}
+
+#crearvotacion .step-5 .btn-primary {
+	margin-top: 10px;
+	background-color: #455A64;
+	color: white;
+}
+
+#crearvotacion .step-1, #crearvotacion .step-2, #crearvotacion .step-3, #crearvotacion .step-4 {
+	display: flex;
+	transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear; /* Firefox 4 */
+    -webkit-transition: all 0.3s linear; /* Safari and Chrome */
+    -o-transition: all 0.3s linear; /* Opera */
+    -ms-transition: all 0.3s linear; /* Explorer 10 */
+}
+
+#crearvotacion .votacion, #steps-pregunta .votacion {
+	cursor: pointer !important;
+}
+
+#crearvotacion .helper {
+	margin-top: 20px;
+	min-height: 300px;
+}
+
+/* Home */
+
+#home .col-novedades {
+	margin: 20px auto;
+	padding: 20px auto;
+	text-align: center;
+}
+
+#home .col-novedades h3 {
+	width: fit-content;
+	text-align: center;
+	color: #455A64;
+	font-size: 44px;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #eee;
+	margin: 20px auto;
+}
+
+#home .col-novedades h4 {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 22px;
+}
+
+#home .col-novedades img {
+	margin: 20px;
+	min-height: 115px;
+}
+
+/* Media query movil */
+
+@media (max-width: 600px) {
+	#header h1 {
+		margin-top: 10px;
+		font-size: 30px;
+	}
+
+	#header h1 span {
+		font-size: 20px;
+	}
+
+	#header .header-icons {
+		margin-top: 10px;
+		float: none;
+	}
+}

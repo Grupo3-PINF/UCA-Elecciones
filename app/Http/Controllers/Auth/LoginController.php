@@ -8,6 +8,9 @@ use Redirect;
 use Session;
 use Auth;
 
+use App\User;
+use Illuminate\Support\Facades\Hash;
+
 class LoginController extends Controller
 {
     /*
@@ -28,7 +31,15 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
+
+    protected function redirectTo($request)
+    {
+        if(Auth::check())
+            return Redirect::to('/');
+        else
+            return Redirect::to('login');
+    }
 
     /**
      * Create a new controller instance.
@@ -57,20 +68,19 @@ class LoginController extends Controller
         {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $user = User::where('username',$username)->where('password',$password)->first();
-            if($user)
+            $user = User::where('name',$username)->first();
+            if($user && Hash::check($password,$user->password))
             {
                 Auth::login($user);
-                Redirect::to('index');
+                return Redirect::to('/');
             }
-            //unset($_SESSION['usernotfound']);
+            else
+            {
+                $mensaje = "El usuario o la contraseña son erróneos";
+                return Redirect::to('login')->with('mensaje',$mensaje);
+            }
         } else {
-            //Os dejo varias formas de hacerla
-            $mensaje = "El usuario o la contraseña son erróneos";
-            //$_SESSION['usernotfound'] = $mensaje;
-            //O
-            //Session::flash('message',$mensaje);
-            //O
+            $mensaje = "El usuario o la contraseña son obligatorios";
             return Redirect::to('login')->with('mensaje',$mensaje);
         }
     }
