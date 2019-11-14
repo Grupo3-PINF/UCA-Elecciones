@@ -34,3 +34,5 @@ Route::view('/', 'index');
 
 Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
 Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+
+Route::get('resultados','ResultadosController@view')->name('resultados');
