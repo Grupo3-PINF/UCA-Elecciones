@@ -1,1 +1,1 @@
-{{$votacion}}
+{{$participaciones}}

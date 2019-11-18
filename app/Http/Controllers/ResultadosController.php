@@ -9,13 +9,14 @@ use Session;
 use Auth;
 use App\Resultado;
 use App\Pregunta;
+use App\Participacion;
 use App\User;
 
 class ResultadosController extends Controller
 {
-	public function mostrarResultado($idvotacion)
+	public function mostrarResultado($idvotacion/*,$idusuario*/)
 	{
-		date_default_timezone_set('Europe/Spain');
+		date_default_timezone_set('Europe/Spain'); 
 		$date = date('d/m/Y h:i:s a', time());
 		$conn = openCon();
 		$resultados = Resultado::where('idVotacion', $idvotacion)->first();
@@ -35,9 +36,17 @@ class ResultadosController extends Controller
 				return $votacion->recuento;
 			}
 		}
-		if(/*si el usuario no ha votado (hay que hacerle la puta tabla de los cojones)*/)
+		$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
+		$participa = false;
+		foreach ($participaciones as $participacion) {
+			if($participacion == $idusuario)
+			{
+				$participa = true;
+			}
+		}
+		if($participa)
 		{	
-			if($votacion->seMuestraAntes)
+			if($votacion->esTiempoReal)
 			{
 				return $votacion->recuento;
 			}
@@ -48,7 +57,7 @@ class ResultadosController extends Controller
 		}
 		else 
 		{
-			if($votacion->esTiempoReal)
+			if($votacion->seMuestraAntes)
 			{
 				return $votacion->recuento;
 			}
@@ -61,8 +70,16 @@ class ResultadosController extends Controller
 	}
 	public function view()
 	{
-		$votacion = Resultado::find(1);
-		return view('resultados')->with("votacion",$votacion);
+		//$votacion = Resultado::find(1);
+		$participaciones = Participacion::where('idpregunta', 1) -> pluck('idusuario');
+		$participa = 100;
+		foreach ($participaciones as $participacion) {
+			if($participacion == 13)
+			{
+				$participa = 200;
+			}
+		}
+		return view('resultados')->with("participaciones",$participa);
 	}
 	
 	function openCon()
