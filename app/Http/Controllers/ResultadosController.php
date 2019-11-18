@@ -22,7 +22,7 @@ class ResultadosController extends Controller
 		$votacion = Pregunta::find($idvotacion);
 		if($votacion->esAnticipada == true)
 		{
-			if($date => $votacion->fechaFinAnticipada)
+			if($date >= $votacion->fechaFinAnticipada)
 			{
 				return $votacion->recuento;
 			}
@@ -30,7 +30,7 @@ class ResultadosController extends Controller
 		}
 		else
 		{
-			if($date => $votacion->fechaFin)
+			if($date >= $votacion->fechaFin)
 			{
 				return $votacion->recuento;
 			}
@@ -43,7 +43,18 @@ class ResultadosController extends Controller
 			}
 			else
 			{
-				
+				return 0;
+			}
+		}
+		else 
+		{
+			if($votacion->esTiempoReal)
+			{
+				return $votacion->recuento;
+			}
+			else
+			{
+				return 0;
 			}
 		}
 		closeCon($conn);
