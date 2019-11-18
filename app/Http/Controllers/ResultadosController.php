@@ -15,11 +15,37 @@ class ResultadosController extends Controller
 {
 	public function mostrarResultado($idvotacion)
 	{
+		date_default_timezone_set('Europe/Spain');
+		$date = date('d/m/Y h:i:s a', time());
 		$conn = openCon();
 		$resultados = Resultado::where('idVotacion', $idvotacion)->first();
 		$votacion = Pregunta::find($idvotacion);
-		
+		if($votacion->esAnticipada == true)
+		{
+			if($date => $votacion->fechaFinAnticipada)
+			{
+				return $votacion->recuento;
+			}
 
+		}
+		else
+		{
+			if($date => $votacion->fechaFin)
+			{
+				return $votacion->recuento;
+			}
+		}
+		if(/*si el usuario no ha votado (hay que hacerle la puta tabla de los cojones)*/)
+		{	
+			if($votacion->seMuestraAntes)
+			{
+				return $votacion->recuento;
+			}
+			else
+			{
+				
+			}
+		}
 		closeCon($conn);
 	}
 	public function view()
