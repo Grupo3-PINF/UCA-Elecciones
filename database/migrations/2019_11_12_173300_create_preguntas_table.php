@@ -15,26 +15,25 @@ class CreatePreguntasTable extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table) {
 
-            $table->bigInteger('id')->autoincrement();
+            $table->bigIncrements('id');
 
             // provisional dependiendo de LDAP
             // $table->foreign('idCreador')->references('id')->on('users');
-            $table->bigInteger('idCreador');
+            $table->bigInteger('idCreador')->nullable();
 
             $table->string('titulo');
 
 
-            $table->boolean('esCompleja');
-            $table->mediumText('opciones');
+            $table->boolean('esCompleja')->default(false);
+            $table->mediumText('opciones')->nullable();
 
         
-            $table->boolean('esVinculante');
-            $table->boolean('esAnticipada');
-            $table->boolean('esRestringida');
+            $table->boolean('esVinculante')->default(false);
+            $table->boolean('esAnticipada')->default(false);
+            $table->boolean('esRestringida')->default(false);
 
-            $table->boolean('esTiempoReal');
-            $table->boolean('seMuestraAntes');
-
+            $table->boolean('esTiempoReal')->default(false);
+            $table->boolean('seMuestraAntes')->default(false);
 
             $table->dateTime('fechaComienzo');
             $table->dateTime('fechaFin');
