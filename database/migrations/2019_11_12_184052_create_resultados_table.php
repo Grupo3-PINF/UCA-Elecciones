@@ -23,8 +23,7 @@ class CreateResultadosTable extends Migration
              *  votos: [1, 2, 54, 3232...]
              * }
              */
-            $table->json('recuento');
-
+            $table->json('recuento')->nullable();
             $table->timestamps();
         });
     }
