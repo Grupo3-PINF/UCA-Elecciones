@@ -72,6 +72,7 @@ class LoginController extends Controller
             if($user && Hash::check($password,$user->password))
             {
                 Auth::login($user);
+                $_SESSION['idusuario'] = $user->id; 
                 return Redirect::to('/');
             }
             else
