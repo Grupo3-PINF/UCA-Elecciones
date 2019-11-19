@@ -24,7 +24,6 @@ class CreateResultadosTable extends Migration
              * }
              */
             $table->json('recuento')->nullable();
-
             $table->timestamps();
         });
     }
