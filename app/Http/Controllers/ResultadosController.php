@@ -14,59 +14,75 @@ use App\User;
 
 class ResultadosController extends Controller
 {
-	public function mostrarResultado($idvotacion/*,$idusuario*/)
-	{
-		date_default_timezone_set('Europe/Spain'); 
-		$date = date('d/m/Y h:i:s a', time());
-		$conn = openCon();
-		$resultados = Resultado::where('idVotacion', $idvotacion)->first();
-		$votacion = Pregunta::find($idvotacion);
-		if($votacion->esAnticipada == true)
-		{
-			if($date >= $votacion->fechaFinAnticipada)
-			{
-				return $votacion->recuento;
-			}
 
-		}
-		else
+	public function openCon()
+	{
+		$dbhost = "localhost";
+		$dbuser = "root";
+		$db = "laravel";
+		$password = "";
+		$conn  =  mysqli_connect($dbhost,$dbuser,$password,$db) or die("Connect failed: %s\n". $conn -> error);
+		return $conn;
+	}
+	
+	public function closeCon($conn)
+	{
+		$conn -> close();
+	}
+
+	public function mostrarResultado()
+	{
+		if(isset($_POST['opcionpregunta']) && !empty($_POST['opcionpregunta']))
 		{
-			if($date >= $votacion->fechaFin)
+			$idvotacion = $_POST['opcionpregunta'];
+			date_default_timezone_set('Europe/Madrid'); 
+			$date = date('d/m/Y h:i:s a', time());
+			$conn = $this->openCon();
+			$resultados = Resultado::where('idVotacion', $idvotacion)->first();
+			$votacion = Pregunta::find($idvotacion);
+			/*
+			if($votacion->esAnticipada == true)
 			{
-				return $votacion->recuento;
-			}
-		}
-		$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
-		$participa = false;
-		foreach ($participaciones as $participacion) {
-			if($participacion == $idusuario)
-			{
-				$participa = true;
-			}
-		}
-		if($participa)
-		{	
-			if($votacion->esTiempoReal)
-			{
-				return $votacion->recuento;
+				if($date >= $votacion->fechaFinAnticipada)
+				{
+					return $votacion->recuento;
+				}
+
 			}
 			else
 			{
-				return 0;
+				if($date >= $votacion->fechaFin)
+				{
+					return $votacion->recuento;
+				}
 			}
-		}
-		else 
-		{
-			if($votacion->seMuestraAntes)
+			$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
+			$participa = false;
+			foreach ($participaciones as $participacion) {
+				if($participacion == $idusuario)
+				{
+					$participa = true;
+				}
+			}
+			if($participa)
+			{	
+				if(!$votacion->esTiempoReal)
+				{
+					$votacion->recuento = 0;
+				}
+			}
+			else 
 			{
-				return $votacion->recuento;
-			}
-			else
-			{
-				return 0;
-			}
+				if(!$votacion->seMuestraAntes)
+				{
+					$votacion->recuento = 0;
+				}
+				
+			}*/
+			$this->closeCon($conn);
+			json_encode(['OK' => 1, 'array_votacion' => "HOLAAA"]);
+			return view('resultados')->with('array_votacion', "HOLAA");
 		}
-		closeCon($conn);
 	}
 	public function view()
 	{
@@ -81,18 +97,4 @@ class ResultadosController extends Controller
 		}*/
 		return view('resultados');
 	}
-	
-	function openCon()
-	{
-		$dbhost = "localhost";
-		$dbuser = "root";
-		$db = "laravel";
-		$conn  =  new mysql_connect($dbhost,$dbuser,$db) or die("Connect failed: %s\n". $conn -> error);
-		return $conn;
-	}
-	function closeCon($conn)
-	{
-		$conn -> close();
-	}
-	
 }
