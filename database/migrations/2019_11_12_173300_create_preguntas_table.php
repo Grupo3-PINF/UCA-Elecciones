@@ -25,7 +25,7 @@ class CreatePreguntasTable extends Migration
 
 
             $table->boolean('esCompleja');
-            $table->string('opciones');
+            $table->mediumText('opciones');
 
         
             $table->boolean('esVinculante');
