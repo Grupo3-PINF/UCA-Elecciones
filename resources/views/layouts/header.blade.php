@@ -23,14 +23,13 @@
 	</div>
 </div>
 
-{{--@if (Auth::check())--}}
-
 <div class="nav navbar" id="sub-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-sm-2">
 				<h2><a href="{{url ('/') }}">Portal</a></h2>
 			</div>
+			@if (Auth::check())
 			<div class="col-12 col-sm-10">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="crearvotacion">Crear votacion</a></li>
@@ -39,7 +38,7 @@
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/rolesgrupos') ? 'active' : ''}}" href="#">Roles y grupos</a></li>
 				</ul>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>
-{{--@endif--}}
