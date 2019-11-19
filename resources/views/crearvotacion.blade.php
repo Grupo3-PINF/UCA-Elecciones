@@ -131,6 +131,9 @@
 	function enviarVotacion() {
 		var eleccion1 = $('#eleccion-1').val();
 		var eleccion2 = $('#eleccion-2').val();
+		var eleccion3 = $('#eleccion-3').val();
+		var eleccion4 = $('#eleccion-4').val();
+		var eleccion5 = $('#eleccion-5').val();
 	    $.ajax ({
 	      'url': site.url+ 'crearvotacion/crearVotacion',
 	      'type': 'POST',

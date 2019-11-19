@@ -112,12 +112,12 @@ body {
 	color: black;
 }
 
-#login form .btn {
+#login form .btn, #resultados form .btn {
 	border-radius: 0px;
 	padding: 5px 20px;
 }
 
-#login form .btn-primary {
+#login form .btn-primary, #resultados form .btn-primary {
 	background-color: #455A64;
 }
 
@@ -239,6 +239,12 @@ footer a:hover {
 #crearvotacion .helper {
 	margin-top: 20px;
 	min-height: 300px;
+}
+
+/* Resultados */
+
+#resultados form button {
+	margin-top: 20px;
 }
 
 /* Home */

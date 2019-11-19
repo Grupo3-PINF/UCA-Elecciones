@@ -44,7 +44,7 @@ class CreatePreguntasTable extends Migration
             $table->timestamps();
 
             // provisional
-            $table->string('ambito');
+            //$table->string('ambito');
 
         });
     }
