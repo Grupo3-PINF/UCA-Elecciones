@@ -71,15 +71,15 @@ class ResultadosController extends Controller
 	public function view()
 	{
 		//$votacion = Resultado::find(1);
-		$participaciones = Participacion::where('idpregunta', 1) -> pluck('idusuario');
+		/*$participaciones = Participacion::where('idpregunta', 1) -> pluck('idusuario');
 		$participa = 100;
 		foreach ($participaciones as $participacion) {
 			if($participacion == 13)
 			{
 				$participa = 200;
 			}
-		}
-		return view('resultados')->with("participaciones",$participa);
+		}*/
+		return view('resultados');
 	}
 	
 	function openCon()
@@ -96,4 +96,3 @@ class ResultadosController extends Controller
 	}
 	
 }
-?>
