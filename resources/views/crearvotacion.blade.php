@@ -116,7 +116,7 @@
 				</div>
 			</div>
 		</div>
-		@endisset
+		@endif
 	</div>
 </div>
 <script>

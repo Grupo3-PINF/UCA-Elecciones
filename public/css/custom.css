@@ -293,4 +293,45 @@ footer a:hover {
 		margin-top: 10px;
 		float: none;
 	}
+
+
+	#sub-header h2 {
+		margin-top: 5px;
+	}
+
+	.hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+		background-color: white;
+	}
+
+	.hide-mobile {
+		display: none;
+	}
+
+	#hamburger-menu {
+		margin-top: 5px;
+	}
+
+	#hamburger-menu:focus {
+		outline: none;
+	}
+
+	#burger-div {
+		padding-bottom: 20px;
+	}
+
+	#burger-div .list-group-item {
+		background: none;
+		border: 0px;
+		border-bottom: 1px solid #eee;
+	}
+
+	#burger-div .list-group-item a {
+		padding: 20px 0;
+	}
+}
+
+@media (min-width: 601px) {
+	.hide-desktop {
+		display: none;
+	}
 }
