@@ -9,6 +9,7 @@ use Session;
 use Auth;
 
 use App\User;
+use App\Pregunta;
 
 class CrearVotacionController extends Controller
 {
@@ -19,7 +20,32 @@ class CrearVotacionController extends Controller
 
     public function crearVotacion()
     {
-       //$_POST['tipo'] etc...preguntadme (Adri)
-    	return view('crearvotacion');
+        if(isset($_POST) && !empty($_POST)) {
+            $titulo = $_POST['pregunta-basica'];
+            
+            $pregunta = new Pregunta;
+            $pregunta->titulo = $titulo;
+            
+            // $pregunta->esVinculante = $_POST['eleccion-1'];
+            // $pregunta->esCompleja = $_POST['eleccion-2'];
+            // $pregunta->esRestringida = $_POST['eleccion-3'];
+
+            $pregunta->fechaComienzo = date_create(date("Y-m-d H:i:s"));
+            $pregunta->fechaFin = date_create(date("Y-m-d H:i:s"));
+            $pregunta->save();
+
+
+            $mensaje = "Pregunta creada correctamente";
+            
+            return view('crearvotacion')->with('mensaje',$mensaje);
+
+
+            //json_encode(["OK" => 1, "pepito" => $hola]);
+            return response()->json([
+                ok => 1,
+                success => true,
+                data => $data
+            ]);
+        }
     }
 }
