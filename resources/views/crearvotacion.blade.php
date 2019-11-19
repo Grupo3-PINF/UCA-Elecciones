@@ -11,6 +11,8 @@
 		</div>
 		<form action="{{url('/crearvotacion')}}" method='POST'>
 		@csrf
+
+		@if(!@isset($mensaje))
 		<div class="helper">
 			<div class="step-1 row">
 				<div class="col-12 col-md-4">
@@ -106,7 +108,7 @@
 			</div>
 			</form>
 		</div>
-		@isset($mensaje)
+		@else
 		<div class="row">
 			<div class="col-12">
 				<div class="alert alert-success">
