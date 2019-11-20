@@ -30,13 +30,25 @@
 				<h2><a href="{{url ('/') }}">Portal</a></h2>
 			</div>
 			@if (Auth::check())
-			<div class="col-12 col-sm-10">
+			<div class="hide-desktop">
+
+			</div>
+			<div class="hide-mobile col-12 col-sm-10">
+				<!-- <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-bars fa-1x"></i></span></button> -->
+
+				<!-- Collapsible content -->
+				<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent1"> -->
+
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="crearvotacion">Crear votacion</a></li>
+					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/votar') ? 'active' : ''}}" href="#">Votar</a></li>
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="resultados">Resultados</a></li>
+					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/rolesgrupos') ? 'active' : ''}}" href="#">Roles y grupos</a></li>
 				</ul>
+
+				<!-- </div> -->
+				<!-- Collapsible content -->
+
 			</div>
 			@endif
 		</div>

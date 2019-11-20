@@ -32,4 +32,8 @@ Route::group(
 
 Route::view('/', 'index');
 
+Route::view('legal/accesibilidad', 'legal/accesibilidad');
+Route::view('legal/avisolegal', '/avisolegal');
+Route::view('legal/cookies', 'legal/cookies');
+
 
