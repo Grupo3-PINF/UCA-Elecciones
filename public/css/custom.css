@@ -112,12 +112,12 @@ body {
 	color: black;
 }
 
-#login form .btn {
+#login form .btn, #resultados form .btn {
 	border-radius: 0px;
 	padding: 5px 20px;
 }
 
-#login form .btn-primary {
+#login form .btn-primary, #resultados form .btn-primary {
 	background-color: #455A64;
 }
 
@@ -164,7 +164,7 @@ footer a:hover {
 
 /* Encuesta */
 
-#crearvotacion {
+#crearvotacion, #resultados {
 	padding: 40px 0;
 }
 
@@ -241,6 +241,12 @@ footer a:hover {
 	min-height: 300px;
 }
 
+/* Resultados */
+
+#resultados form button {
+	margin-top: 20px;
+}
+
 /* Home */
 
 #home .col-novedades {
@@ -286,5 +292,62 @@ footer a:hover {
 	#header .header-icons {
 		margin-top: 10px;
 		float: none;
+	}
+
+
+	#sub-header h2 {
+		margin-top: 5px;
+	}
+
+	#sub-header ul li a.active, #sub-header ul li a:hover {
+		border: 0px;
+		font-weight: 600;
+    	font-size: 20px;
+    	opacity: 1;
+	}
+
+	.hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
+		background-color: white;
+	}
+
+	.hide-mobile {
+		display: none;
+	}
+
+	#hamburger-menu {
+		margin-top: 5px;
+	}
+
+	#hamburger-menu:focus {
+		outline: none;
+	}
+
+	#burger-div {
+		padding-bottom: 20px;
+	}
+
+	#burger-div .list-group-item {
+		background: none;
+		border: 0px;
+		border-bottom: 1px solid #eee;
+	}
+
+	#burger-div .list-group-item a {
+		padding: 20px 0;
+		opacity: 0.7;
+	}
+
+	#home .col-novedades img {
+		margin: 20px 0;
+	}
+
+	#resultados h4 {
+		margin-top: 40px;
+	}
+}
+
+@media (min-width: 601px) {
+	.hide-desktop {
+		display: none;
 	}
 }

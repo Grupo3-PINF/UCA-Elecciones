@@ -11,10 +11,6 @@
 |
 */
 
-
-
-
-
 Route::get('login','Auth\LoginController@index')->name('login');
 Route::post('login','Auth\LoginController@login');
 
@@ -28,11 +24,12 @@ Route::group(
         {
             return view('index');
         });
+        Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
+        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        Route::get('resultados','ResultadosController@view')->name('resultados');
+        Route::post('resultados','ResultadosController@mostrarResultado');
     });
 
 Route::view('/', 'index');
 
-Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
-Route::post('crearvotacion','CrearVotacionController@crearVotacion');
 
-Route::get('resultados','ResultadosController@view')->name('resultados');
