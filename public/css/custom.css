@@ -299,6 +299,13 @@ footer a:hover {
 		margin-top: 5px;
 	}
 
+	#sub-header ul li a.active, #sub-header ul li a:hover {
+		border: 0px;
+		font-weight: 600;
+    	font-size: 20px;
+    	opacity: 1;
+	}
+
 	.hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
 		background-color: white;
 	}
@@ -327,6 +334,15 @@ footer a:hover {
 
 	#burger-div .list-group-item a {
 		padding: 20px 0;
+		opacity: 0.7;
+	}
+
+	#home .col-novedades img {
+		margin: 20px 0;
+	}
+
+	#resultados h4 {
+		margin-top: 40px;
 	}
 }
 
