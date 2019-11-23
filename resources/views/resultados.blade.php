@@ -18,7 +18,7 @@
                     <select class="form-control" id="opcionpregunta" name="opcionpregunta">
                         <option value="1">¿Cuántos años crees que tiene el vicerrector?</option>
                         <option value="2">¿Crees que Carlos Rioja va a aprobarnos?</option>
-                        <option value="3">¿Te gusta más el café o el bizcochito?</option>
+                        <option value="9">¿Te gusta más el café o el bizcochito?</option>
                     </select>
                     <button class="btn btn-primary" type="submit">Enviar</button>
                 </form>
