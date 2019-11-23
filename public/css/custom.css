@@ -294,9 +294,6 @@ footer a:hover {
 		float: none;
 	}
 
-<<<<<<< HEAD
-	#sub-header .hide-mobile {
-=======
 
 	#sub-header h2 {
 		margin-top: 5px;
@@ -351,7 +348,6 @@ footer a:hover {
 
 @media (min-width: 601px) {
 	.hide-desktop {
->>>>>>> fde796245ea565973be2f756304bb2351c2c771b
 		display: none;
 	}
 }
