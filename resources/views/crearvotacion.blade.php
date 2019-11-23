@@ -102,7 +102,7 @@
 				<input type="hidden" id="eleccion-4" value="0" name="eleccion-4">
 				<input type="hidden" id="eleccion-5" value="0" name="eleccion-5">
 					<div class="col-12">
-						<button class="btn btn-primary" type="submit">Enviar</a>
+						<button class="btn btn-primary" name="crear" value="eleccion" type="submit">Enviar</a>
 					</div>
 				</div>
 			</div>

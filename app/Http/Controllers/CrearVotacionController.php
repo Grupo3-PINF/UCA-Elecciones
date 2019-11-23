@@ -10,6 +10,7 @@ use Auth;
 
 use App\User;
 use App\Pregunta;
+use Illuminate\Http\Request;
 
 class CrearVotacionController extends Controller
 {
@@ -18,34 +19,40 @@ class CrearVotacionController extends Controller
         return view('crearvotacion');
     }
 
-    public function crearVotacion()
+    public function crearVotacion(Request $request)
     {
-        if(isset($_POST) && !empty($_POST)) {
-            $titulo = $_POST['pregunta-basica'];
-            
-            $pregunta = new Pregunta;
-            $pregunta->titulo = $titulo;
-            
-            // $pregunta->esVinculante = $_POST['eleccion-1'];
-            // $pregunta->esCompleja = $_POST['eleccion-2'];
-            // $pregunta->esRestringida = $_POST['eleccion-3'];
-
-            $pregunta->fechaComienzo = date_create(date("Y-m-d H:i:s"));
-            $pregunta->fechaFin = date_create(date("Y-m-d H:i:s"));
-            $pregunta->save();
-
-
-            $mensaje = "Pregunta creada correctamente";
-            
-            return view('crearvotacion')->with('mensaje',$mensaje);
-
-
-            //json_encode(["OK" => 1, "pepito" => $hola]);
-            return response()->json([
-                ok => 1,
-                success => true,
-                data => $data
-            ]);
+        switch($request->input('crear')) {
+            case 'pregunta':
+                if(isset($_POST) && !empty($_POST)) {
+                    $titulo = $_POST['pregunta-basica'];
+                    
+                    $pregunta = new Pregunta;
+                    $pregunta->titulo = $titulo;
+                    
+                    // $pregunta->esVinculante = $_POST['eleccion-1'];
+                    // $pregunta->esCompleja = $_POST['eleccion-2'];
+                    // $pregunta->esRestringida = $_POST['eleccion-3'];
+        
+                    $pregunta->fechaComienzo = date_create(date("Y-m-d H:i:s"));
+                    $pregunta->fechaFin = date_create(date("Y-m-d H:i:s"));
+                    $pregunta->save();
+        
+        
+                    $mensaje = "Pregunta creada correctamente";
+                    
+                    return view('crearvotacion')->with('mensaje',$mensaje);
+        
+        
+                    //json_encode(["OK" => 1, "pepito" => $hola]);
+                    return response()->json([
+                        ok => 1,
+                        success => true,
+                        data => $data
+                    ]);
+                } break;
+            case 'eleccion' :
+                return "hola";
         }
+        
     }
 }
