@@ -6,9 +6,9 @@
 					<img src="{{asset('/images/logoUCA40_blanco.png')}}" alt="logo-uca" class="img-fluid">
 				</div>
 				<div class="col-6 col-sm-3 offset-sm-1">
-					<span><a href="#">Aviso legal</a></span>
-					<span><a href="#">Accesibilidad</a></span>
-					<span><a href="#">Cookies</a></span>
+					<span><a href="{{url ('/avisolegal') }}">Aviso legal</a></span>
+					<span><a href="{{url ('/accesibilidad') }}">Accesibilidad</a></span>
+					<span><a href="{{url ('/cookies') }}">Cookies</a></span>
 				</div>
 				<div class="col-6 col-sm-3">
 					<span><a target="_blank" href="https://www.uca.es/">UCA</a></span>
