@@ -9,6 +9,10 @@
 				<p>VotUCA es una herramienta intuitiva desarrollada con el fin de facilitar la creación de procesos electorales, digitalizando las votaciones y eliminando la necesidad de un escrutinio manual. El futuro es ahora.</p>
 			</div>
 		</div>
+		<form action="{{url('/crearvotacion')}}" method='POST'>
+		@csrf
+
+		@if(!@isset($mensaje))
 		<div class="helper">
 			<div class="step-1 row">
 				<div class="col-12 col-md-4">
@@ -92,17 +96,27 @@
 					<div class="col-12">
 						<textarea type="text" name="pregunta-basica" placeholder="Introduzca su pregunta"></textarea>
 					</div>
+					<input type="hidden" id="eleccion-1" value="0" name="eleccion-1">
+				<input type="hidden" id="eleccion-2" value="0" name="eleccion-2">
+				<input type="hidden" id="eleccion-3" value="0" name="eleccion-3">
+				<input type="hidden" id="eleccion-4" value="0" name="eleccion-4">
+				<input type="hidden" id="eleccion-5" value="0" name="eleccion-5">
 					<div class="col-12">
-						<a class="btn btn-primary" onclick="enviarVotacion()">Enviar</a>
+						<button class="btn btn-primary" type="submit">Enviar</a>
 					</div>
 				</div>
-				<input type="hidden" id="eleccion-1" value="0">
-				<input type="hidden" id="eleccion-2" value="0">
-				<input type="hidden" id="eleccion-3" value="0">
-				<input type="hidden" id="eleccion-4" value="0">
-				<input type="hidden" id="eleccion-5" value="0">
+			</div>
+			</form>
+		</div>
+		@else
+		<div class="row">
+			<div class="col-12">
+				<div class="alert alert-success">
+					<h4>{{$mensaje ? : ''}}</h4>
+				</div>
 			</div>
 		</div>
+		@endif
 	</div>
 </div>
 <script>
@@ -134,17 +148,37 @@
 		var eleccion3 = $('#eleccion-3').val();
 		var eleccion4 = $('#eleccion-4').val();
 		var eleccion5 = $('#eleccion-5').val();
+
+		var token = $('meta[name=csrf-token]').attr('content');
+		var titulo = $('textarea#titulo-pregunta').val();
+
+		$.ajaxSetup({
+    		headers: {
+        		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    		}
+		});
+
 	    $.ajax ({
-	      'url': site.url+ 'crearvotacion/crearVotacion',
+	      'url': 'crearvotacion',
 	      'type': 'POST',
 	      'dataType': 'json',
 	      'data' : 
-	      	{eleccion1 : eleccion1},
+	      	{
+				  titulo: titulo,
+				  eleccion1 : eleccion1,
+				  eleccion2: eleccion2,
+				  eleccion3: eleccion3,
+				  eleccion4: eleccion4,
+				  eleccion5: eleccion5
+				  },
 	      'success': function (json) {
 	        if(json.ok == 1)
 	        	console.log("OK");
 	          //Pregunta enviada correctamente
-	      	}
+	      	},
+			'error': function (error) {
+				console.log(error)
+			}
 	    })
 	}
 

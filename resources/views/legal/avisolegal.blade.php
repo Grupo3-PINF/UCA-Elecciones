@@ -5,7 +5,7 @@
 <div id="accesibilidad">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-sm-12">
                 <h4>Aviso Legal</h4>
                 <p><em>Lorem ipsum dolor sit amet</em>, consectetur adipiscing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
