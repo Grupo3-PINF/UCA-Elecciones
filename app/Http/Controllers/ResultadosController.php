@@ -44,11 +44,12 @@ class ResultadosController extends Controller
 			$vector = ["OK" => 1,
 				"opciones"=> "",
 				"votos" => $resultados->recuento];
+			$finalizada = true;
 			if($votacion->esAnticipada == true)
 			{
 				if($date <= $votacion->fechaFinAnticipada)
 				{
-					$vector["OK"] = 0;
+					$finalizada = false;
 				}
 
 			}
@@ -56,31 +57,34 @@ class ResultadosController extends Controller
 			{
 				if($date <= $votacion->fechaFin)
 				{
-					$vector["OK"] = 0;
+					$finalizada = false;
 				}
 			}
-			$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
-			$participa = false;
-			foreach ($participaciones as $participacion) {
-				if($participacion == $_SESSION['idusuario'])
-				{
-					$participa = true;
-				}
-			}
-			if($participa)
-			{	
-				if(!$votacion->esTiempoReal)
-				{
-					$vector["OK"] = 0;
-				}
-			}
-			else 
+			if($finalizada == false)
 			{
-				if(!$votacion->seMuestraAntes)
+				if($votacion->esTiempoReal == false)
 				{
 					$vector["OK"] = 0;
 				}
-				
+				else 
+				{
+					if($votacion->seMuestraAntes == false)
+					{
+						$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
+						$participa = false;
+						foreach ($participaciones as $participacion) 
+						{
+							if($participacion == $_SESSION['idusuario'])
+							{
+								$participa = true;
+							}
+						}
+						if($participa == false)
+						{ 
+							$vector["OK"] = 0;
+						}
+					}	
+				}
 			}
 			$this->closeCon($conn);
 			return view('resultados')->with($vector);
