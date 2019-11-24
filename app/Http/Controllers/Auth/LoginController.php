@@ -66,6 +66,7 @@ class LoginController extends Controller
     {
         if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password']))
         {
+            session_start(); 
             $username = $_POST['username'];
             $password = $_POST['password'];
             $user = User::where('name',$username)->first();
