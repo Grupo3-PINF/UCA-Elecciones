@@ -112,16 +112,21 @@ body {
 	color: black;
 }
 
-#login form .btn, #resultados form .btn {
+.btn {
 	border-radius: 0px;
 	padding: 5px 20px;
 }
 
-#login form .btn-primary, #resultados form .btn-primary {
+.btn-primary {
 	background-color: #455A64;
 }
 
-#login form .btn-cancel, #login form .btn-xtra-info {
+.btn-primary:hover {
+	background: #607D8B;
+	border: 1px solid white;
+}
+
+.btn-cancel, .btn-xtra-info {
 	background-color: #EEEEEE;
 	color: black;
 }
@@ -194,36 +199,13 @@ footer a:hover {
 	color: #161616;
 }
 
-#crearvotacion .votacion h5 {
+#crearvotacion h5 {
 	text-transform: uppercase;
-	font-size: 38px;
+	font-size: 22px;
 	font-weight: 600;
 }
 
-#crearvotacion .step-5 label {
-	margin-right: 10px;
-}
-
-#crearvotacion .step-5 textarea {
-	padding: 5px;
-    background-color: #e8f0fe;
-    border: 1px solid #607D8B;
-    color: black;
-    min-width: 300px;
-}
-
-#crearvotacion .step-5 .btn {
-	border-radius: 0px;
-    padding: 5px 20px;
-}
-
-#crearvotacion .step-5 .btn-primary {
-	margin-top: 10px;
-	background-color: #455A64;
-	color: white;
-}
-
-#crearvotacion .step-1, #crearvotacion .step-2, #crearvotacion .step-3, #crearvotacion .step-4 {
+#crearvotacion .step-1 {
 	display: flex;
 	transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear; /* Firefox 4 */
@@ -239,6 +221,40 @@ footer a:hover {
 #crearvotacion .helper {
 	margin-top: 20px;
 	min-height: 300px;
+}
+
+#crearvotacion .form-group label {
+	text-transform: uppercase;
+	font-weight: 600;
+}
+
+#crearvotacion .form-group input, #crearvotacion .form-group select, #crearvotacion .form-group textarea {
+	padding: 0 5px;
+	background-color: #e8f0fe;
+	border: 1px solid #607D8B;
+	color: black;
+	border-radius: 0px;
+}
+
+#crearvotacion .form-group input[type=checkbox] {
+	margin-left: 5px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+#crearvotacion .form-group .btn-secondary {
+	margin-top: 10px;
+	background: #CFD8DC;
+	color: black;
+}
+
+#crearvotacion .form-group p {
+	font-size: 14px;
+}
+
+#crearvotacion #fecha-anticipada-pregunta, #crearvotacion #participantes-anticipada-pregunta {
+	display: none;
 }
 
 /* Resultados */
