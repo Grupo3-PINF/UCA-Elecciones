@@ -13,10 +13,9 @@ class CreateCensosUsuarioTable extends Migration
      */
     public function up()
     {
-      Schema::create('censosUsuario', function (Blueprint $table) {
-            $table->bigInteger('idCenso');
+        Schema::create('censos_usuario', function (Blueprint $table) {
             $table->bigInteger('idUsuario');
-            $table->rememberToken();
+            $table->bigInteger('idCenso');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateCensosUsuarioTable extends Migration
      */
     public function down()
     {
-        Schema::dropifExists('censosUsuario');
+        Schema::dropIfExists('censos_usuario');
     }
 }

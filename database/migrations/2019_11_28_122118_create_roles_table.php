@@ -16,12 +16,11 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('idUser');
-            $table->boolval('esAdministrador')->default(false);
-            $table->boolval('esSecretario')->default(false);
-            $table->boolval('esEstudiante')->default(true);
-            $table->boolval('esDesarrolladorBajo')->default(false);
-            $table->boolval('esDesarrolladorAlto')->default(false);
-            $table->rememberToken();
+            $table->boolean("esAdmin")->default(false);
+            $table->boolean("esSecretario")->default(false);
+            $table->boolean("esEstudiante")->default(true);
+            $table->boolean("esDesarrolladorBajo")->default(false);
+            $table->boolean("esDesarrolladorAlto")->default(false);
             $table->timestamps();
         });
     }

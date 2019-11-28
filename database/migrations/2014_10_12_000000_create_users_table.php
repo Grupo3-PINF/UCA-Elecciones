@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('idRolActivo');
+            // para la blockchain
+            $table->string('wallet')->unique()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

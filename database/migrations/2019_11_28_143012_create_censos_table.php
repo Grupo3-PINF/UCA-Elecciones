@@ -13,11 +13,10 @@ class CreateCensosTable extends Migration
      */
     public function up()
     {
-      Schema::create('censos', function (Blueprint $table) {
+        Schema::create('censos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->bigInteger('idCensoPadre')->nullable();
-            $table->rememberToken();
+            $table->bigInteger("idPadre")->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateCensosTable extends Migration
      */
     public function down()
     {
-        Schema::dropifExists('censos');
+        Schema::dropIfExists('censos');
     }
 }
