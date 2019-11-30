@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
-class Admin
+class Gestion
 {
     /**
      * Handle an incoming request.
