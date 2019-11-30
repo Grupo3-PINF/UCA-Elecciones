@@ -24,17 +24,28 @@ Route::group(
         {
             return view('index');
         });
+
         Route::get('resultados','ResultadosController@view')->name('resultados');
         Route::post('resultados','ResultadosController@mostrarResultado');
     });
 
+
 Route::group(
     [
-        'middleware' => ['auth','role']
+        'middleware' => ['auth','gestion']
     ],function()
     {
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
         Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => ['auth','admin']
+    ],function()
+    {
+        Route::get('roles','RolesController@view')->name('roles');
     }
 );
 
