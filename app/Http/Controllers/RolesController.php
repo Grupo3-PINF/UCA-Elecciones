@@ -104,4 +104,3 @@ class RolesController extends Controller
         return "Roles eliminados correctamente";
 } 
     }
-}
