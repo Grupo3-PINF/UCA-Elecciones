@@ -46,7 +46,7 @@ Route::group(
     ],function()
     {
         Route::get('roles','RolesController@view')->name('roles');
-        Route::get('rolesloco', 'RolesController@mostrarRoles')->name('roles.mostrar');
+        Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
     }
 );
 

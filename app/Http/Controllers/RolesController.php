@@ -18,41 +18,44 @@ class RolesController extends Controller
         return view('roles');
     }
 
-    public function mostrarRoles($login)
+    public function mostrarRoles()
     {
         if(session_status()==PHP_SESSION_NONE)
             session_start();
-        
-        $user = User::where('login',$login)->first();
         $array = null;
-        if(isset($user))
+        if(isset($_POST['login']) && !empty($_POST['login']))
         {
-            $_SESSION['userselect']=$user->identificador;
-            $rol = Rol::where('idUser',$user->identificador)->first();
-
-            if(isset($rol))
+            $user = User::where('login',$_POST['login'])->first();
+            
+            if(isset($user))
             {
-                $array = [];
-                if($rol->esAdmin)
-                    array_push($array,'Administrador');
-                if($rol->esSecretario)
-                    array_push($array,'Secretario');
-                if($rol->esEstudiante)
-                    array_push($array,'Estudiante');
-                if($rol->esDesarrolladorBajo)
-                    array_push($array,'Desarrollador Bajo');
-                if($rol->esDesarrolladorAlto)
-                    array_push($array,'Desarrollador Alto');
+                $_SESSION['userselect']=$user->identificador;
+                $rol = Rol::where('idUser',$user->identificador)->first();
+
+                if(isset($rol))
+                {
+                    $array = [];
+                    if($rol->esAdmin)
+                        array_push($array,'Administrador');
+                    if($rol->esSecretario)
+                        array_push($array,'Secretario');
+                    if($rol->esEstudiante)
+                        array_push($array,'Estudiante');
+                    if($rol->esDesarrolladorBajo)
+                        array_push($array,'Desarrollador Bajo');
+                    if($rol->esDesarrolladorAlto)
+                        array_push($array,'Desarrollador Alto');
+                }
             }
         }
-        return view('roles')->with('roles',$array);
+       return $array;
     }
 
     public function añadirRol($roles)
     {
         if(session_status()==PHP_SESSION_NONE)
             session_start();
-        if(isset($_SESSION['userselect']) && !isempty($_SESSION['userselect']))
+        if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
         {
             $id = $_SESSION['userselect'];
             $rol = Rol::where('idUser',$id)->first();
@@ -80,7 +83,7 @@ class RolesController extends Controller
     {
         if(session_status()==PHP_SESSION_NONE)
             session_start();
-        if(isset($_SESSION['userselect']) && !isempty($_SESSION['userselect']))
+        if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
         {
             $id = $_SESSION['userselect'];
             $rol = Rol::where('idUser',$id)->first();
