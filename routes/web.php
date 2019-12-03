@@ -24,12 +24,33 @@ Route::group(
         {
             return view('index');
         });
-        Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
-        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
-        Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
         Route::get('resultados','ResultadosController@view')->name('resultados');
         Route::post('resultados','ResultadosController@mostrarResultado');
     });
+
+
+Route::group(
+    [
+        'middleware' => ['auth','gestion']
+    ],function()
+    {
+        Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
+        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => ['auth','admin']
+    ],function()
+    {
+        Route::get('roles','RolesController@view')->name('roles');
+        Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
+        Route::post('roles-añadir','RolesController@agregarRol')->name('roles.agregar');
+        Route::post('roles-eliminar','RolesController@quitarRol')->name('roles.eliminar');
+    }
+);
 
 Route::view('/', 'index');
 
