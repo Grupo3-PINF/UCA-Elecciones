@@ -16,6 +16,8 @@ class Participacion extends Migration
         Schema::create('participacion', function (Blueprint $table) {
             $table->bigInteger('idpregunta');
             $table->bigInteger('idusuario');
+            $table->string('respuestaElegida');
+            $table->timestamps();
         });
     }
 
