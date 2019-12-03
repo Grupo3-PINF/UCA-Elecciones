@@ -10,6 +10,7 @@ use Auth;
 
 use App\User;
 use App\Pregunta;
+use Illuminate\Http\Request;
 
 class CrearVotacionController extends Controller
 {
@@ -18,34 +19,50 @@ class CrearVotacionController extends Controller
         return view('crearvotacion');
     }
 
-    public function crearVotacion()
+    public function crearPregunta(Request $request)
     {
         if(isset($_POST) && !empty($_POST)) {
-            $titulo = $_POST['pregunta-basica'];
+            $titulo = $request->input('pregunta-basica');
             
             $pregunta = new Pregunta;
             $pregunta->titulo = $titulo;
             
-            // $pregunta->esVinculante = $_POST['eleccion-1'];
-            // $pregunta->esCompleja = $_POST['eleccion-2'];
-            // $pregunta->esRestringida = $_POST['eleccion-3'];
-
+            $pregunta->esVinculante = $request->input('eleccion-2') == "si" ? true : false;
+            $pregunta->esCompleja = $request->input('eleccion-3') == "si" ? true : false;
+            $pregunta->esRestringida = $request->input('eleccion-4') == "si" ? true : false;
             $pregunta->fechaComienzo = date_create(date("Y-m-d H:i:s"));
             $pregunta->fechaFin = date_create(date("Y-m-d H:i:s"));
             $pregunta->save();
 
-
             $mensaje = "Pregunta creada correctamente";
             
+            // mientras no tenemos ajax, devolvemos una vista
             return view('crearvotacion')->with('mensaje',$mensaje);
 
-
-            //json_encode(["OK" => 1, "pepito" => $hola]);
+            // para cuando tengamos ajax
             return response()->json([
                 ok => 1,
                 success => true,
                 data => $data
             ]);
         }
+    }
+
+    public function crearEleccion(Request $request)
+    {
+        // codigo para crear las elecciones
+    }
+
+    public function crearVotacion(Request $request)
+    {
+        switch($request->input('eleccion-1')) {
+            case 'pregunta':
+                return $this->crearPregunta($request);
+            break;
+            case 'eleccion':
+                return $this->crearEleccion($request);
+            break;
+        }
+        
     }
 }
