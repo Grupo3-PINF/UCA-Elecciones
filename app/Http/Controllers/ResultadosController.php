@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Redirect;
@@ -11,10 +9,8 @@ use App\Resultado;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
-
 class ResultadosController extends Controller
 {
-
 	public function openCon()
 	{
 		$dbhost = "localhost";
@@ -29,7 +25,6 @@ class ResultadosController extends Controller
 	{
 		$conn -> close();
 	}
-
 	public function mostrarResultado()
 	{
 		session_start(); 
@@ -51,7 +46,6 @@ class ResultadosController extends Controller
 				{
 					$finalizada = false;
 				}
-
 			}
 			else
 			{

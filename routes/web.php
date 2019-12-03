@@ -25,7 +25,7 @@ Route::group(
             return view('index');
         });
         Route::get('resultados','ResultadosController@view')->name('resultados');
-        Route::post('resultados','ResultadosController@mostrarResultado');
+        Route::post('resultados','ResultadosController@mostrarResultado')->name('resultado.post');
     });
 
 
