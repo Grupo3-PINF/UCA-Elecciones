@@ -51,7 +51,6 @@ class ResultadosController extends Controller
 				{
 					$finalizada = false;
 				}
-
 			}
 			else
 			{
