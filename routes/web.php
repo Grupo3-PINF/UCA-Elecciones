@@ -26,6 +26,7 @@ Route::group(
         });
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
         Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
         Route::get('resultados','ResultadosController@view')->name('resultados');
         Route::post('resultados','ResultadosController@mostrarResultado');
     });
