@@ -50,7 +50,7 @@
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/votar') ? 'active' : ''}}" href="#">Votar</a></li>
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
+					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/rolesgrupos') ? 'active' : ''}}" href="#">Roles y grupos</a></li>
 				</ul>
 
 				<!-- </div> -->
