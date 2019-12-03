@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Participacion extends Migration
+class CreateCensosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class Participacion extends Migration
      */
     public function up()
     {
-        Schema::create('participacion', function (Blueprint $table) {
-            $table->bigInteger('idpregunta');
-            $table->bigInteger('idusuario');
-            $table->bigInteger('opcion');
+        Schema::create('censos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->bigInteger("idPadre")->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class Participacion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participacion');
+        Schema::dropIfExists('censos');
     }
 }

@@ -1,4 +1,5 @@
 <?php $titulo = "Aviso Legal"; ?>
+
 @extends('layouts/layout')
 @section('content')
 

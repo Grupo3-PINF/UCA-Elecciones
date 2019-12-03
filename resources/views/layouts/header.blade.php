@@ -42,7 +42,7 @@
 					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="crearvotacion">Crear votacion</a></li>
 					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/votar') ? 'active' : ''}}" href="#">Votar</a></li>
 					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="resultados">Resultados</a></li>
-					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/rolesgrupos') ? 'active' : ''}}" href="#">Roles y grupos</a></li>
+					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="roles">Roles y grupos</a></li>
 				</ul>
 			</div>
 			<div class="col-12 col-sm-10 hide-mobile">
