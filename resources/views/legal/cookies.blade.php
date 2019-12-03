@@ -1,6 +1,6 @@
 <?php $titulo = "Aviso Legal"; ?>
-@extends('layouts/layout');
-@section('content');
+@extends('layouts/layout')
+@section('content')
 
 <div id="accesibilidad">
     <div class="container">
