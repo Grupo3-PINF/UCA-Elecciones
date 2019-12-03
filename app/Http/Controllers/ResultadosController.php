@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Redirect;
 use Session;
 use Auth;
-use App\Resultado;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
@@ -33,14 +32,14 @@ class ResultadosController extends Controller
 	public function mostrarResultado()
 	{
 		session_start(); 
-		if(isset($_POST['opcionpregunta']) && !empty($_POST['opcionpregunta']))
+		if(isset($_POST['opciones']) && !empty($_POST['opciones']))
 		{
-			$idvotacion = $_POST['opcionpregunta'];
+			$id = $_POST['opciones'];
 			date_default_timezone_set('Europe/Madrid'); 
 			$date = date('d/m/Y h:i:s a', time());
 			$conn = $this->openCon();
-			$resultados = Resultado::where('idVotacion', $idvotacion)->first();
-			$votacion = Pregunta::find($idvotacion);
+			$resultados = Resultado::where('id', $id)->first();
+			$votacion = Pregunta::find($id);
 			$vector = ["OK" => 1,
 				"opciones"=> "",
 				"votos" => $resultados->recuento];
@@ -69,7 +68,7 @@ class ResultadosController extends Controller
 				{
 					if($votacion->seMuestraAntes == false)
 					{
-						$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
+						$participaciones = Participacion::where('idpregunta', $id) -> pluck('idusuario');
 						$participa = false;
 						foreach ($participaciones as $participacion) 
 						{
