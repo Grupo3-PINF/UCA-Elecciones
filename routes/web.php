@@ -11,9 +11,51 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('login','Auth\LoginController@index');
+Route::get('login','Auth\LoginController@index')->name('login');
 Route::post('login','Auth\LoginController@login');
+
+Route::group(
+    [
+    'middleware'=>'auth'
+    ],function()
+    {
+        Route::get('logout','Auth\LoginController@logout');
+        Route::get('/', function () 
+        {
+            return view('index');
+        });
+
+        Route::get('resultados','ResultadosController@view')->name('resultados');
+        Route::post('resultados','ResultadosController@mostrarResultado');
+    });
+
+
+Route::group(
+    [
+        'middleware' => ['auth','gestion']
+    ],function()
+    {
+        Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
+        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => ['auth','admin']
+    ],function()
+    {
+        Route::get('roles','RolesController@view')->name('roles');
+        Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
+        Route::post('roles-añadir','RolesController@agregarRol')->name('roles.agregar');
+        Route::post('roles-eliminar','RolesController@quitarRol')->name('roles.eliminar');
+    }
+);
+
+Route::view('/', 'index');
+
+Route::view('/accesibilidad', 'legal/accesibilidad');
+Route::view('/avisolegal', 'legal/avisolegal');
+Route::view('/cookies', 'legal/cookies');
+
+
