@@ -41,32 +41,7 @@
 					@include('crearvotacion/creareleccion')
 					@include('crearvotacion/crearconsulta')
 				</div>
-<<<<<<< HEAD
-				<div id="pregunta-basica-div" class="step-5 row hide">
-					<div class="col-12">
-						<h4>¿Cuál es la pregunta?</h4>
-					</div>
-					<div class="col-12">
-						<label>Introduzca su pregunta</label>
-					</div>
-					<div class="col-12">
-						<textarea type="text" name="pregunta-basica" placeholder="Introduzca su pregunta"></textarea>
-					</div>
-					<input type="hidden" id="eleccion-1" value="0" name="eleccion-1">
-				<input type="hidden" id="eleccion-2" value="0" name="eleccion-2">
-				<input type="hidden" id="eleccion-3" value="0" name="eleccion-3">
-				<input type="hidden" id="eleccion-4" value="0" name="eleccion-4">
-				<input type="hidden" id="eleccion-5" value="0" name="eleccion-5">
-					<div class="col-12">
-						<button class="btn btn-primary" type="submit">Enviar Pregunta</a>
-					</div>
-				</div>
-			</div>
-			</form>
-		</div>
-=======
 		</form>
->>>>>>> testing
 		@else
 		<div class="row">
 			<div class="col-12">
