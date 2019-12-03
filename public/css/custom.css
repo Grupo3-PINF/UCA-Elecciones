@@ -257,6 +257,20 @@ footer a:hover {
 	display: none;
 }
 
+#grupos-div-pregunta, #grupos-div-eleccion, #candidatos-div-eleccion {
+    background-color: #e8f0fe;
+    border: 1px solid #607D8B;
+    border-radius: 0px;
+    min-height: 100px;
+}
+
+.input-div-caja {
+	background-color: white !important;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 600;
+}
+
 /* Resultados */
 
 #resultados form button {
