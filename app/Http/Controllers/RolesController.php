@@ -51,59 +51,93 @@ class RolesController extends Controller
        return $array;
     }
 
-    public function añadirRol($roles)
+    public function agregarRol()
     {
         if(session_status()==PHP_SESSION_NONE)
             session_start();
-        if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
+        if(isset($_POST['roles']) && !empty($_POST['roles']) && $_POST['roles'][1]!="")
         {
-            $id = $_SESSION['userselect'];
-            $rol = Rol::where('idUser',$id)->first();
-            foreach($roles as $rol)
+            if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
             {
-                if($rol == 'Administrador')
-                    $rol->esAdmin = true;
-                if($rol == 'Secretario')
-                    $rol->esSecretario = true;
-                if($rol == 'Estudiante')
-                    $rol->esEstudiante = true;
-                if($rol == 'Desarrollador Bajo')
-                    $rol->esDesarrolladorBajo = true;
-                if($rol == 'Desarrollador Alto')
-                    $rol->esDesarrolladorAlto = true;
-            }
-            $rol->save();
-            unset($_SESSION['userselect']);
-        }
+                $roles = $_POST['roles'];
+                if(array_search("Administrador",$roles)!=FALSE ||array_search("Secretario",$roles)!=FALSE 
+                                || array_search("Estudiante",$roles)!=FALSE || array_search("Desarrollador Bajo",$roles)!=FALSE
+                                || array_search("Desarrollador Alto",$roles)!=FALSE)
+                {
+                    $id = $_SESSION['userselect'];
+                    $rolrow = Rol::where('idUser',$id)->first();
+                    foreach($roles as $rol)
+                    {
+                        if($rol == 'Administrador')
+                            $rolrow->esAdmin = true;
+                        if($rol == 'Secretario')
+                            $rolrow->esSecretario = true;
+                        if($rol == 'Estudiante')
+                            $rolrow->esEstudiante = true;
+                        if($rol == 'Desarrollador Bajo')
+                            $rolrow->esDesarrolladorBajo = true;
+                        if($rol == 'Desarrollador Alto')
+                            $rolrow->esDesarrolladorAlto = true;
+                    }
+                    $rolrow->save();
+                    unset($_SESSION['userselect']);
 
-        return "Roles añadidos correctamente";
-    }
+                    return "Roles añadidos correctamente.";
+                }
+                else
+                {
+                    return "No hay ningún rol correcto.";
+                }
+            }
+        }
+        else
+        {
+            return "Rol no proporcionado.";
+        }
+    } 
 
     public function quitarRol()
     {
         if(session_status()==PHP_SESSION_NONE)
             session_start();
-        if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
+        if(isset($_POST['roles']) && !empty($_POST['roles']) && $_POST['roles'][1]!="")
         {
-            $id = $_SESSION['userselect'];
-            $rol = Rol::where('idUser',$id)->first();
-            foreach($roles as $rol)
+            if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
             {
-                if($rol == 'Administrador')
-                    $rol->esAdmin = false;
-                if($rol == 'Secretario')
-                    $rol->esSecretario = false;
-                if($rol == 'Estudiante')
-                    $rol->esEstudiante = false;
-                if($rol == 'Desarrollador Bajo')
-                    $rol->esDesarrolladorBajo = false;
-                if($rol == 'Desarrollador Alto')
-                    $rol->esDesarrolladorAlto = false;
-            }
-            $rol->save();
-            unset($_SESSION['userselect']);
-        }
+                $roles = $_POST['roles'];
+                if(array_search("Administrador",$roles)!=false ||array_search("Secretario",$roles)!=false 
+                                || array_search("Estudiante",$roles)!=false || array_search("Desarrollador Bajo",$roles)!=false
+                                || array_search("Desarrollador Alto",$roles)!=false)
+                {
+                    $id = $_SESSION['userselect'];
+                    $rolrow = Rol::where('idUser',$id)->first();
+                    foreach($roles as $rol)
+                    {
+                        if($rol == 'Administrador')
+                            $rolrow->esAdmin = false;
+                        if($rol == 'Secretario')
+                            $rolrow->esSecretario = false;
+                        if($rol == 'Estudiante')
+                            $rolrow->esEstudiante = false;
+                        if($rol == 'Desarrollador Bajo')
+                            $rolrow->esDesarrolladorBajo = false;
+                        if($rol == 'Desarrollador Alto')
+                            $rolrow->esDesarrolladorAlto = false;
+                    }
+                    $rolrow->save();
+                    unset($_SESSION['userselect']);
 
-        return "Roles eliminados correctamente";
-} 
-    }
+                    return "Roles eliminados correctamente.";
+                }
+                else
+                {
+                    return "No hay ningún rol correcto.";
+                }
+            }
+        }
+        else
+        {
+            return "Rol no proporcionado.";
+        }
+    } 
+}

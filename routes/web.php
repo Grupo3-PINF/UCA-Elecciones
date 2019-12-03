@@ -47,6 +47,8 @@ Route::group(
     {
         Route::get('roles','RolesController@view')->name('roles');
         Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
+        Route::post('roles-añadir','RolesController@agregarRol')->name('roles.agregar');
+        Route::post('roles-eliminar','RolesController@quitarRol')->name('roles.eliminar');
     }
 );
 
