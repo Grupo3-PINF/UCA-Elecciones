@@ -58,6 +58,8 @@ class LoginController extends Controller
 
     public function logout()
     {
+        session_start();
+        unset($_SESSION['idusuario']);
         Auth::logout();
         return Redirect::to('login');
     }
@@ -69,11 +71,11 @@ class LoginController extends Controller
             session_start(); 
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $user = User::where('name',$username)->first();
+            $user = User::where('login',$username)->first();
             if($user && Hash::check($password,$user->password))
             {
                 Auth::login($user);
-                $_SESSION['idusuario'] = $user->id; 
+                $_SESSION['idusuario'] = $user->login; 
                 return Redirect::to('/');
             }
             else
