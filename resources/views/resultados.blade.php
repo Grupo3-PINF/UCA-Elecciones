@@ -2,14 +2,14 @@
 @extends('layouts/layout')
 @section('content')
 <div id="resultados">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h3>RESULTADOS DE LAS ELECCIONES</h3>
-				<p>Seleccione su pregunta a través de nuestro corrector para ver los resultados correspondientes.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>RESULTADOS DE LAS ELECCIONES</h3>
+                <p>Seleccione su pregunta a través de nuestro corrector para ver los resultados correspondientes.</p>
                 <p>La gráfica sólo aparecerá una vez que haya seleccionado la pregunta.</p>
-			</div>
-		</div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-md-5">
                 <form method="POST">
@@ -30,7 +30,7 @@
             </div>
             @endisset
         </div>
-	</div>
+    </div>
 </div>
 
 <script>
@@ -57,44 +57,36 @@
 $("#btn-primary").click(function(){
     //aquí comprobar si el usuario le ha vuelto a dar click al boton de nuevo para otra pregunto(o la misma) o le da cancelar vista
     //¡¡¡RECORDATORIO!!!Neceistamos un parametro enviado desde el controlador para saber cuando mostrar la grafica en tiempo real o no
-
-        //var d = new Date();
-        //var tiempo_tomado = d.getTime(); //devuelve momento actual desde 1 de Enero de 1970(en segundos)
-
         //if(d.getTime() - tiempo_tomado > 4) //ó >= 5
         
             $.ajax({
                 url: "{{ route('resultado.post')}}", //web.php poner nombre a la ruta de post de resultados ->name('resultado.post)
                 type: 'post',
-                data: {'_token':"{{csrf_token()}}"},
-                succes: function(vector)
+                data: {'_token':"{{csrf_token()}}", 'id': "9"}, // en id tiene que ir el id de la pregunta de la que hay que sacar los resultados.
+                success: function(vector)
                 {
-                    console.log("illo");
-                    /*if($vector["ok"] == 1)
+                    //$('#loko').text(vector['votos']);  //esta linea os asegura que el resultado llega correctamente.
+                    if(vector['OK'] == 1) //aqui entra seguro da un error en la linea de de data porque dice que no está.
                     {
                     //doughnut
                         var ctxD = $('#doughnutChart').get(0);
                         var myLineChart = new Chart(ctxD,{
                             type: 'doughnut',
                             data: {
-                                labels: $data["opciones"],
+                                labels: data[vector['opciones']],
                                 datasets: [
                                     {
-                                        data: $data["votos"],
+                                        data: data["votos"],
                                         backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
                                         hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
                                     }
                                 ]
                             },
                             options: {
-                                responsive: true
+                                responsive: false
                             }
                         });
                     }
-                    else if($data["ok"] == 0)
-                    {
-                        console.log("Ok vale 0");
-                    }*/
                 },
                 error: function()
                 {
@@ -106,4 +98,3 @@ $("#btn-primary").click(function(){
 })
 </script>
 @stop
-

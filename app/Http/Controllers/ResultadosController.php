@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Redirect;
@@ -10,10 +8,8 @@ use Auth;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
-
 class ResultadosController extends Controller
 {
-
 	public function openCon()
 	{
 		$dbhost = "localhost";
@@ -28,21 +24,20 @@ class ResultadosController extends Controller
 	{
 		$conn -> close();
 	}
-
 	public function mostrarResultado()
 	{
-		session_start(); 
-		if(isset($_POST['opciones']) && !empty($_POST['opciones']))
+		session_start();
+		if(isset($_POST) && !empty($_POST))
 		{
-			$id = $_POST['opciones'];
+			$id = $_POST['id'];
 			date_default_timezone_set('Europe/Madrid'); 
 			$date = date('d/m/Y h:i:s a', time());
 			$conn = $this->openCon();
 			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
 			$votacion = Pregunta::find($id);
 			$vector = ["OK" => 1,
-				"opciones"=> "",
-				"votos" => $resultados->recuento];
+				"opciones"=> ""];
+			$vector = array_merge($vector,json_decode($resultados->recuento,true));
 			$finalizada = true;
 			if($votacion->esAnticipada == true)
 			{
@@ -90,7 +85,10 @@ class ResultadosController extends Controller
 				$vector["votos"] = 0;
 				$vector["opciones"] = 0;
 			}
-			return view('resultados')->with($vector);
+			//dd($vector['votos']);
+			$vector['OK'] = 1;
+			$vector['opciones'] = "culo, caca, pis"; // lineas de prueba
+			return $vector;
 		}
 	}
 	public function view()
