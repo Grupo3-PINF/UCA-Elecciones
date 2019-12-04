@@ -94,7 +94,7 @@
 					<div class="col-12">
 						<textarea type="text" name="pregunta-basica" placeholder="Introduzca su pregunta"></textarea>
 					</div>
-					<input type="hidden" id="eleccion-1" value="0" name="eleccion-1">
+				<input type="hidden" id="eleccion-1" value="0" name="eleccion-1">
 				<input type="hidden" id="eleccion-2" value="0" name="eleccion-2">
 				<input type="hidden" id="eleccion-3" value="0" name="eleccion-3">
 				<input type="hidden" id="eleccion-4" value="0" name="eleccion-4">

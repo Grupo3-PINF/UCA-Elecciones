@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreatePreguntasTable extends Migration
 {
     /**
@@ -14,41 +12,41 @@ class CreatePreguntasTable extends Migration
     public function up()
     {
         Schema::create('preguntas', function (Blueprint $table) {
-
-            $table->bigInteger('id')->autoincrement();
-
+            $table->bigIncrements('id');
+            // para la blockchain
+            $table->string('wallet')->unique()->nullable();
             // provisional dependiendo de LDAP
             // $table->foreign('idCreador')->references('id')->on('users');
-            $table->bigInteger('idCreador');
-
+            $table->bigInteger('idCreador')->nullable();
             $table->string('titulo');
-
-
-            $table->boolean('esCompleja');
-            $table->mediumText('opciones');
-
+            $table->boolean('esCompleja')->default(false);
+            /**
+             * {
+             *  opciones: ["Palomitas saladas", "Palomitas dulces"]
+             * }
+             */
+            $table->json('opciones')->nullable();
         
-            $table->boolean('esVinculante');
-            $table->boolean('esAnticipada');
-            $table->boolean('esRestringida');
-
-            $table->boolean('esTiempoReal');
-            $table->boolean('seMuestraAntes');
-
-
+            $table->boolean('esVinculante')->default(false);
+            $table->boolean('esAnticipada')->default(false);
+            $table->boolean('esRestringida')->default(false);
+            $table->boolean('esTiempoReal')->default(false);
+            $table->boolean('seMuestraAntes')->default(false);
             $table->dateTime('fechaComienzo');
             $table->dateTime('fechaFin');
             $table->dateTime('fechaComienzoAnticipada')->nullable();
             $table->dateTime('fechaFinAnticipada')->nullable();
-
+            /**
+             * {
+             *  votos: [1, 2, 54, 3232...]
+             * }
+             */
+            $table->json('recuento')->nullable();
             $table->timestamps();
-
             // provisional
             //$table->string('ambito');
-
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -59,3 +57,4 @@ class CreatePreguntasTable extends Migration
         Schema::dropIfExists('preguntas');
     }
 }
+
