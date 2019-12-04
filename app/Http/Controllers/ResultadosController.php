@@ -38,7 +38,7 @@ class ResultadosController extends Controller
 			date_default_timezone_set('Europe/Madrid'); 
 			$date = date('d/m/Y h:i:s a', time());
 			$conn = $this->openCon();
-			$resultados = Resultado::where('id', $id)->first();
+			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
 			$votacion = Pregunta::find($id);
 			$vector = ["OK" => 1,
 				"opciones"=> "",
@@ -85,6 +85,11 @@ class ResultadosController extends Controller
 				}
 			}
 			$this->closeCon($conn);
+			if($vector["OK"] == 0)
+			{
+				$vector["votos"] = 0;
+				$vector["opciones"] = 0;
+			}
 			return view('resultados')->with($vector);
 		}
 	}
