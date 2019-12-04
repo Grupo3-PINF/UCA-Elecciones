@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResultadosTable extends Migration
+class CreateVotanteAnticipadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,9 @@ class CreateResultadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('resultados', function (Blueprint $table) {
-            $table->bigIncrements('id');
-
-            $table->bigInteger('idVotacion');
-
-            /**
-             * {
-             *  votos: [1, 2, 54, 3232...]
-             * }
-             */
-            $table->json('recuento')->nullable();
+        Schema::create('votantes_anticipados', function (Blueprint $table) {
+            $table->bigInteger('id-usuario')->unique();
+            $table->bigInteger('id-pregunta')->unique();
             $table->timestamps();
         });
     }
@@ -35,6 +27,6 @@ class CreateResultadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resultados');
+        Schema::dropIfExists('votante_anticipados');
     }
 }

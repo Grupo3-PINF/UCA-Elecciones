@@ -17,15 +17,23 @@ class CreatePreguntasTable extends Migration
 
             $table->bigIncrements('id');
 
+            // para la blockchain
+            $table->string('wallet')->unique()->nullable();
+
             // provisional dependiendo de LDAP
             // $table->foreign('idCreador')->references('id')->on('users');
             $table->bigInteger('idCreador')->nullable();
 
             $table->string('titulo');
 
-
             $table->boolean('esCompleja')->default(false);
-            $table->mediumText('opciones')->nullable();
+
+            /**
+             * {
+             *  opciones: ["Palomitas saladas", "Palomitas dulces"]
+             * }
+             */
+            $table->json('opciones')->nullable();
 
         
             $table->boolean('esVinculante')->default(false);
@@ -39,6 +47,13 @@ class CreatePreguntasTable extends Migration
             $table->dateTime('fechaFin');
             $table->dateTime('fechaComienzoAnticipada')->nullable();
             $table->dateTime('fechaFinAnticipada')->nullable();
+
+            /**
+             * {
+             *  votos: [1, 2, 54, 3232...]
+             * }
+             */
+            $table->json('recuento')->nullable();
 
             $table->timestamps();
 
