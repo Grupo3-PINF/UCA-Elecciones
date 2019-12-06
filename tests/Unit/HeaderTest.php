@@ -13,9 +13,21 @@ class HeaderTest extends TestCase
      *
      * @return void
      */
-    public function testBotonTitulo()
+    public function test_boton_titulo()
     {
-        $response =$this->get('/');
+        $response = $this->get('/');
         $response->assertViewIs('index');
+    }
+
+    public function test_boton_login()
+    {
+        $response = $this->get('/login');
+        $response->assertViewIs('login');
+    }
+
+    public function test_boton_logout()
+    {
+        $response = $this->get('/logout');
+        $response->assertRedirect('login');
     }
 }
