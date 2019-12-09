@@ -22,7 +22,8 @@ class Admin
         if(isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']))
         {
             $user = User::where('login',$_SESSION['idusuario'])->first();
-            if( $user->rolActivo=='Administrador')
+            $rol = strtolower($user->rolActivo);
+            if($rol == 'administrador' || $rol == 'secretario')
             {
                 return $next($request);
             }

@@ -60,6 +60,7 @@ class LoginController extends Controller
     {
         session_start();
         unset($_SESSION['idusuario']);
+        unset($_SESSION['rolusuario']);
         Auth::logout();
         return Redirect::to('login');
     }
@@ -75,7 +76,9 @@ class LoginController extends Controller
             if($user && Hash::check($password,$user->password))
             {
                 Auth::login($user);
-                $_SESSION['idusuario'] = $user->login; 
+                //$_SESSION['idusuario'] = $user->login;
+                Session::put('idusuario', $user->login);
+                Session::put('rolusuario', $user->rolActivo);
                 return Redirect::to('/');
             }
             else

@@ -31,7 +31,6 @@ class RolesController extends Controller
             {
                 $_SESSION['userselect']=$user->identificador;
                 $rol = Rol::where('idUser',$user->identificador)->first();
-
                 if(isset($rol))
                 {
                     $array = [];
@@ -68,15 +67,16 @@ class RolesController extends Controller
                     $rolrow = Rol::where('idUser',$id)->first();
                     foreach($roles as $rol)
                     {
-                        if($rol == 'Administrador')
+                        $rol = strtolower($rol);
+                        if($rol == 'administrador')
                             $rolrow->esAdmin = true;
-                        if($rol == 'Secretario')
+                        if($rol == 'secretario')
                             $rolrow->esSecretario = true;
-                        if($rol == 'Estudiante')
+                        if($rol == 'estudiante')
                             $rolrow->esEstudiante = true;
-                        if($rol == 'Desarrollador Bajo')
+                        if($rol == 'desarrollador bajo')
                             $rolrow->esDesarrolladorBajo = true;
-                        if($rol == 'Desarrollador Alto')
+                        if($rol == 'desarrollador alto')
                             $rolrow->esDesarrolladorAlto = true;
                     }
                     $rolrow->save();
@@ -113,15 +113,16 @@ class RolesController extends Controller
                     $rolrow = Rol::where('idUser',$id)->first();
                     foreach($roles as $rol)
                     {
-                        if($rol == 'Administrador')
+                        $rol = strtolower($rol);
+                        if($rol == 'administrador')
                             $rolrow->esAdmin = false;
-                        if($rol == 'Secretario')
+                        if($rol == 'secretario')
                             $rolrow->esSecretario = false;
-                        if($rol == 'Estudiante')
+                        if($rol == 'estudiante')
                             $rolrow->esEstudiante = false;
-                        if($rol == 'Desarrollador Bajo')
+                        if($rol == 'desarrollador bajo')
                             $rolrow->esDesarrolladorBajo = false;
-                        if($rol == 'Desarrollador Alto')
+                        if($rol == 'desarrollador alto')
                             $rolrow->esDesarrolladorAlto = false;
                     }
                     $rolrow->save();

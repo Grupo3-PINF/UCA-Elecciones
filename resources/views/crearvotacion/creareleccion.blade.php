@@ -16,6 +16,7 @@
 					<option value="CarlosRioja">Carlos Rioja</option>
 				</select>
 				<a onclick="anadirCandidatos();" class="btn btn-secondary" id="button-candidatos">Añadir</a>
+				<input type="hidden" name="buscador-candidatos">
 			</div>
 		</div>
 		<div class="col-12 col-md-8">
