@@ -2,11 +2,11 @@
 @extends('layouts/layout')
 @section('content')
 
-<div id="accesibilidad">
+<div id="legal">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h4>Accesibilidad</h4>
+                <h3>Accesibilidad</h3>
                 <p><em>Ley 34/2002 de 11 de julio, de Servicios de la Sociedad de la Información y
                     Comercio Electrónico</em> establece que las Administraciones públicas tienen que
                     adoptar las medidas necesarias para que la información disponible en sus respectivas

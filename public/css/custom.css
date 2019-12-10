@@ -169,7 +169,7 @@ footer a:hover {
 
 /* Encuesta */
 
-#crearvotacion, #resultados {
+#crearvotacion, #resultados, #roles {
 	padding: 40px 0;
 }
 
@@ -273,7 +273,7 @@ footer a:hover {
 
 /* Resultados */
 
-#resultados form button {
+#resultados form a.btn, #roles form button {
 	margin-top: 20px;
 }
 

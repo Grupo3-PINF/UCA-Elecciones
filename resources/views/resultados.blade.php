@@ -16,16 +16,16 @@
                     @csrf
                     <label>Elija una votación</label>
                     <select class="form-control" id="opcionpregunta" name="opcionpregunta">
-                        <option value="1">¿Cuántos años crees que tiene el vicerrector?</option>
-                        <option value="2">¿Crees que Carlos Rioja va a aprobarnos?</option>
-                        <option value="9">¿Te gusta más el café o el bizcochito?</option>
+                        <option value="1">Pregunta 1</option>
+                        <option value="2">Pregunta 2</option>
+                        <option value="9">Pregunta 3</option>
                     </select>
                 <div id ="btn-primary"><a class="btn btn-primary">Enviar</a></div>
                 </form>
             </div>
             @isset($votos)
             <div class="col-12 col-md-6 offset-md-1">
-                <h4 class="text-center">¿Te gusta más el café o el bizcochito?</h4>
+                <h4 class="text-center">Pregunta 2</h4>
                 <canvas id="doughnutChart" width="30" height="20"></canvas>
             </div>
             @endisset
