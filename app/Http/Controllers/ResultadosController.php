@@ -35,8 +35,8 @@ class ResultadosController extends Controller
 			$conn = $this->openCon();
 			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
 			$votacion = Pregunta::find($id);
-			$vector = ["OK" => 1,
-				"opciones"=> ""];
+			$vector = ["OK" => 1];
+			$vector = array_merge($vector,json_decode($resultados->opciones,true));
 			$vector = array_merge($vector,json_decode($resultados->recuento,true));
 			$finalizada = true;
 			if($votacion->esAnticipada == true)
@@ -80,14 +80,16 @@ class ResultadosController extends Controller
 				}
 			}
 			$this->closeCon($conn);
-			if($vector["OK"] == 0)
+			/*if($vector["OK"] == 0)
 			{
 				$vector["votos"] = 0;
 				$vector["opciones"] = 0;
-			}
+			}*/
+			$vector["OK"] == 1;
 			//dd($vector['votos']);
-			$vector['OK'] = 1;
-			$vector['opciones'] = "culo, caca, pis"; // lineas de prueba
+			//$vector['OK'] = 1;
+			//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
+			//$vector['votos'] = [100,200,300];
 			return $vector;
 		}
 	}
