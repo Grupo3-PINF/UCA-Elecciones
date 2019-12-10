@@ -24,7 +24,6 @@
                 </form>
             </div>
             <div id="div-resultado" class="col-12 col-md-6 offset-md-1 hide">
-                <h4 class="text-center">¿Te gusta más el café o el bizcochito?</h4>
                 <canvas id="bar-chart" width="800" height="450"></canvas>
             </div>
         </div>
@@ -108,7 +107,7 @@ $("#btn-primary").click(function(){
                 {
                     //esta linea os asegura que el resultado llega correctamente.
                     //var chrt = document.getElementById("mycanvas");
-                    $("#div-resultado").toggleClass("hide");
+                    $("#div-resultado").toggleClass("hide"); //sin esta linea no va
                     new Chart(document.getElementById("bar-chart"), {
                         type: 'bar',
                         data: {
@@ -121,11 +120,19 @@ $("#btn-primary").click(function(){
                         ]
                         },
                         options: {
+                        scales: {
+                            yAxes: [{
+                                display: true,    
+                                ticks: {
+                                    suggestedMin: 0}
+                            }]},
                         responsive: false,
                         legend: { display: false },
                         title: {
                             display: true,
-                            text: 'Predicted world population (millions) in 2050' // aquí va el titulo de la pregunta
+                            fontSize: 25,
+                            text: vector['titulo'] // aquí va el titulo de la pregunta
+                        }
                         }
                     });
                 },

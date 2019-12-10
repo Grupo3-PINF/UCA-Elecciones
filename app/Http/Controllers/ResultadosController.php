@@ -35,7 +35,9 @@ class ResultadosController extends Controller
 			$conn = $this->openCon();
 			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
 			$votacion = Pregunta::find($id);
-			$vector = ["OK" => 1];
+			$vector = ["OK" => 1,
+				"titulo" => $resultados->titulo
+			];
 			$vector = array_merge($vector,json_decode($resultados->opciones,true));
 			$vector = array_merge($vector,json_decode($resultados->recuento,true));
 			//hay que sacar también el título de la pregunta para que la puedan mostrar en el chart
