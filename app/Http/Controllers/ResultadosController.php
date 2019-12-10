@@ -38,6 +38,7 @@ class ResultadosController extends Controller
 			$vector = ["OK" => 1];
 			$vector = array_merge($vector,json_decode($resultados->opciones,true));
 			$vector = array_merge($vector,json_decode($resultados->recuento,true));
+			//hay que sacar también el título de la pregunta para que la puedan mostrar en el chart
 			$finalizada = true;
 			if($votacion->esAnticipada == true)
 			{
@@ -89,7 +90,7 @@ class ResultadosController extends Controller
 			//dd($vector['votos']);
 			//$vector['OK'] = 1;
 			//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
-			//$vector['votos'] = [100,200,300];
+			//($vector['votos'] = [450,200,300];
 			return $vector;
 		}
 	}

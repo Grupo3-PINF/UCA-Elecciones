@@ -25,7 +25,7 @@
             </div>
             <div id="div-resultado" class="col-12 col-md-6 offset-md-1 hide">
                 <h4 class="text-center">¿Te gusta más el café o el bizcochito?</h4>
-                <canvas id="doughnut-chart" width="800" height="450"></canvas>
+                <canvas id="bar-chart" width="800" height="450"></canvas>
             </div>
         </div>
     </div>
@@ -109,26 +109,25 @@ $("#btn-primary").click(function(){
                     //esta linea os asegura que el resultado llega correctamente.
                     //var chrt = document.getElementById("mycanvas");
                     $("#div-resultado").toggleClass("hide");
-                    new Chart(document.getElementById("doughnut-chart"), {
-                    type: 'doughnut',
-                    data: {
-                    labels: vector['opciones'],
-                    datasets: [
-                        {
-                        label: "Population (millions)",
-                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                        data: vector['votos']
+                    new Chart(document.getElementById("bar-chart"), {
+                        type: 'bar',
+                        data: {
+                        labels: vector['opciones'],
+                        datasets: [
+                            {
+                            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                            data: vector['votos']
+                            }
+                        ]
+                        },
+                        options: {
+                        responsive: false,
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Predicted world population (millions) in 2050' // aquí va el titulo de la pregunta
                         }
-                    ]
-                    },
-                    options: {
-                    responsive: false,
-                    title: {
-                        display: true,
-                        text: 'Predicted world population (millions) in 2050'
-                    }
-                    }
-                });
+                    });
                 },
                 error: function()
                 {
