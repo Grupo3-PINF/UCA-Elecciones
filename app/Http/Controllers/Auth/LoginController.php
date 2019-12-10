@@ -78,7 +78,7 @@ class LoginController extends Controller
                 Auth::login($user);
                 //$_SESSION['idusuario'] = $user->login;
                 Session::put('idusuario', $user->login);
-                Session::put('rolusuario', $user->rolActivo);
+                Session::put('rolusuario', strtolower($user->rolActivo));
                 return Redirect::to('/');
             }
             else
