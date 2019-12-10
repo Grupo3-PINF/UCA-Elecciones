@@ -8,36 +8,66 @@
                     <h3>ROLES DE LOS USUARIOS</h3>
                     <p>Este panel de gestión puede mostrar los roles a los que pertenece un determinado usuario, además de añadir o eliminar nuevos roles.</p>
                 </div>
-                <form action="#" method="POST" class="w-100">
+            </div>
+            <form action="#" method="POST" class="w-100">
+                <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Introduzca el un nombre de usuario. (uxxxxxxx)</label>
                             <input class="form-control" type="text" id="loginroles" placeholder="Username (login)">
-                            <button id="bmostrar-roles" type="button" class="btn btn-primary">Mostrar roles del usuario</button>
+                            <button id="bmostrar-roles" type="button" class="btn btn-primary">Mostrar roles</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div id="roles-si" class="form-group">
+                            <table class="table">
+                                <thead>
+                                    <tr></tr>
+                                </thead>
+                                <tbody>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <h5 id="troles-si"></h5>
-                            <p id ="roles-si"></p>
-                            <h5 id="troles-no"></h5>
-                            <p id="roles-no"></p>
+                        <div id="roles-no" class="form-group">
+                            <table class="table">
+                                <thead>
+                                    <tr></tr>
+                                </thead>
+                                <tbody>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="addrol" placeholder="Añada un rol">
-                            <button id="baddrol" type="button" class="btn btn-primary">Añadir rol</button>
+                </div>
+                <div id="acciones-rol" class="hide">
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="addrol" placeholder="Añada un rol">
+                                <button id="baddrol" type="button" class="btn btn-primary">Añadir</button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="delrol" placeholder="Elimine un rol">
+                                <button id="bdelrol" type="button" class="btn btn-primary">Eliminar</button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="delrol" placeholder="Modificar un rol">
+                                <button id="bdelrol" type="button" class="btn btn-primary">Modificar</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <input class="form-control" type="text" id="delrol" placeholder="Elimine un rol">
-                            <button id="bdelrol" type="button" class="btn btn-primary">Eliminar rol</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
         @isset($roles)
             <h4>PINFF</h4>
@@ -47,10 +77,6 @@
         @endisset
     </div>
     <script type="text/javascript">
-        $("#addrol").hide();
-        $("#baddrol").hide();
-        $("#delrol").hide();
-        $("#bdelrol").hide();
         $(document).ready(function(){
             $("#bmostrar-roles").click(function(){
                 var data = $("#loginroles").val();
@@ -61,14 +87,11 @@
                     success: function(data) {
                         if(data!="")
                         {
-                            $("#troles-si").text("Lista de roles del usuario:");
-                            $("#roles-si").text(data);
-                            $("#troles-no").text("Lista de roles que NO tiene:");
-                            $("#addrol").show();
-                            $("#baddrol").show();
-                            $("#delrol").show();
-                            $("#bdelrol").show();
-                            var str="";
+                            $("#roles-si thead tr").append("<th>Lista de roles del usuario</th>");
+                            $("#roles-si tbody tr").append("<td>" + data + "</td>");
+                            $("#roles-no thead tr").append("<th>Lista de roles que NO tiene</th>");
+                            $("#acciones-rol").toggleClass("hide");
+                            var str = "";
                             var cont = 0;
                             if(data.find(function(element){
                                  return element=="Administrador";
@@ -112,7 +135,7 @@
                                 else
                                     str+="Desarrollador Alto";
                             }
-                            $("#roles-no").text(str);
+                            $("#roles-no p").text(str);
                         }
                     }
                 });

@@ -69,7 +69,6 @@ class CrearVotacionController extends Controller
     public function seleccionVotacion(Request $request)
     {
         $tipo = $request->input('tipoVotacion');
-
-        return response()->json(['success' => $tipo, 'tipo' => $tipo]);
+        return response()->json(['tipo' => $tipo]);
     }
 }
