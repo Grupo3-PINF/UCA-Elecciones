@@ -24,13 +24,40 @@ Route::group(
         {
             return view('index');
         });
-        Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
-        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
         Route::get('resultados','ResultadosController@view')->name('resultados');
-        Route::post('resultados','ResultadosController@mostrarResultado');
+        Route::post('resultados','ResultadosController@mostrarResultado')->name('resultado.post');
     });
 
+
+Route::group(
+    [
+        'middleware' => ['auth','gestion']
+    ],function()
+    {
+        Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
+        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
+    }
+);
+
+Route::group(
+    [
+        'middleware' => ['auth','admin']
+    ],function()
+    {
+        Route::get('roles','RolesController@view')->name('roles');
+        Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
+        Route::post('roles-añadir','RolesController@agregarRol')->name('roles.agregar');
+        Route::post('roles-eliminar','RolesController@quitarRol')->name('roles.eliminar');
+        Route::post('roles-modificar','RolesController@rolActivo')->name('roles.modificar');
+    }
+);
+
 Route::view('/', 'index');
+
+Route::view('/accesibilidad', 'legal/accesibilidad');
+Route::view('/avisolegal', 'legal/avisolegal');
+Route::view('/cookies', 'legal/cookies');
 
 
 Route::get('accesovotaciones', 'AccesoVotaciones@index')->name('accesovotaciones');

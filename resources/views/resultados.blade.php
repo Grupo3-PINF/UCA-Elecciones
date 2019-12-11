@@ -2,54 +2,105 @@
 @extends('layouts/layout')
 @section('content')
 <div id="resultados">
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<h3>RESULTADOS DE LAS ELECCIONES</h3>
-				<p>Seleccione su pregunta a través de nuestro corrector para ver los resultados correspondientes.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>RESULTADOS DE LAS ELECCIONES</h3>
+                <p>Seleccione su pregunta a través de nuestro corrector para ver los resultados correspondientes.</p>
                 <p>La gráfica sólo aparecerá una vez que haya seleccionado la pregunta.</p>
-			</div>
-		</div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-md-5">
-                <form method="POST" action="{{url('/resultados')}}">
+                <form method="POST">
                     @csrf
                     <label>Elija una votación</label>
                     <select class="form-control" id="opcionpregunta" name="opcionpregunta">
-                        <option value="1">¿Cuántos años crees que tiene el vicerrector?</option>
-                        <option value="2">¿Crees que Carlos Rioja va a aprobarnos?</option>
-                        <option value="3">¿Te gusta más el café o el bizcochito?</option>
+                        <option value="1">Pregunta 1</option>
+                        <option value="2">Pregunta 2</option>
+                        <option value="9">Pregunta 3</option>
                     </select>
-                    <button class="btn btn-primary" type="submit">Enviar</button>
+                <div id ="btn-primary"><a class="btn btn-primary">Enviar</a></div>
                 </form>
             </div>
-            @isset($array_votacion)
+            @isset($votos)
             <div class="col-12 col-md-6 offset-md-1">
-                <h4 class="text-center">¿Te gusta más el café o el bizcochito?</h4>
+                <h4 class="text-center">Pregunta 2</h4>
                 <canvas id="doughnutChart" width="30" height="20"></canvas>
             </div>
             @endisset
         </div>
-	</div>
+    </div>
 </div>
 
 <script>
-    //doughnut
-    var ctxD = $('#doughnutChart').get(0);
-    var myLineChart = new Chart(ctxD, {
-        type: 'doughnut',
-        data: {
-            labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-            datasets: [{
-                data: [300, 50, 100, 40, 120],
-                backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-            }]
-        },
-        options: {
-            responsive: true
+/*
+    new Chart(document.getElementById("doughnut-chart"), {
+    type: 'doughnut',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: $votos["votos"]
         }
-    });
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});*/
+$("#btn-primary").click(function(){
+    //aquí comprobar si el usuario le ha vuelto a dar click al boton de nuevo para otra pregunto(o la misma) o le da cancelar vista
+    //¡¡¡RECORDATORIO!!!Neceistamos un parametro enviado desde el controlador para saber cuando mostrar la grafica en tiempo real o no
+        //var d = new Date();
+        //var tiempo_tomado = d.getTime(); //devuelve momento actual desde 1 de Enero de 1970(en segundos)
+        //if(d.getTime() - tiempo_tomado > 4) //ó >= 5
+        
+            $.ajax({
+                url: "{{ route('resultado.post')}}", //web.php poner nombre a la ruta de post de resultados ->name('resultado.post)
+                type: 'post',
+                data: {'_token':"{{csrf_token()}}"},
+                succes: function(vector)
+                {
+                    console.log("illo");
+                    /*if($vector["ok"] == 1)
+                    {
+                    //doughnut
+                        var ctxD = $('#doughnutChart').get(0);
+                        var myLineChart = new Chart(ctxD,{
+                            type: 'doughnut',
+                            data: {
+                                labels: $data["opciones"],
+                                datasets: [
+                                    {
+                                        data: $data["votos"],
+                                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true
+                            }
+                        });
+                    }
+                    else if($data["ok"] == 0)
+                    {
+                        console.log("Ok vale 0");
+                    }*/
+                },
+                error: function()
+                {
+                    console.log("Error");
+                }
+            })
+        
+    
+})
 </script>
 @stop
-

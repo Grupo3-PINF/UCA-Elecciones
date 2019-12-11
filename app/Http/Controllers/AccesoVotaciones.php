@@ -50,7 +50,7 @@ class AccesoVotaciones extends Controller
     {
         //Para comprobar que un usuario ya ha votado o no
         $usuario = Session::get('idusuario');
-        var_dump($usuario);
+        var_dump(Session::get('idusuario'));
 
         $votacion = Pregunta::find($id);
         $date = date('Y-m-d H:i:s');

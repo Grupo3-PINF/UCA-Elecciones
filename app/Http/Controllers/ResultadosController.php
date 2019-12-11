@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Redirect;
@@ -11,10 +9,8 @@ use App\Resultado;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
-
 class ResultadosController extends Controller
 {
-
 	public function openCon()
 	{
 		$dbhost = "localhost";
@@ -29,9 +25,9 @@ class ResultadosController extends Controller
 	{
 		$conn -> close();
 	}
-
 	public function mostrarResultado()
 	{
+		session_start(); 
 		if(isset($_POST['opcionpregunta']) && !empty($_POST['opcionpregunta']))
 		{
 			$idvotacion = $_POST['opcionpregunta'];
@@ -40,61 +36,56 @@ class ResultadosController extends Controller
 			$conn = $this->openCon();
 			$resultados = Resultado::where('idVotacion', $idvotacion)->first();
 			$votacion = Pregunta::find($idvotacion);
-			/*
+			$vector = ["OK" => 1,
+				"opciones"=> "",
+				"votos" => $resultados->recuento];
+			$finalizada = true;
 			if($votacion->esAnticipada == true)
 			{
-				if($date >= $votacion->fechaFinAnticipada)
+				if($date <= $votacion->fechaFinAnticipada)
 				{
-					return $votacion->recuento;
+					$finalizada = false;
 				}
-
 			}
 			else
 			{
-				if($date >= $votacion->fechaFin)
+				if($date <= $votacion->fechaFin)
 				{
-					return $votacion->recuento;
+					$finalizada = false;
 				}
 			}
-			$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
-			$participa = false;
-			foreach ($participaciones as $participacion) {
-				if($participacion == $idusuario)
-				{
-					$participa = true;
-				}
-			}
-			if($participa)
-			{	
-				if(!$votacion->esTiempoReal)
-				{
-					$votacion->recuento = 0;
-				}
-			}
-			else 
+			if($finalizada == false)
 			{
-				if(!$votacion->seMuestraAntes)
+				if($votacion->esTiempoReal == false)
 				{
-					$votacion->recuento = 0;
+					$vector["OK"] = 0;
 				}
-				
-			}*/
+				else 
+				{
+					if($votacion->seMuestraAntes == false)
+					{
+						$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
+						$participa = false;
+						foreach ($participaciones as $participacion) 
+						{
+							if($participacion == $_SESSION['idusuario'])
+							{
+								$participa = true;
+							}
+						}
+						if($participa == false)
+						{ 
+							$vector["OK"] = 0;
+						}
+					}	
+				}
+			}
 			$this->closeCon($conn);
-			json_encode(['OK' => 1, 'array_votacion' => "HOLAAA"]);
-			return view('resultados')->with('array_votacion', "HOLAA");
+			return view('resultados')->with($vector);
 		}
 	}
 	public function view()
 	{
-		//$votacion = Resultado::find(1);
-		/*$participaciones = Participacion::where('idpregunta', 1) -> pluck('idusuario');
-		$participa = 100;
-		foreach ($participaciones as $participacion) {
-			if($participacion == 13)
-			{
-				$participa = 200;
-			}
-		}*/
 		return view('resultados');
 	}
 }
