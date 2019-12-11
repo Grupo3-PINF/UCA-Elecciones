@@ -56,8 +56,8 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label>Modificar un rol al usuario</label>
-                                <input class="form-control" type="text" id="delrol" placeholder="Modificar un rol">
-                                <button id="bdelrol" type="button" class="btn btn-primary">Modificar</button>
+                                <input class="form-control" type="text" id="modrol" placeholder="Modificar un rol">
+                                <button id="bmodrol" type="button" class="btn btn-primary">Modificar</button>
                             </div>
                         </div>
                     </div>
@@ -130,6 +130,11 @@
                     data: {"roles":data,"_token": "{{ csrf_token() }}"},
                     success: function(data){
                         alert(data);
+                        $("#roles-si thead").html("");
+                        $("#roles-si tbody").html("");
+                        $("#roles-no thead").html("");
+                        $("#roles-no tbody").html("");
+                        $("#acciones-rol").toggleClass("hide");
                         $('#bmostrar-roles').trigger('click');
                         $('#addrol').val("");
                     }
@@ -144,11 +149,37 @@
                     data: {"roles":data,"_token": "{{ csrf_token() }}"},
                     success: function(data){
                         alert(data);
+                        $("#roles-si thead").html("");
+                        $("#roles-si tbody").html("");
+                        $("#roles-no thead").html("");
+                        $("#roles-no tbody").html("");
+                        $("#acciones-rol").toggleClass("hide");
                         $('#bmostrar-roles').trigger('click');
                         $('#delrol').val("");
+
                     }
                 });
-            });                                   
+            });
+            $("#bmodrol").click(function()
+            {
+                var data = $("#modrol").val();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{route('roles.modificar')}}',
+                    data: {"rol":data,"_token": "{{ csrf_token() }}"},
+                    success: function(data)
+                    {
+                        alert(data);
+                        $("#roles-si thead").html("");
+                        $("#roles-si tbody").html("");
+                        $("#roles-no thead").html("");
+                        $("#roles-no tbody").html("");
+                        $("#acciones-rol").toggleClass("hide");
+                        $('#bmostrar-roles').trigger('click');
+                        $('#modqrol').val("");
+                    }
+                })
+            });                               
         });
     </script>
 @endsection

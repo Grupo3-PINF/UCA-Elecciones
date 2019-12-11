@@ -155,9 +155,9 @@ class RolesController extends Controller
                 if($rol=='administrador' || $rol=='secretario' || $rol=='desarrollador bajo'
                     || $rol=='desarrollador alto' || $rol=='estudiante')
                 {
-                    $user = User::where('idUser',$id)->first();
+                    $user = User::where('identificador',$id)->first();
                     $user->rolActivo=$rol;
-                    $rol->save();
+                    $user->save();
                     return "Rol añadido correctamente";
                 }
                 else
