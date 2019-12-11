@@ -35,7 +35,7 @@ Route::view('/', 'index');
 
 Route::get('accesovotaciones', 'AccesoVotaciones@index')->name('accesovotaciones');
 
-Route::get('opciones/{id?}', 'AccesoVotaciones@enviar');
+Route::get('opciones/{id?}/{tiempo_ini?}/{tiempo_fin?}', 'AccesoVotaciones@enviar');
 
 Route::get('preguntasrestringidas', 'AccesoVotaciones@Vistapr');
 Route::get('preguntasrestringidas', 'AccesoVotaciones@preguntasRestringidas');

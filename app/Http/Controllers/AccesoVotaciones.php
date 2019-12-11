@@ -12,6 +12,7 @@ use Auth;
 
 use App\User;
 use App\Pregunta;
+use App\Participacion;
 
 class AccesoVotaciones extends Controller
 {
@@ -47,11 +48,25 @@ class AccesoVotaciones extends Controller
     }
     public function enviar($id)
     {
+        //Para comprobar que un usuario ya ha votado o no
+        $usuario = Session::get('idusuario');
+        var_dump($usuario);
+
         $votacion = Pregunta::find($id);
+        $date = date('Y-m-d H:i:s');
+        $tiempo_ini = $votacion->fechaComienzo;
+        $tiempo_fin = $votacion->fechaFin;
+
         $json = $votacion->opciones;
         $ops = json_decode($json, true);
 
-       return view('opciones')->with('ops', $ops['opciones'])->with('id', $id);
+        if($date > $tiempo_ini && $date < $tiempo_fin)
+        {
+            return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
+        }else
+        {
+            return "Votación finalizada";
+        }
     }
     public function guardaropcion()
     {
@@ -65,6 +80,10 @@ class AccesoVotaciones extends Controller
             $id = $ops[1];
 
             $votacion = Pregunta::find($id);
+            $date = date('Y-m-d H:i:s');
+            $tiempo_ini = $votacion->fechaComienzo;
+            $tiempo_fin = $votacion->fechaFin;
+
             $rec = $votacion->recuento;
             $opciones = json_decode($rec, true);
             $opciones['votos'][$idopcion]++;
@@ -73,10 +92,15 @@ class AccesoVotaciones extends Controller
             $votacion->recuento = $s;
             $votacion->save();
 
-            return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
-            /*Le pasamos la opcion que voto para que si le da a rectificar
-              quitar el voto que ya se sumo*/
-
+            if($date > $tiempo_ini && $date < $tiempo_fin)
+            {
+                return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
+                /*Le pasamos la opcion que voto para que si le da a rectificar
+                  quitar el voto que ya se sumo*/
+            }else
+            {
+                return view('index');
+            }
         }
     }
     public function rectificar()
@@ -97,23 +121,32 @@ class AccesoVotaciones extends Controller
 
             if($rct == 1)
             {
-                //Decrementar el voto anterior
                 $votacion = Pregunta::find($id);
-                $rec = $votacion->recuento;
-                $opciones = json_decode($rec, true);
-                $json = $votacion->opciones;
-                $ops = json_decode($json, true);
+                $date = date('Y-m-d H:i:s');
+                $tiempo_ini = $votacion->fechaComienzo;
+                $tiempo_fin = $votacion->fechaFin;
 
-                $opciones['votos'][$idop]--;
-                $s = json_encode($opciones);
-                $votacion->recuento = $s;
-                $votacion->save();
+                if($date > $tiempo_ini && $date < $tiempo_fin)
+                {
+                    //Decrementar el voto anterior
+                    $rec = $votacion->recuento;
+                    $opciones = json_decode($rec, true);
+                    $json = $votacion->opciones;
+                    $ops = json_decode($json, true);
 
-               return view('opciones')->with('ops', $ops['opciones'])->with('id', $id);
+                    $opciones['votos'][$idop]--;
+                    $s = json_encode($opciones);
+                    $votacion->recuento = $s;
+                    $votacion->save();
 
-/*                $this->enviar($id);
-                Así va a la función enviar, pero se queda en la función rectificar y cuando en enviar se llama a la vista opciones peta porque en el web.php pone que se llame desde enviar no desde rectificar.
-*/
+                   return view('opciones')->with('ops', $ops['opciones'])->with('id', $id);
+                }else
+                {
+                    return "Votación finalizada";
+                }
+            }else
+            {
+                return view('index');
             }
         }        
     }
