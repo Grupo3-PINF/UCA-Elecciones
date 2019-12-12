@@ -50,22 +50,39 @@ class AccesoVotaciones extends Controller
     {
         //Para comprobar que un usuario ya ha votado o no
         $usuario = Session::get('idusuario');
-        var_dump(Session::get('idusuario'));
+        //Sacamos el id del usuario a partir del login de usuario
+        $user = User::where('login', $usuario)->first();
+        $iduser = $user->id;
+        $votado = Participacion::where('idusuario', $iduser)->where('idpregunta', $id)->first();
 
-        $votacion = Pregunta::find($id);
-        $date = date('Y-m-d H:i:s');
-        $tiempo_ini = $votacion->fechaComienzo;
-        $tiempo_fin = $votacion->fechaFin;
-
-        $json = $votacion->opciones;
-        $ops = json_decode($json, true);
-
-        if($date > $tiempo_ini && $date < $tiempo_fin)
+        if($votado != null)
         {
-            return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
+            $pregunta = $votado->idpregunta;
         }else
         {
-            return "Votación finalizada";
+            //Si es null dará true en votado == null y para evitar que $pregunta esté vacío le asignaamos un valor cualquiera
+            $pregunta = -1;
+        }
+        if($votado == null || $pregunta != $id)
+        {            
+            $votacion = Pregunta::find($id);
+            $date = date('Y-m-d H:i:s');
+            $tiempo_ini = $votacion->fechaComienzo;
+            $tiempo_fin = $votacion->fechaFin;
+
+            $json = $votacion->opciones;
+            $ops = json_decode($json, true);
+
+            if($date > $tiempo_ini && $date < $tiempo_fin)
+            {
+                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
+            }else
+            {
+                return "Votación finalizada";
+            }
+        }else
+        {
+            return view('accesovotaciones');
         }
     }
     public function guardaropcion()
@@ -78,6 +95,17 @@ class AccesoVotaciones extends Controller
             $ops = explode($limite, $idvotacion);
             $idopcion = $ops[0];
             $id = $ops[1];
+
+            //Registrar el usuario como que ya ha votado a dicha pregunta
+            $usuario = Session::get('idusuario');
+            //Sacamos el id del usuario a partir del login de usuario
+            $user = User::where('login', $usuario)->first();
+            $iduser = $user->id;
+            $participacion = new Participacion;
+            $participacion->idusuario = $iduser;
+            $participacion->idpregunta = $id;
+            $participacion->opcion = $idopcion;
+            $participacion->save();
 
             $votacion = Pregunta::find($id);
             $date = date('Y-m-d H:i:s');
@@ -146,7 +174,7 @@ class AccesoVotaciones extends Controller
                 }
             }else
             {
-                return view('index');
+                return view('accesovotaciones');
             }
         }        
     }

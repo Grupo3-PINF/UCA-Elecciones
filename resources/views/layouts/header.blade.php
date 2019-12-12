@@ -43,25 +43,18 @@
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
 					@endif
-					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/votar') ? 'active' : ''}}" href="#">Votar</a></li>
+					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
 					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
 				</ul>
 			</div>
 			<div class="col-12 col-sm-10 hide-mobile">
 				<ul class="nav">
-<<<<<<< HEAD
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="crearvotacion">Crear votacion</a></li>
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="resultados">Resultados</a></li>
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/rolesgrupos') ? 'active' : ''}}" href="#">Roles y grupos</a></li>
-=======
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "administrador")
 						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
 						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/rolesgrupos') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
 					@endif
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/votar') ? 'active' : ''}}" href="#">Votar</a></li>
+					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
->>>>>>> 1d6039e481bc6797959beb15b7e1541ef32bfc7d
 				</ul>
 
 				<!-- </div> -->
@@ -72,14 +65,9 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-
-
-=======
 <script>
 	var $hamburger = $(".hamburger");
 	$hamburger.on("click", function(e) {
     	$hamburger.toggleClass("is-active");
   	});
 </script>
->>>>>>> 1d6039e481bc6797959beb15b7e1541ef32bfc7d
