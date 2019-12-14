@@ -75,6 +75,13 @@ class AccesoVotaciones extends Controller
 
             if($date > $tiempo_ini && $date < $tiempo_fin)
             {
+                //Apuntamos que el usuario ha votado(la opción la apuntamos después)
+                $participacion = new Participacion;
+                $participacion->idusuario = $iduser;
+                $participacion->idpregunta = $id;
+                $participacion->opcion = 1000000;
+                $participacion->save();
+
                 return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
             }else
             {
@@ -92,42 +99,51 @@ class AccesoVotaciones extends Controller
             $idvotacion = $_POST['respuesta'];
             $limite = '.';
             
+            //Separamos la cadena recibida que contiene el id de la pregunta y el id de la opción
             $ops = explode($limite, $idvotacion);
             $idopcion = $ops[0];
             $id = $ops[1];
 
-            //Registrar el usuario como que ya ha votado a dicha pregunta
+            //Registrar el usuario como que ya ha votado a dicha pregunta y comprobar que no vota más de 1 vez
             $usuario = Session::get('idusuario');
             //Sacamos el id del usuario a partir del login de usuario
             $user = User::where('login', $usuario)->first();
             $iduser = $user->id;
-            $participacion = new Participacion;
-            $participacion->idusuario = $iduser;
-            $participacion->idpregunta = $id;
-            $participacion->opcion = $idopcion;
-            $participacion->save();
+            //Buscamos la fila en la base de datos Participación que coincida con el usuario y pregunta
+            $votado = Participacion::where('idpregunta', '=', $id)->where('idusuario', '=', $iduser)->first();
 
-            $votacion = Pregunta::find($id);
-            $date = date('Y-m-d H:i:s');
-            $tiempo_ini = $votacion->fechaComienzo;
-            $tiempo_fin = $votacion->fechaFin;
-
-            $rec = $votacion->recuento;
-            $opciones = json_decode($rec, true);
-            $opciones['votos'][$idopcion]++;
-
-            $s = json_encode($opciones);
-            $votacion->recuento = $s;
-            $votacion->save();
-
-            if($date > $tiempo_ini && $date < $tiempo_fin)
+            //Si no es nulo es que ha retrocedido la página e intenta votar otra vez
+            if($votado->opcion == 1000000)
             {
-                return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
-                /*Le pasamos la opcion que voto para que si le da a rectificar
-                  quitar el voto que ya se sumo*/
+                $votado->opcion = $idopcion;
+                $votado->save();
+
+                $votacion = Pregunta::find($id);
+                $date = date('Y-m-d H:i:s');
+                $tiempo_ini = $votacion->fechaComienzo;
+                $tiempo_fin = $votacion->fechaFin;
+
+                $rec = $votacion->recuento;
+                $opciones = json_decode($rec, true);
+                $opciones['votos'][$idopcion]++;
+
+                $s = json_encode($opciones);
+                $votacion->recuento = $s;
+                $votacion->save();
+
+                if($date > $tiempo_ini && $date < $tiempo_fin)
+                {
+                    return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
+                    /*Le pasamos la opcion que voto para que si le da a rectificar
+                      quitar el voto que ya se sumo*/
+                }else
+                {
+                    return view('index');
+                }               
             }else
             {
-                return view('index');
+                echo 'ya has votado';
+                return view('accesovotaciones');
             }
         }
     }

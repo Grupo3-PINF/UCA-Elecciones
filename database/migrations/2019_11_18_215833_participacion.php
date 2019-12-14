@@ -11,9 +11,12 @@ class Participacion extends Migration
      *
      * @return void
      */
+    protected $primaryKey = 'id';
+
     public function up()
     {
         Schema::create('participacion', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('idpregunta');
             $table->bigInteger('idusuario');
             $table->bigInteger('opcion');
