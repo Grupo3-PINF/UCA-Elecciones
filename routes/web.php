@@ -35,7 +35,7 @@ Route::group(
     ],function()
     {
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
-        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        //Route::post('crearvotacion','CrearVotacionController@crearVotacion');
         Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
     }
 );
