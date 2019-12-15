@@ -53,57 +53,7 @@
 		@endif
 	</div>
 </div>
-<script>	
-	$('input[name="anticipada-pregunta"]').click(function(){
-		if($('input[name="anticipada-pregunta"]').prop('checked')) {
-			$('#fecha-anticipada-pregunta').show();
-			$('#participantes-anticipada-pregunta').show();
-		} else {
-			$('#fecha-anticipada-pregunta').hide();
-			$('#participantes-anticipada-pregunta').hide();
-		}	
-	});
-
-	function recibirGrupos() {
-		$.ajax({
-			type: 'POST',
-			url: "crearvotacion/recibirGrupos",
-			data: {
-				"_token": "{{ csrf_token() }}",
-			},
-			success: function(response) {
-				var grupos = response.grupos;
-				for (var i = 0; i < grupos.length; i++) {
-					if (typeof grupos[i] != "undefined") {
-						console.log(grupos[i].nombre);
-						var nombre = grupos[i].nombre;
-						var id = grupos[i].id;
-						var html = '<option value="' + id + '">' + nombre + '</option>';
-						$('select[name=grupos-eleccion]').append(html);
-					}
-				}
-			},
-			error: function(error) {
-				console.error(error)
-			}
-		})
-	}
-
-	function anadirGrupos() {
-		$('#button-groups').click(function(){
-			var nombre = $('select[name=grupos-pregunta]').text();
-			var id = $('select[name=grupos-pregunta]').val();
-			var html = '<input class="input-div-caja" type="text" name="grupo-' + id + '" placeholder="' + id +'"><a name="borrar-' + id + '" onclick="borrarInput(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
-			if(!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length)
-				$('#grupos-div-pregunta').append(html);
-		});
-	}
-
-	function borrarInput(nombre, tipo) {
-		$('input[name=' + tipo + '-' + nombre + ']').remove();
-		$('a[name=borrar-' + nombre + ']').remove();
-	}
-
+<script>
 	function mostrarProceso(tipo) {
 		$.ajax({
 			type: 'POST',
@@ -117,19 +67,20 @@
 				$(".step-1").hide();
 				switch(response.tipo) {
 					case "pregunta":
+						onload = recibirGruposPregunta();
 						$("#steps-eleccion").remove();
 						$("#steps-consulta").remove();
 						$("#steps-pregunta").toggleClass("hide").delay(1200);
 						$("#steps-pregunta").addClass("flex").delay(1200)
 					break;
 					case "eleccion":
-						onload = recibirGrupos();
+						onload = recibirGruposEleccion();
+						onload = recibirCandidatos();
 						$("#steps-pregunta").remove();
 						$("#steps-consulta").remove();
 						$("#steps-eleccion").toggleClass("hide").delay(1200);
 						$("#steps-eleccion").addClass("flex").delay(1200)
 					break;
-
 					case "consulta":
 						$("#steps-eleccion").remove();
 						$("#steps-pregunta").remove();

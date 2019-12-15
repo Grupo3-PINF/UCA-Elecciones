@@ -12,12 +12,8 @@
 			<div class="form-group">
 				<label>Grupos con permiso para votar</label>
 				<p>Censos que pueden participar en esta pregunta.</p>
-				<select class="form-control" name="grupos-pregunta">
-					<option value="alumnos">Alumnos</option>
-					<option value="profesores">Profesores</option>
-					<option value="todos">Todos</option>
-				</select>
-				<a onclick="anadirGrupos();" class="btn btn-secondary" id="button-groups">Añadir</a>
+				<select class="form-control" name="grupos-pregunta"></select>
+				<a onclick="anadirGruposPregunta();" class="btn btn-secondary" id="button-groups">Añadir</a>
 				<input type="hidden" name="buscador-grupos">
 			</div>
 		</div>
@@ -88,3 +84,55 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$('input[name="anticipada-pregunta"]').click(function() {
+		if ($('input[name="anticipada-pregunta"]').prop('checked')) {
+			$('#fecha-anticipada-pregunta').show();
+			$('#participantes-anticipada-pregunta').show();
+		} else {
+			$('#fecha-anticipada-pregunta').hide();
+			$('#participantes-anticipada-pregunta').hide();
+		}
+	});
+
+	function recibirGruposPregunta() {
+		$.ajax({
+			type: 'POST',
+			url: "crearvotacion/recibirGrupos",
+			data: {
+				"_token": "{{ csrf_token() }}",
+			},
+			success: function(response) {
+				var grupos = response.grupos;
+				for (var i = 0; i < grupos.length; i++) {
+					if (typeof grupos[i] != "undefined") {
+						console.log(grupos[i].nombre);
+						var nombre = grupos[i].nombre;
+						var id = grupos[i].id;
+						var html = '<option value="' + id + '">' + nombre + '</option>';
+						$('select[name=grupos-pregunta]').append(html);
+					}
+				}
+			},
+			error: function(error) {
+				console.error(error)
+			}
+		})
+	}
+
+	function anadirGruposPregunta() {
+		$('#button-groups').click(function() {
+			var nombre = $('select[name=grupos-pregunta] option:selected').text();
+			var id = $('select[name=grupos-pregunta]').val();
+			var html = '<input class="input-div-caja" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
+			if (!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length)
+				$('#grupos-div-pregunta').append(html);
+		});
+	}
+
+	function borrarInputPregunta(nombre, tipo) {
+		$('input[name=' + tipo + '-' + nombre + ']').remove();
+		$('a[name=borrar-' + nombre + ']').remove();
+	}
+</script>

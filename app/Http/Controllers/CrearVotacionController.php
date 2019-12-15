@@ -51,12 +51,49 @@ class CrearVotacionController extends Controller
 
     public function crearEleccion(Request $request)
     {
-    public function mandarGrupos()
-    {
-        $grupos = Censo::all();
-        return response()->json([
-            'grupos' => $grupos
+        /*
+        $eleccion = new Eleccion;
+
+        $request->validate([
+            'fechaInicio' => 'date_format:Y-m-d H:m:s|after:today',
+            //'fechaFin' => 'date_format:Y-m-d H:m:s|after:today'
         ]);
+
+        $eleccion->grupos = (['grupos' => $request->grupos]);
+
+        $eleccion->candidatos = (['candidatos' => $request->candidatos]);
+
+        $fecha_inicio = date_create($request->input('fecha-eleccion'));
+        $eleccion->fechaInicio = $fecha_inicio;
+
+        //$fecha_fin = date_add($fecha_inicio, date_interval_create_from_date_string("10 days"));
+        //$eleccion->fechaFin = date_create($fecha_fin);
+        // me ha dicho el antonio que si esto debe de estar. 
+        // en el html meto en type='time' (buscar info)
+
+        $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+
+        $eleccion->dobleVoto = $request->input('doblevoto') == "si" ? true : false;
+
+        $eleccion->multiple = $request->input('tipo-votacion') == "si" ? true : false;
+
+        $eleccion->save();
+        */
+
+        $mensaje = "La eleccion ha sido creado con éxito.";
+        return response()->json([
+            'mensaje' => $mensaje
+        ]);
+    }
+
+    public function mandarGrupos() {
+        $grupos = Censo::all();
+        return response()->json(['grupos' => $grupos]);
+    }
+    
+    public function mandarCandidatos() {
+        $candidatos = User::all();
+        return response()->json(['candidatos' => $candidatos]);
     }
 
     // Creo que esto ya no hace falta.
