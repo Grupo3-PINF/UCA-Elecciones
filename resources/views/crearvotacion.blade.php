@@ -41,7 +41,7 @@
 			@include('crearvotacion/creareleccion')
 			@include('crearvotacion/crearconsulta')
 		</div>
-		</form>
+		<!--</form> -->
 		@else
 		<div class="row">
 			<div class="col-12">
@@ -63,6 +63,31 @@
 			$('#participantes-anticipada-pregunta').hide();
 		}	
 	});
+
+	function recibirGrupos() {
+		$.ajax({
+			type: 'POST',
+			url: "crearvotacion/recibirGrupos",
+			data: {
+				"_token": "{{ csrf_token() }}",
+			},
+			success: function(response) {
+				var grupos = response.grupos;
+				for (var i = 0; i < grupos.length; i++) {
+					if (typeof grupos[i] != "undefined") {
+						console.log(grupos[i].nombre);
+						var nombre = grupos[i].nombre;
+						var id = grupos[i].id;
+						var html = '<option value="' + id + '">' + nombre + '</option>';
+						$('select[name=grupos-eleccion]').append(html);
+					}
+				}
+			},
+			error: function(error) {
+				console.error(error)
+			}
+		})
+	}
 
 	function anadirGrupos() {
 		$('#button-groups').click(function(){
@@ -98,6 +123,7 @@
 						$("#steps-pregunta").addClass("flex").delay(1200)
 					break;
 					case "eleccion":
+						onload = recibirGrupos();
 						$("#steps-pregunta").remove();
 						$("#steps-consulta").remove();
 						$("#steps-eleccion").toggleClass("hide").delay(1200);

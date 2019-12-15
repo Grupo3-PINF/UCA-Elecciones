@@ -10,6 +10,7 @@ use Auth;
 
 use App\User;
 use App\Pregunta;
+use App\Censo;
 use Illuminate\Http\Request;
 
 class CrearVotacionController extends Controller
@@ -50,9 +51,15 @@ class CrearVotacionController extends Controller
 
     public function crearEleccion(Request $request)
     {
-        // codigo para crear las elecciones
+    public function mandarGrupos()
+    {
+        $grupos = Censo::all();
+        return response()->json([
+            'grupos' => $grupos
+        ]);
     }
 
+    // Creo que esto ya no hace falta.
     public function crearVotacion(Request $request)
     {
         switch($request->input('eleccion-1')) {
