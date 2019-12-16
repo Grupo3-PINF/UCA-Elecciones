@@ -35,8 +35,12 @@ Route::group(
     ],function()
     {
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
-        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        //Route::post('crearvotacion','CrearVotacionController@crearVotacion');
         Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
+        Route::post('crearvotacion/recibirGrupos','CrearVotacionController@mandarGrupos');
+        Route::post('crearvotacion/recibirCandidatos','CrearVotacionController@mandarCandidatos');
+        Route::post('crearvotacion/crearEleccion','CrearVotacionController@crearEleccion');
+        Route::post('crearvotacion/crearPregunta','CrearVotacionController@crearPregunta');
     }
 );
 
