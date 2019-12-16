@@ -11,64 +11,38 @@
 			</div>
 		</div>
 		@if(!@isset($mensaje))
-			<form action="{{url('/crearvotacion')}}" method='POST'>
-			@csrf
-				<div class="helper">
-					<div class="step-1 row">
-						<div class="col-12 col-md-4">
-							<div id="crear-pregunta" class="votacion" onclick="mostrarProceso('pregunta');">
-								<h4>Preguntas</h4>
-								<i class="far fa-question-circle"></i>
-								<p>Crea una votación de carácter genérico en la que los votantes deciden sobre un asunto de cualquier índole.</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div id="crear-eleccion" class="votacion" onclick="mostrarProceso('eleccion');">
-								<h4>Elecciones</h4>
-								<i class="fas fa-graduation-cap"></i>
-								<p>Crea una votación en la que los participantes pueden elegir a un candidato de entre los que se han presentado.</p>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div id="crear-consulta" class="votacion" onclick="mostrarProceso('consulta');">
-								<h4>Consultas</h4>
-								<i class="far fa-envelope"></i>
-								<p>Crea una pregunta o una elección a modo de sondeo para conocer la opinión de los votantes sobre un tema.</p>
-							</div>
+		<form action="{{url('/crearvotacion')}}" method='POST'>
+		@csrf
+			<div class="helper">
+				<div class="step-1 row">
+					<div class="col-12 col-md-4">
+						<div id="crear-pregunta" class="votacion" onclick="mostrarProceso('pregunta');">
+							<h4>Preguntas</h4>
+							<i class="far fa-question-circle"></i>
+							<p>Crea una votación de carácter genérico en la que los votantes deciden sobre un asunto de cualquier índole.</p>
 						</div>
 					</div>
-					@include('crearvotacion/crearpregunta')
-					@include('crearvotacion/creareleccion')
-					@include('crearvotacion/crearconsulta')
-				</div>
-<<<<<<< HEAD
-				<div id="pregunta-basica-div" class="step-5 row hide">
-					<div class="col-12">
-						<h4>¿Cuál es la pregunta?</h4>
+					<div class="col-12 col-md-4">
+						<div id="crear-eleccion" class="votacion" onclick="mostrarProceso('eleccion');">
+							<h4>Elecciones</h4>
+							<i class="fas fa-graduation-cap"></i>
+							<p>Crea una votación en la que los participantes pueden elegir a un candidato de entre los que se han presentado.</p>
+						</div>
 					</div>
-					<div class="col-12">
-						<label>Introduzca su pregunta</label>
-					</div>
-					<div class="col-12">
-						<textarea type="text" name="pregunta-basica" placeholder="Introduzca su pregunta"></textarea>
-					</div>
-				<input type="hidden" id="eleccion-1" value="0" name="eleccion-1">
-				<input type="hidden" id="eleccion-2" value="0" name="eleccion-2">
-				<input type="hidden" id="eleccion-3" value="0" name="eleccion-3">
-				<input type="hidden" id="eleccion-4" value="0" name="eleccion-4">
-				<input type="hidden" id="eleccion-5" value="0" name="eleccion-5">
-					<div class="col-12">
-						<button class="btn btn-primary" type="submit">Enviar</a>
+					<div class="col-12 col-md-4">
+						<div id="crear-consulta" class="votacion" onclick="mostrarProceso('consulta');">
+							<h4>Consultas</h4>
+							<i class="far fa-envelope"></i>
+							<p>Crea una pregunta o una elección a modo de sondeo para conocer la opinión de los votantes sobre un tema.</p>
+						</div>
 					</div>
 				</div>
+				@include('crearvotacion/crearpregunta')
+				@include('crearvotacion/creareleccion')
+				@include('crearvotacion/crearconsulta')
 			</div>
-			</form>
-		</div>
-		@isset($mensaje)
-=======
-		</form>
-		@else
->>>>>>> 1d6039e481bc6797959beb15b7e1541ef32bfc7d
+	</form>
+	@else
 		<div class="row">
 			<div class="col-12">
 				<div class="alert alert-success">
@@ -76,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-		@endif
+	@endif
 	</div>
 </div>
 <script>	
