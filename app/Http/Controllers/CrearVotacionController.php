@@ -30,7 +30,9 @@ class CrearVotacionController extends Controller
     }
 
     public function crearPregunta(Request $request)
-    {
+    {    
+        // validar titulo
+        // TODO filtar posible titulo dañino
         $titulo = $request->input('titulo');
         if ($titulo == NULL) {
             return response()->json([
@@ -40,7 +42,7 @@ class CrearVotacionController extends Controller
             ]);
         }
 
-        // interpretar la fecha
+        // validar la fecha
         $fechaStr = $request->input('fecha-inicio');
 
         if ($fechaStr == NULL) {
@@ -68,6 +70,7 @@ class CrearVotacionController extends Controller
             $fechaFin->modify("+$duracion minutes");
         }
 
+        // validar la fecha anticipada
         $esAnticipada = $request->input('es-anticipada') == "true" ? true : false;
         if ($esAnticipada) {
             $fechaAnticipadaStr = $request->input('fecha-pregunta-anticipada');
@@ -76,7 +79,6 @@ class CrearVotacionController extends Controller
                 return response()->json([
                     'status' => false,
                     'mensaje' => "Fecha anticipada incompleta",
-                    'data' => $request->all()
                 ]);
             }
 
@@ -93,6 +95,15 @@ class CrearVotacionController extends Controller
             $fechaAnticipada = date_create($fechaAnticipadaStr);
         }
 
+        // validar las opciones
+        $esCompleja = $request->input('es-compleja') == "true" ? true : false;
+        if ($esCompleja) {
+            // TODO sustituir con las opciones de la pregunta compleja cuando se haga
+            $opciones = json_encode(["Si", "No", "Abstencion"]);
+        } else {
+            $opciones = json_encode(["Si", "No", "Abstencion"]);
+        }
+
         $pregunta = new Pregunta;
         $pregunta->titulo = $titulo;
         
@@ -107,6 +118,12 @@ class CrearVotacionController extends Controller
         if ($esAnticipada) {
             $pregunta->fechaComienzoAnticipada = $fechaAnticipada;
         }
+
+        $pregunta->opciones = $opciones;
+
+        $pregunta->idCreador = \Auth::user()->id;
+
+        // $pregunta->wallet = EL SCRIPT DE LA BLOCKCHAIN;
 
         $pregunta->save();
 

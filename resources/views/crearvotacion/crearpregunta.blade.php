@@ -1,5 +1,6 @@
 <div id="steps-pregunta" class="hide">
 	<div class="row">
+	<div class="row" id="input-pregunta">
 		<div class="col-12">
 			<h5>Pregunta</h5>
 			<div class="form-group">
@@ -73,6 +74,7 @@
 				<input class="form-control" type="text" name="participantes-anticipada-pregunta">
 			</div>
 		</div>
+	</div>
 		<div class="col-12">
 			<div class="alert d-none" id="msg_div">
 				<span id="res_message"></span>
@@ -125,17 +127,17 @@
 			success: function(response) {
 				console.log(response.status);
 				if (response.status) {
-					$('#enviar').html('Enviar');
+					$('#enviar').prop('disabled', true);
 					$('#res_message').show();
 					$('#res_message').html(response.mensaje);
 					$('#msg_div').removeClass('alert-danger');
 					$('#msg_div').addClass('alert-success');
 					$('#msg_div').removeClass('d-none');
+					$('#input-pregunta').slideUp(700);
 					setTimeout(function() {
 						window.location.reload();
-					}, 4000);
+					}, 3000);
 				} else {
-					$('#enviar').html('Enviar');
 					$('#res_message').show();
 					$('#res_message').html(response.mensaje);
 					$('#msg_div').removeClass('alert-success');

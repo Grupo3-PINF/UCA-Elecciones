@@ -101,7 +101,7 @@
 				"_token": "{{ csrf_token() }}",
 			},
 			success: function(response) {
-				$('#enviar').html('Enviar');
+				$('#enviar').prop('disabled', true);
 				$('#res_message').show();
 				$('#res_message').html(response.mensaje);
 				$('#msg_div').removeClass('d-none');
