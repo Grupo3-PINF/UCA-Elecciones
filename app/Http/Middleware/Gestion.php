@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -18,11 +19,14 @@ class Gestion
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        session_start();
-        if(isset($_SESSION['idusuario']) && !empty($_SESSION['idusuario']))
+        if(session_status()==PHP_SESSION_NONE)
+            session_start();
+        $idusuario = Session::get('idusuario');
+        if(isset($idusuario) && !empty($idusuario))
         {
-            $user = User::where('login',$_SESSION['idusuario'])->first();
-            if( $user->rolActivo=='Administrador' || $user->rolActivo == 'Secretario')
+            $user = User::where('login',$idusuario)->first();
+            $rol = strtolower($user->rolActivo);
+            if($rol == 'administrador' || $rol == 'secretario')
             {
                 return $next($request);
             }

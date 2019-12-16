@@ -29,9 +29,8 @@ class RolesController extends Controller
             
             if(isset($user))
             {
-                $_SESSION['userselect']=$user->identificador;
+                Session::put('userselect',$user->identificador);
                 $rol = Rol::where('idUser',$user->identificador)->first();
-
                 if(isset($rol))
                 {
                     $array = [];
@@ -57,30 +56,31 @@ class RolesController extends Controller
             session_start();
         if(isset($_POST['roles']) && !empty($_POST['roles']) && $_POST['roles'][1]!="")
         {
-            if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
+            if(Session::has('userselect'))
             {
+                $id = Session::get('userselect');
                 $roles = $_POST['roles'];
                 if(array_search("Administrador",$roles)!=FALSE ||array_search("Secretario",$roles)!=FALSE 
                                 || array_search("Estudiante",$roles)!=FALSE || array_search("Desarrollador Bajo",$roles)!=FALSE
                                 || array_search("Desarrollador Alto",$roles)!=FALSE)
                 {
-                    $id = $_SESSION['userselect'];
                     $rolrow = Rol::where('idUser',$id)->first();
                     foreach($roles as $rol)
                     {
-                        if($rol == 'Administrador')
+                        $rol = strtolower($rol);
+                        if($rol == 'administrador')
                             $rolrow->esAdmin = true;
-                        if($rol == 'Secretario')
+                        if($rol == 'secretario')
                             $rolrow->esSecretario = true;
-                        if($rol == 'Estudiante')
+                        if($rol == 'estudiante')
                             $rolrow->esEstudiante = true;
-                        if($rol == 'Desarrollador Bajo')
+                        if($rol == 'desarrollador bajo')
                             $rolrow->esDesarrolladorBajo = true;
-                        if($rol == 'Desarrollador Alto')
+                        if($rol == 'desarrollador alto')
                             $rolrow->esDesarrolladorAlto = true;
                     }
                     $rolrow->save();
-                    unset($_SESSION['userselect']);
+                    Session::forget('userselect');
 
                     return "Roles añadidos correctamente.";
                 }
@@ -102,30 +102,31 @@ class RolesController extends Controller
             session_start();
         if(isset($_POST['roles']) && !empty($_POST['roles']) && $_POST['roles'][1]!="")
         {
-            if(isset($_SESSION['userselect']) && !empty($_SESSION['userselect']))
+            if(Session::has('userselect'))
             {
+                $id = Session::get('userselect');
                 $roles = $_POST['roles'];
                 if(array_search("Administrador",$roles)!=false ||array_search("Secretario",$roles)!=false 
                                 || array_search("Estudiante",$roles)!=false || array_search("Desarrollador Bajo",$roles)!=false
                                 || array_search("Desarrollador Alto",$roles)!=false)
                 {
-                    $id = $_SESSION['userselect'];
                     $rolrow = Rol::where('idUser',$id)->first();
                     foreach($roles as $rol)
                     {
-                        if($rol == 'Administrador')
+                        $rol = strtolower($rol);
+                        if($rol == 'administrador')
                             $rolrow->esAdmin = false;
-                        if($rol == 'Secretario')
+                        if($rol == 'secretario')
                             $rolrow->esSecretario = false;
-                        if($rol == 'Estudiante')
+                        if($rol == 'estudiante')
                             $rolrow->esEstudiante = false;
-                        if($rol == 'Desarrollador Bajo')
+                        if($rol == 'desarrollador bajo')
                             $rolrow->esDesarrolladorBajo = false;
-                        if($rol == 'Desarrollador Alto')
+                        if($rol == 'desarrollador alto')
                             $rolrow->esDesarrolladorAlto = false;
                     }
                     $rolrow->save();
-                    unset($_SESSION['userselect']);
+                    Session::forget('userselect');
 
                     return "Roles eliminados correctamente.";
                 }
@@ -139,5 +140,49 @@ class RolesController extends Controller
         {
             return "Rol no proporcionado.";
         }
-    } 
+    }
+    
+    public function rolActivo()
+    {
+        if(session_status()==PHP_SESSION_NONE)
+            session_start();
+        if(isset($_POST['rol']) && !empty($_POST['rol']))
+        { 
+            if(Session::has('userselect'))
+            {
+                $id = Session::get('userselect');
+                $rol = strtolower($_POST['rol']);
+                if($rol=='administrador' || $rol=='secretario' || $rol=='desarrollador bajo'
+                    || $rol=='desarrollador alto' || $rol=='estudiante')
+                {
+                    $roles = Rol::where('idUser',$id)->first();
+                    $valor = true;
+
+                    if($rol == 'administrador')
+                        $valor = $roles->esAdmin;
+                    if($rol == 'secretario')
+                        $valor = $roles->esSecretario;
+                    if($rol == 'estudiante')
+                        $valor = $roles->esEstudiante;
+                    if($rol == 'desarrollador bajo')
+                        $valor = $roles->esDesarrolladorBajo;
+                    if($rol == 'desarrollador alto')
+                        $valor = $roles->esDesarrolladorAlto;
+                    if($valor!=false)
+                    {
+                        $user = User::where('identificador',$id)->first();
+                        $user->rolActivo=$rol;
+                        $user->save();
+                        return "Rol añadido correctamente";
+                    }
+                    else
+                        return "El usuario no dispone de ese rol";
+                }
+                else
+                {
+                    return "Rol no válido";
+                }
+            }
+        }
+    }
 }

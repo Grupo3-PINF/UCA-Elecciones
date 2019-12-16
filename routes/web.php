@@ -49,6 +49,7 @@ Route::group(
         Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
         Route::post('roles-añadir','RolesController@agregarRol')->name('roles.agregar');
         Route::post('roles-eliminar','RolesController@quitarRol')->name('roles.eliminar');
+        Route::post('roles-modificar','RolesController@rolActivo')->name('roles.modificar');
     }
 );
 
