@@ -15,7 +15,6 @@ class HeaderTest extends TestCase
      *
      * @return void
      */
-<<<<<<< HEAD
     public function testBotonResultadosCuandoNoLogeado()
     {
 
@@ -98,7 +97,6 @@ class HeaderTest extends TestCase
         $response->assertRedirect('login');
     }
     
-=======
     public function test_boton_titulo()
     {
         $response = $this->get('/');
@@ -116,5 +114,4 @@ class HeaderTest extends TestCase
         $response = $this->get('/logout');
         $response->assertRedirect('login');
     }
->>>>>>> d7a982f0ab2bb5abd547e4ea9a3ac93723752e88
 }
