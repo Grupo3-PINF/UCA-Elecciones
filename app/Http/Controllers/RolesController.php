@@ -155,10 +155,28 @@ class RolesController extends Controller
                 if($rol=='administrador' || $rol=='secretario' || $rol=='desarrollador bajo'
                     || $rol=='desarrollador alto' || $rol=='estudiante')
                 {
-                    $user = User::where('idUser',$id)->first();
-                    $user->rolActivo=$rol;
-                    $rol->save();
-                    return "Rol añadido correctamente";
+                    $roles = Rol::where('idUser',$id)->first();
+                    $valor = true;
+
+                    if($rol == 'administrador')
+                        $valor = $roles->esAdmin;
+                    if($rol == 'secretario')
+                        $valor = $roles->esSecretario;
+                    if($rol == 'estudiante')
+                        $valor = $roles->esEstudiante;
+                    if($rol == 'desarrollador bajo')
+                        $valor = $roles->esDesarrolladorBajo;
+                    if($rol == 'desarrollador alto')
+                        $valor = $roles->esDesarrolladorAlto;
+                    if($valor!=false)
+                    {
+                        $user = User::where('identificador',$id)->first();
+                        $user->rolActivo=$rol;
+                        $user->save();
+                        return "Rol añadido correctamente";
+                    }
+                    else
+                        return "El usuario no dispone de ese rol";
                 }
                 else
                 {

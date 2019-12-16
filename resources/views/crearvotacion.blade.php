@@ -50,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-		@endif
+	@endif
 	</div>
 </div>
 <script>
@@ -63,31 +63,27 @@
 				"tipoVotacion": tipo
 			},
 			success: function(response) {
-				//Revision de codigo
-				$(".step-1").hide();
 				switch(response.tipo) {
 					case "pregunta":
 						onload = recibirGruposPregunta();
 						$("#steps-eleccion").remove();
 						$("#steps-consulta").remove();
-						$("#steps-pregunta").toggleClass("hide").delay(1200);
-						$("#steps-pregunta").addClass("flex").delay(1200)
 					break;
 					case "eleccion":
 						onload = recibirGruposEleccion();
 						onload = recibirCandidatos();
 						$("#steps-pregunta").remove();
 						$("#steps-consulta").remove();
-						$("#steps-eleccion").toggleClass("hide").delay(1200);
-						$("#steps-eleccion").addClass("flex").delay(1200)
 					break;
 					case "consulta":
 						$("#steps-eleccion").remove();
 						$("#steps-pregunta").remove();
-						$("#steps-consulta").toggleClass("hide").delay(1200);
-						$("#steps-consulta").addClass("flex").delay(1200)
 					break;
 				}
+				
+				$(".step-1").hide();
+				$("#steps-" + response.tipo).toggleClass("hide").delay(1200);
+				$("#steps-" + response.tipo).addClass("flex").delay(1200)
 			},
 			error: function(error) {
 				console.error(error)
