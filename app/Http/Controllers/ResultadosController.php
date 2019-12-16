@@ -5,7 +5,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Redirect;
 use Session;
 use Auth;
-use App\Resultado;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
@@ -27,18 +26,21 @@ class ResultadosController extends Controller
 	}
 	public function mostrarResultado()
 	{
-		session_start(); 
-		if(isset($_POST['opcionpregunta']) && !empty($_POST['opcionpregunta']))
+		session_start();
+		if(isset($_POST) && !empty($_POST))
 		{
-			$idvotacion = $_POST['opcionpregunta'];
+			$id = $_POST['id'];
 			date_default_timezone_set('Europe/Madrid'); 
 			$date = date('d/m/Y h:i:s a', time());
 			$conn = $this->openCon();
-			$resultados = Resultado::where('idVotacion', $idvotacion)->first();
-			$votacion = Pregunta::find($idvotacion);
+			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
+			$votacion = Pregunta::find($id);
 			$vector = ["OK" => 1,
-				"opciones"=> "",
-				"votos" => $resultados->recuento];
+				"titulo" => $resultados->titulo
+			];
+			$vector = array_merge($vector,json_decode($resultados->opciones,true));
+			$vector = array_merge($vector,json_decode($resultados->recuento,true));
+			//hay que sacar también el título de la pregunta para que la puedan mostrar en el chart
 			$finalizada = true;
 			if($votacion->esAnticipada == true)
 			{
@@ -64,7 +66,7 @@ class ResultadosController extends Controller
 				{
 					if($votacion->seMuestraAntes == false)
 					{
-						$participaciones = Participacion::where('idpregunta', $idvotacion) -> pluck('idusuario');
+						$participaciones = Participacion::where('idpregunta', $id) -> pluck('idusuario');
 						$participa = false;
 						foreach ($participaciones as $participacion) 
 						{
@@ -81,7 +83,17 @@ class ResultadosController extends Controller
 				}
 			}
 			$this->closeCon($conn);
-			return view('resultados')->with($vector);
+			/*if($vector["OK"] == 0)
+			{
+				$vector["votos"] = 0;
+				$vector["opciones"] = 0;
+			}*/
+			$vector["OK"] == 1;
+			//dd($vector['votos']);
+			//$vector['OK'] = 1;
+			//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
+			//($vector['votos'] = [450,200,300];
+			return $vector;
 		}
 	}
 	public function view()
