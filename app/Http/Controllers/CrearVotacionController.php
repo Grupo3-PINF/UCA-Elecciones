@@ -20,33 +20,97 @@ class CrearVotacionController extends Controller
         return view('crearvotacion');
     }
 
+    private function interpretarFecha(String $str) {
+        if (preg_match("/^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]))?$/", $str)) {
+            $dstr = str_replace('T', ' ', $str);
+            $dstr = $dstr.':00';
+            return $dstr;
+        }
+        return NULL;
+    }
+
     public function crearPregunta(Request $request)
     {
-        if(isset($_POST) && !empty($_POST)) {
-            $titulo = $request->input('pregunta-basica');
-            
-            $pregunta = new Pregunta;
-            $pregunta->titulo = $titulo;
-            
-            $pregunta->esVinculante = $request->input('eleccion-2') == "si" ? true : false;
-            $pregunta->esCompleja = $request->input('eleccion-3') == "si" ? true : false;
-            $pregunta->esRestringida = $request->input('eleccion-4') == "si" ? true : false;
-            $pregunta->fechaComienzo = date_create(date("Y-m-d H:i:s"));
-            $pregunta->fechaFin = date_create(date("Y-m-d H:i:s"));
-            $pregunta->save();
-
-            $mensaje = "Pregunta creada correctamente";
-            
-            // mientras no tenemos ajax, devolvemos una vista
-            return view('crearvotacion')->with('mensaje',$mensaje);
-
-            // para cuando tengamos ajax
+        $titulo = $request->input('titulo');
+        if ($titulo == NULL) {
             return response()->json([
-                ok => 1,
-                success => true,
-                data => $data
+                'mensaje' => "Es necesario poner un titulo",
+                'data' => $request->all()
             ]);
         }
+
+        // interpretar la fecha
+        $fechaStr = $request->input('fecha-inicio');
+
+        if ($fechaStr == NULL) {
+            return response()->json([
+                'mensaje' => "Fecha incompleta"
+            ]);
+        }
+
+        $fechaStr = $this->interpretarFecha($fechaStr);
+
+        // si no es correcta, o es anterior a "ahora"
+        if ($fechaStr == NULL || strtotime($fechaStr) - time() < 0) {
+            return response()->json([
+                'mensaje' => "Fecha incorrecta",
+            ]);
+        }
+
+        $fechaIni = date_create($fechaStr);
+
+        $duracion = $request->input('tiempo-pregunta');
+        if (is_numeric($duracion)) {
+            $fechaFin = clone $fechaIni;
+            $fechaFin->modify("+$duracion minutes");
+        }
+
+        $esAnticipada = $request->input('es-anticipada') == "true" ? true : false;
+        if ($esAnticipada) {
+            $fechaAnticipadaStr = $request->input('fecha-pregunta-anticipada');
+
+            if ($fechaAnticipadaStr == NULL) {
+                return response()->json([
+                    'mensaje' => "Fecha anticipada incompleta",
+                    'data' => $request->all()
+                ]);
+            }
+
+            $fechaAnticipadaStr = $this->interpretarFecha($fechaAnticipadaStr);
+
+            // si no es correcta, o es anterior a "ahora"
+            if ($fechaAnticipadaStr == NULL || strtotime($fechaAnticipadaStr) - time() < 0) {
+                return response()->json([
+                    'mensaje' => "Fecha anticipada incorrecta"
+                ]);
+            }
+
+            $fechaAnticipada = date_create($fechaAnticipadaStr);
+        }
+
+        $pregunta = new Pregunta;
+        $pregunta->titulo = $titulo;
+        
+        $pregunta->esVinculante = $request->input('es-secreta') == "true" ? true : false;
+        $pregunta->esCompleja = $request->input('es-compleja') == "true" ? true : false;
+        $pregunta->esRestringida = $request->input('es-secreta') == "true" ? true : false;
+        
+        $pregunta->fechaComienzo = $fechaIni;
+        $pregunta->fechaFin = $fechaFin;
+        
+        $pregunta->esAnticipada = $esAnticipada;
+        if ($esAnticipada) {
+            $pregunta->fechaComienzoAnticipada = $fechaAnticipada;
+        }
+
+        $pregunta->save();
+
+        return response()->json([
+            'mensaje' => "Pregunta creada correctamente"
+        ]);
+        
+        // mientras no tenemos ajax, devolvemos una vista
+        // return view('crearvotacion')->with('mensaje',$mensaje);
     }
 
     public function crearEleccion(Request $request)
@@ -107,7 +171,6 @@ class CrearVotacionController extends Controller
                 return $this->crearEleccion($request);
             break;
         }
-        
     }
 
     public function seleccionVotacion(Request $request)

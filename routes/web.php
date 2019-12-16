@@ -40,6 +40,7 @@ Route::group(
         Route::post('crearvotacion/recibirGrupos','CrearVotacionController@mandarGrupos');
         Route::post('crearvotacion/recibirCandidatos','CrearVotacionController@mandarCandidatos');
         Route::post('crearvotacion/crearEleccion','CrearVotacionController@crearEleccion');
+        Route::post('crearvotacion/crearPregunta','CrearVotacionController@crearPregunta');
     }
 );
 

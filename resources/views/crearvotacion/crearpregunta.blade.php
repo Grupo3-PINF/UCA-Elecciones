@@ -33,19 +33,16 @@
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="form-group">
-				<label>Simple o compleja</label>
-				<p>Preguntas simples serán sí, no o abstenerse</p>
-				<select class="form-control" name="tipo-pregunta">
-					<option value="1">Simple</option>
-					<option value="2">Compleja</option>
-				</select>
+				<label>Pregunta compleja</label>
+				<p>Por defecto, las respuestas serán sí, no o abstenerse. Que sea compleja permite editar las posibles respuestas.</p>
+				<input type="checkbox" name="compleja-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="form-group">
 				<label>Tiempo de votación (minutos)</label>
 				<p>Tiempo máximo para realizar la votación una vez abierta</p>
-				<input class="form-control" type="number" value="1">
+				<input class="form-control" type="number" value="1" name="tiempo-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-3">
@@ -78,7 +75,7 @@
 		</div>
 		<div class="col-12">
 			<div class="form-group">
-				<button class="btn btn-primary" type="submit">Enviar</button>
+				<button onclick="crearPregunta()" id="enviar" class="btn btn-primary">Enviar</button>
 				<a class="btn btn-cancel" href="{{url('/crearvotacion')}}">Cancelar</a>
 			</div>
 		</div>
@@ -95,6 +92,34 @@
 			$('#participantes-anticipada-pregunta').hide();
 		}
 	});
+
+	function crearPregunta() {
+		$.ajax({
+			type: 'POST',
+			url: "crearvotacion/crearPregunta",
+			data: {
+				"_token": "{{ csrf_token() }}",
+				'titulo': $('input[name=titulo-pregunta]').val(),
+				'es-compleja': $('input[name=compleja-pregunta]').is(':checked'),
+				'fecha-inicio': $('input[name=fecha-pregunta]').val(),
+				'tiempo-pregunta': $('input[name=tiempo-pregunta]').val(),
+				'es-anticipada': $('input[name=anticipada-pregunta]').is(':checked'),
+				'es-secreta': $('input[name=secreta-pregunta]').is(':checked'),
+				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val()
+			},
+			success: function(response) {
+				console.log(response)
+				$('#enviar').html('Enviar');
+				$('#res_message').show();
+				$('#res_message').html(response.mensaje);
+				$('#msg_div').removeClass('d-none');
+				$('#1').slideUp(700);
+			},
+			error: function(error) {
+				console.error(error)
+			}
+		})
+	}
 
 	function recibirGruposPregunta() {
 		$.ajax({
