@@ -74,6 +74,9 @@
 			</div>
 		</div>
 		<div class="col-12">
+			<div class="alert d-none" id="msg_div">
+				<span id="res_message"></span>
+			</div>
 			<div class="form-group">
 				<button onclick="crearPregunta()" id="enviar" class="btn btn-primary">Enviar</button>
 				<a class="btn btn-cancel" href="{{url('/crearvotacion')}}">Cancelar</a>
@@ -93,13 +96,25 @@
 		}
 	});
 
+	function guardarGruposPregunta() {
+		var arr = [];
+		var container = document.querySelectorAll('.input-div-caja-pregunta');
+		for (var i = 0; i < container.length; i++) {
+			arr.push(container[i].placeholder);
+		}
+		console.log(arr);
+		return arr;
+	}
+
 	function crearPregunta() {
+		var grupos = guardarGruposPregunta();
 		$.ajax({
 			type: 'POST',
 			url: "crearvotacion/crearPregunta",
 			data: {
 				"_token": "{{ csrf_token() }}",
 				'titulo': $('input[name=titulo-pregunta]').val(),
+				'grupos': grupos,
 				'es-compleja': $('input[name=compleja-pregunta]').is(':checked'),
 				'fecha-inicio': $('input[name=fecha-pregunta]').val(),
 				'tiempo-pregunta': $('input[name=tiempo-pregunta]').val(),
@@ -108,12 +123,25 @@
 				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val()
 			},
 			success: function(response) {
-				console.log(response)
-				$('#enviar').html('Enviar');
-				$('#res_message').show();
-				$('#res_message').html(response.mensaje);
-				$('#msg_div').removeClass('d-none');
-				$('#1').slideUp(700);
+				console.log(response.status);
+				if (response.status) {
+					$('#enviar').html('Enviar');
+					$('#res_message').show();
+					$('#res_message').html(response.mensaje);
+					$('#msg_div').removeClass('alert-danger');
+					$('#msg_div').addClass('alert-success');
+					$('#msg_div').removeClass('d-none');
+					setTimeout(function() {
+						window.location.reload();
+					}, 4000);
+				} else {
+					$('#enviar').html('Enviar');
+					$('#res_message').show();
+					$('#res_message').html(response.mensaje);
+					$('#msg_div').removeClass('alert-success');
+					$('#msg_div').addClass('alert-danger');
+					$('#msg_div').removeClass('d-none');
+				}
 			},
 			error: function(error) {
 				console.error(error)
@@ -150,7 +178,7 @@
 		$('#button-groups').click(function() {
 			var nombre = $('select[name=grupos-pregunta] option:selected').text();
 			var id = $('select[name=grupos-pregunta]').val();
-			var html = '<input class="input-div-caja" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
+			var html = '<input class="input-div-caja-pregunta" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
 			if (!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length)
 				$('#grupos-div-pregunta').append(html);
 		});

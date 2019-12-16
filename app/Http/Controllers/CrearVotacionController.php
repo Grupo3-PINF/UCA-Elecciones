@@ -34,6 +34,7 @@ class CrearVotacionController extends Controller
         $titulo = $request->input('titulo');
         if ($titulo == NULL) {
             return response()->json([
+                'status' => false,
                 'mensaje' => "Es necesario poner un titulo",
                 'data' => $request->all()
             ]);
@@ -44,6 +45,7 @@ class CrearVotacionController extends Controller
 
         if ($fechaStr == NULL) {
             return response()->json([
+                'status' => false,
                 'mensaje' => "Fecha incompleta"
             ]);
         }
@@ -53,6 +55,7 @@ class CrearVotacionController extends Controller
         // si no es correcta, o es anterior a "ahora"
         if ($fechaStr == NULL || strtotime($fechaStr) - time() < 0) {
             return response()->json([
+                'status' => false,
                 'mensaje' => "Fecha incorrecta",
             ]);
         }
@@ -71,6 +74,7 @@ class CrearVotacionController extends Controller
 
             if ($fechaAnticipadaStr == NULL) {
                 return response()->json([
+                    'status' => false,
                     'mensaje' => "Fecha anticipada incompleta",
                     'data' => $request->all()
                 ]);
@@ -81,6 +85,7 @@ class CrearVotacionController extends Controller
             // si no es correcta, o es anterior a "ahora"
             if ($fechaAnticipadaStr == NULL || strtotime($fechaAnticipadaStr) - time() < 0) {
                 return response()->json([
+                    'status' => false,
                     'mensaje' => "Fecha anticipada incorrecta"
                 ]);
             }
@@ -106,6 +111,7 @@ class CrearVotacionController extends Controller
         $pregunta->save();
 
         return response()->json([
+            'status' => true,
             'mensaje' => "Pregunta creada correctamente"
         ]);
         
