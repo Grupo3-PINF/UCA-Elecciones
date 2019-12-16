@@ -18,6 +18,7 @@
 					<option value="todos">Todos</option>
 				</select>
 				<a onclick="anadirGrupos();" class="btn btn-secondary" id="button-groups">Añadir</a>
+				<input type="hidden" name="buscador-grupos">
 			</div>
 		</div>
 		<div class="col-12 col-md-8">
