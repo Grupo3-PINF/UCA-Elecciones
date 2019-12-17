@@ -43,9 +43,15 @@ class CreatePreguntasTable extends Migration
              * }
              */
             $table->json('recuento')->nullable();
+            
+            /**
+             * {
+             *  censos: [0, 1, 3 ...]
+             * }
+             */
+            $table->json('censoVotante')->nullable();
+
             $table->timestamps();
-            // provisional
-            //$table->string('ambito');
         });
     }
     /**
