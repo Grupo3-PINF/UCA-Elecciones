@@ -43,7 +43,7 @@
 			<div class="form-group">
 				<label>Tiempo real</label>
 				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
-				<input type="checkbox" name="compleja-pregunta">
+				<input type="checkbox" name="tiemporeal-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-4">

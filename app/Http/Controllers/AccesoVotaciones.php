@@ -197,7 +197,7 @@ class AccesoVotaciones extends Controller
                     $votacion->recuento = $s;
                     $votacion->save();
 
-                   return view('opciones')->with('ops', $ops['opciones'])->with('id', $id);
+                   return view('accesovotaciones');
                 }else
                 {
                     return "Votación finalizada";
