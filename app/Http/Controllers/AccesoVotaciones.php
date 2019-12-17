@@ -147,9 +147,11 @@ class AccesoVotaciones extends Controller
 
                 if($date > $tiempo_ini && $date < $tiempo_fin)
                 {
-                    return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
+                    //return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
                     /*Le pasamos la opcion que voto para que si le da a rectificar
                       quitar el voto que ya se sumo*/
+                    return view('index');
+
                 }else
                 {
                     return view('index');
@@ -197,7 +199,7 @@ class AccesoVotaciones extends Controller
                     $votacion->recuento = $s;
                     $votacion->save();
 
-                   return view('accesovotaciones');
+                   return view('accesovotaciones')->with('ops', $ops['opciones'])->with('id', $id);
                 }else
                 {
                     return "Votación finalizada";
