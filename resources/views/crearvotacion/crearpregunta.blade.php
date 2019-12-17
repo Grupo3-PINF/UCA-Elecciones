@@ -109,9 +109,8 @@
 		var arr = [];
 		var container = document.querySelectorAll('.input-div-caja-pregunta');
 		for (var i = 0; i < container.length; i++) {
-			arr.push(container[i].placeholder);
+			arr.push(container[i].getAttribute('name').replace('grupo-',''));
 		}
-		console.log(arr);
 		return arr;
 	}
 

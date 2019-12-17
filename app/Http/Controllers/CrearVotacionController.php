@@ -123,6 +123,8 @@ class CrearVotacionController extends Controller
         $pregunta->opciones = $opciones;
         $pregunta->recuento = $recuento;
 
+        $pregunta->censoVotante = json_encode(['grupos' => $request->input('grupos')]);
+
         $pregunta->idCreador = \Auth::user()->id;
 
         // $pregunta->wallet = EL SCRIPT DE LA BLOCKCHAIN;
@@ -181,6 +183,7 @@ class CrearVotacionController extends Controller
     }
     
     public function mandarCandidatos() {
+        // !!! APLICAR FILTRO !!!
         $candidatos = User::all();
         return response()->json(['candidatos' => $candidatos]);
     }
