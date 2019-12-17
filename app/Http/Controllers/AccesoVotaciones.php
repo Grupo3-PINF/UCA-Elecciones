@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
 use Redirect;
 use Session;
 use Auth;
-
+use App;
 use App\User;
 use App\Pregunta;
 use App\Participacion;
@@ -67,12 +67,12 @@ class AccesoVotaciones extends Controller
         {            
             $votacion = Pregunta::find($id);
             $date = date('Y-m-d H:i:s');
+            var_dump($date);
             $tiempo_ini = $votacion->fechaComienzo;
             $tiempo_fin = $votacion->fechaFin;
 
             $json = $votacion->opciones;
             $ops = json_decode($json, true);
-
             if($date > $tiempo_ini && $date < $tiempo_fin)
             {
                 //Apuntamos que el usuario ha votado(la opción la apuntamos después)
