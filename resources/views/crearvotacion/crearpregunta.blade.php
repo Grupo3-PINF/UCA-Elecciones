@@ -41,6 +41,13 @@
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="form-group">
+				<label>Tiempo real</label>
+				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
+				<input type="checkbox" name="compleja-pregunta">
+			</div>
+		</div>
+		<div class="col-12 col-md-4">
+			<div class="form-group">
 				<label>Tiempo de votación (minutos)</label>
 				<p>Tiempo máximo para realizar la votación una vez abierta</p>
 				<input class="form-control" type="number" value="1" name="tiempo-pregunta">
