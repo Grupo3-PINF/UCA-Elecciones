@@ -30,9 +30,8 @@ class HeaderTest extends TestCase
 
     {
         //TODO: crear entidad de base de datos dinamica y probar usuario
-        //add user to dynamic db
         $response = $this->get('/resultados');
-        $response->assertRedirect('resultados');
+        $response->assertViewIs('resultados');
     }
 
     /**
@@ -43,9 +42,8 @@ class HeaderTest extends TestCase
      */
     public function test_ruta_accesovotaciones_cuando_no_logeado()
     {
-        //TODO: Esta prueba fallará, vista "votar" aun no hecha
         $response = $this->get('/accesovotaciones');
-        $response->assertViewIs('login');
+        $response->assertRedirect('login');
     }
 
     /**
@@ -56,7 +54,6 @@ class HeaderTest extends TestCase
      */
     public function test_ruta_accesovotaciones_cuando_logeado_como_estudiante()
     {
-        //TODO: Esta prueba fallará, vista "votar" aun no hecha
         //TODO: crear instancia de base de datos, insertar usuario
         $response = $this->get('/accesovotaciones');
         $response->assertViewIs('accesovotaciones');
@@ -84,7 +81,7 @@ class HeaderTest extends TestCase
     public function test_ruta_roles_cuando_logeado_como_estudiante()
     {
         $response = $this->get('/roles');
-        $response->assertRedirect('roles');
+        $response->assertRedirect('/');
     }
 
     /**
@@ -99,7 +96,7 @@ class HeaderTest extends TestCase
         $response->assertRedirect('login');
     }
 
-    public function test_ruta_rincipal_redirige_vista_principal()
+    public function test_ruta_principal_redirige_vista_principal()
     {
         $response = $this->get('/');
         $response->assertViewIs('index');
