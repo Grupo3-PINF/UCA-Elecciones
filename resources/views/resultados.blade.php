@@ -128,11 +128,16 @@ $("#btn-primary").click(function(){
                                 }]
                             },
                             options: {
-                                responsive: true
+                                responsive: true,
+                                title: {
+                                    display: true,
+                                    fontSize: 30,
+                                    text: vector['titulo'] // aquí va el titulo de la pregunta
+                                }
                             }
                         });
 
-                        $('#div-resultado h4').text(vector['titulo']);
+                        //$('#div-resultado h4').text(vector['titulo']);
 
                     /*
                     new Chart(document.getElementById("bar-chart"), {
