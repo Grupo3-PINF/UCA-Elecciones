@@ -1,4 +1,6 @@
 <?php
+use App\User;
+
 $user = new App\User();
 $user->identificador=$argv[0];
 $user->login=$argv[1];
