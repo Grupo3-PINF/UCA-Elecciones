@@ -75,6 +75,8 @@ Route::get('preguntasrestringidas', 'AccesoVotaciones@preguntasRestringidas');
 Route::get('preguntasnorestringidas', 'AccesoVotaciones@Vistapnr');
 Route::get('preguntasnorestringidas', 'AccesoVotaciones@preguntasNoRestringidas');
 
+Route::get('elecciones', 'AccesoVotaciones@Vistaelecciones');
+
 Route::post('opciones', 'AccesoVotaciones@guardaropcion');
 Route::get('rectificar/id', 'AccesoVotaciones@guardaropcion');
 

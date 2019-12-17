@@ -28,6 +28,14 @@ class AccesoVotaciones extends Controller
     {
         return view('preguntasnorestringidas');
     }
+    public function Vistaconsultas()
+    {
+//        return view('consultas');
+    }
+    public function Vistaelecciones()
+    {
+        return view('elecciones');
+    }
     public function preguntasNoRestringidas()
     {
         $pnr = Pregunta::where('esRestringida', false)->get();
@@ -82,7 +90,7 @@ class AccesoVotaciones extends Controller
                 $participacion->opcion = 1000000;
                 $participacion->save();
 
-                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
+                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id);//->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
             }else
             {
                 return "Votación finalizada";

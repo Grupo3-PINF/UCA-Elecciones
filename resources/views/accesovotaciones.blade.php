@@ -25,7 +25,7 @@
 	                        <a href="{{url('/preguntasrestringidas/')}}">Mostrar</a>
 	                    @endif
 						@if($opciones == 'Elecciones')
-	                        <a href="{{url('/preguntasrestringidas/')}}">Mostrar</a>
+	                        <a href="{{url('/elecciones/')}}">Mostrar</a>
 	                    @endif	                    	                    	                    
 						<i class="far fa-envelope"></i>
 					@endforeach	
