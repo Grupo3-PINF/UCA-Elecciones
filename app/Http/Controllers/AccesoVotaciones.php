@@ -31,12 +31,27 @@ class AccesoVotaciones extends Controller
     public function preguntasNoRestringidas()
     {
         $pnr = Pregunta::where('esRestringida', false)->get();
-        return view('preguntasnorestringidas')->with('pnr', $pnr);
+        $date = date('Y-m-d H:i:s');
+        $array = [];
+        foreach($pnr as $p)
+        {
+            if($date > $p->fechaComienzo && $date < $p->fechaFin)
+                array_push($array,$p);
+        }
+        return view('preguntasnorestringidas')->with('pnr', $array);
     }
     public function preguntasRestringidas()
     {
         $pr = Pregunta::where('esRestringida', true)->get();
-        return view('preguntasrestringidas')->with('pr', $pr);
+        $date = date('Y-m-d H:i:s');
+        $array = [];
+        foreach($pr as $p)
+        {
+            if($date > $p->fechaComienzo && $date < $p->fechaFin)
+                array_push($array,$p);
+        }
+        
+        return view('preguntasrestringidas')->with('pr', $array);
     }
     public function mostrarElecciones()
     {
