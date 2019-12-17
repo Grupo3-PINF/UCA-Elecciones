@@ -22,11 +22,10 @@ class RolesController extends Controller
     {
         if(session_status()==PHP_SESSION_NONE)
             session_start();
-        $array = null;
+        $array = "Sin roles";
         if(isset($_POST['login']) && !empty($_POST['login']))
         {
             $user = User::where('login',$_POST['login'])->first();
-            
             if(isset($user))
             {
                 Session::put('userselect',$user->identificador);
