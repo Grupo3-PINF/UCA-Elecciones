@@ -24,6 +24,7 @@ Route::group(
         {
             return view('index');
         });
+        Route::get('/api', 'apiController@API');
         Route::get('resultados','ResultadosController@view')->name('resultados');
         Route::post('resultados','ResultadosController@mostrarResultado')->name('resultado.post');
     });
@@ -35,8 +36,12 @@ Route::group(
     ],function()
     {
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
-        Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        //Route::post('crearvotacion','CrearVotacionController@crearVotacion');
         Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
+        Route::post('crearvotacion/recibirGrupos','CrearVotacionController@mandarGrupos');
+        Route::post('crearvotacion/recibirCandidatos','CrearVotacionController@mandarCandidatos');
+        Route::post('crearvotacion/crearEleccion','CrearVotacionController@crearEleccion');
+        Route::post('crearvotacion/crearPregunta','CrearVotacionController@crearPregunta');
     }
 );
 
@@ -49,6 +54,7 @@ Route::group(
         Route::post('roles-mostrar', 'RolesController@mostrarRoles')->name('roles.mostrar');
         Route::post('roles-añadir','RolesController@agregarRol')->name('roles.agregar');
         Route::post('roles-eliminar','RolesController@quitarRol')->name('roles.eliminar');
+        Route::post('roles-modificar','RolesController@rolActivo')->name('roles.modificar');
     }
 );
 
@@ -59,3 +65,23 @@ Route::view('/avisolegal', 'legal/avisolegal');
 Route::view('/cookies', 'legal/cookies');
 
 
+Route::get('accesovotaciones', 'AccesoVotaciones@index')->name('accesovotaciones');
+
+Route::get('opciones/{id?}/{tiempo_ini?}/{tiempo_fin?}', 'AccesoVotaciones@enviar');
+
+Route::get('preguntasrestringidas', 'AccesoVotaciones@Vistapr');
+Route::get('preguntasrestringidas', 'AccesoVotaciones@preguntasRestringidas');
+
+Route::get('preguntasnorestringidas', 'AccesoVotaciones@Vistapnr');
+Route::get('preguntasnorestringidas', 'AccesoVotaciones@preguntasNoRestringidas');
+
+Route::get('consultas', 'AccesoVotaciones@Vistapnr');
+Route::get('consultas', 'AccesoVotaciones@preguntasNoRestringidas');
+
+Route::get('elecciones', 'AccesoVotaciones@Vistapnr');
+Route::get('elecciones', 'AccesoVotaciones@preguntasNoRestringidas');
+
+Route::post('opciones', 'AccesoVotaciones@guardaropcion');
+Route::get('rectificar/id', 'AccesoVotaciones@guardaropcion');
+
+Route::post('rectificar', 'AccesoVotaciones@rectificar');

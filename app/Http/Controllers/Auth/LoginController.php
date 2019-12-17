@@ -1,16 +1,12 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Redirect;
 use Session;
 use Auth;
-
 use App\User;
 use Illuminate\Support\Facades\Hash;
-
 class LoginController extends Controller
 {
     /*
@@ -23,16 +19,13 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
     protected $redirectTo = '/';
-
     protected function redirectTo($request)
     {
         if(Auth::check())
@@ -40,7 +33,6 @@ class LoginController extends Controller
         else
             return Redirect::to('login');
     }
-
     /**
      * Create a new controller instance.
      *
@@ -50,12 +42,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
     public function index()
     {
         return view('login');
     }
-
     public function logout()
     {
         session_start();
@@ -64,7 +54,6 @@ class LoginController extends Controller
         Auth::logout();
         return Redirect::to('login');
     }
-
     public function login()
     {
         if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password']))
