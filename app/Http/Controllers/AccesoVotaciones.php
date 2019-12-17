@@ -67,7 +67,6 @@ class AccesoVotaciones extends Controller
         {            
             $votacion = Pregunta::find($id);
             $date = date('Y-m-d H:i:s');
-            var_dump($date);
             $tiempo_ini = $votacion->fechaComienzo;
             $tiempo_fin = $votacion->fechaFin;
 

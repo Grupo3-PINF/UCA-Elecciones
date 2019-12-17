@@ -16,9 +16,11 @@
                     @csrf
                     <label>Elija una votación</label>
                     <select class="form-control" id="opcionpregunta" name="opcionpregunta">
-                        <option value="1">Pregunta 1</option>
-                        <option value="2">Pregunta 2</option>
-                        <option value="9">Pregunta 3</option>
+                        @isset($preguntas)
+                            @foreach ($preguntas as $pregunta)
+                                <option value={{$pregunta->id}}>{{$pregunta->titulo}}</option>
+                            @endforeach
+                        @endisset
                     </select>
                 <div id ="btn-primary"><a class="btn btn-primary">Enviar</a></div>
                 </form>
@@ -102,12 +104,15 @@ $("#btn-primary").click(function(){
             $.ajax({
                 url: "{{ route('resultado.post')}}", //web.php poner nombre a la ruta de post de resultados ->name('resultado.post)
                 type: 'post',
-                data: {'_token':"{{csrf_token()}}", 'id': "9"}, // en id tiene que ir el id de la pregunta de la que hay que sacar los resultados.
+                data: {'_token':"{{csrf_token()}}", 'id': $( "#opcionpregunta option:selected" ).val()}, // en id tiene que ir el id de la pregunta de la que hay que sacar los resultados.
                 success: function(vector)
                 {
+
                     //esta linea os asegura que el resultado llega correctamente.
                     //var chrt = document.getElementById("mycanvas");
-                    $("#div-resultado").toggleClass("hide"); //sin esta linea no va
+                    if($("#div-resultado").hasClass("hide")){
+                        $("#div-resultado").toggleClass("hide"); //sin esta linea no va
+                    }
                     new Chart(document.getElementById("bar-chart"), {
                         type: 'bar',
                         data: {
