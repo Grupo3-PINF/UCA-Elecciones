@@ -15,7 +15,7 @@ class HeaderTest extends TestCase
      *
      * @return void
      */
-    public function testBotonResultadosCuandoNoLogeado()
+    public function test_ruta_resultados_cuando_no_logeado()
     {
 
         $response = $this->get('/resultados');
@@ -26,12 +26,13 @@ class HeaderTest extends TestCase
      * Comprueba se accede a la ruta /resultados de manera correcta
      * cuando el usuario esta logeado con rol de estudiante
      */
-    public function testRutaResultadosCuandoLogeadoComoEstudiante()
+    public function test_ruta_resultados_cuando_logeado_como_estudiante()
+
     {
         //TODO: crear entidad de base de datos dinamica y probar usuario
         //add user to dynamic db
-        $response=$this->get('/resultados');
-        $response->assertRedirect('/');
+        $response = $this->get('/resultados');
+        $response->assertRedirect('resultados');
     }
 
     /**
@@ -40,8 +41,8 @@ class HeaderTest extends TestCase
      * 
      * @return void 
      */
-    public function testRutaVotarCuandoNoLogeado()
-    {   
+    public function test_ruta_votar_cuando_no_logeado()
+    {
         //TODO: Esta prueba fallará, vista "votar" aun no hecha
         $response = $this->get('/votar');
         $response->assertRedirect('login');
@@ -53,11 +54,11 @@ class HeaderTest extends TestCase
      * 
      * @return void
      */
-    public function testRutaVotarCuandoLogeadoComoEstudiante()
+    public function test_ruta_votar_cuando_logeado_como_estudiante()
     {
         //TODO: Esta prueba fallará, vista "votar" aun no hecha
         //TODO: crear instancia de base de datos, insertar usuario
-        $response=$this->get('/votar');
+        $response = $this->get('/votar');
         $response->assertViewIs('votar');
     }
 
@@ -67,9 +68,9 @@ class HeaderTest extends TestCase
      * 
      * @return void
      */
-    public function testRutaRolesCuandoNoLogeado()
+    public function test_ruta_roles_cuando_no_logeado()
     {
-        $response=$this->get('/roles');
+        $response = $this->get('/roles');
         $response->assertRedirect('login');
     }
 
@@ -80,9 +81,10 @@ class HeaderTest extends TestCase
      * 
      * @return void
      */
-    public function testRutaRolesCuandoLogeadoComoEstudiante()
+    public function test_ruta_roles_cuando_logeado_como_estudiante()
     {
-        
+        $response = $this->get('/roles');
+        $response->assertViewIs('roles');
     }
 
     /**
@@ -91,25 +93,25 @@ class HeaderTest extends TestCase
      * 
      * @return void
      */
-    public function testRutaCrearVotacionCuandoNoLogeado()
+    public function test_ruta_crearvotacion_cuando_no_logeado()
     {
-        $response=$this->get('/crearvotacion');
+        $response = $this->get('/crearvotacion');
         $response->assertRedirect('login');
     }
-	
-    public function test_boton_titulo()
+
+    public function test_ruta_rincipal_redirige_vista_principal()
     {
         $response = $this->get('/');
         $response->assertViewIs('index');
     }
 
-    public function test_boton_login()
+    public function test_ruta_login_redirige_login()
     {
         $response = $this->get('/login');
         $response->assertViewIs('login');
     }
 
-    public function test_boton_logout()
+    public function test_ruta_logout_redirige_login()
     {
         $response = $this->get('/logout');
         $response->assertRedirect('login');

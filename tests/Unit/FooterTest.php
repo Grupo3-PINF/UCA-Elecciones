@@ -13,9 +13,9 @@ class FooterTest extends TestCase
      *
      * @return void
      */
-        public function testBotonAccesibilidad()
+    public function testBotonAccesibilidad()
     {
-        $response= $this->get('/accesibilidad');
+        $response = $this->get('/accesibilidad');
         $response->assertViewIs('legal.accesibilidad');
     }
 
@@ -26,7 +26,7 @@ class FooterTest extends TestCase
      */
     public function testBotonAvisoLegal()
     {
-        $response= $this->get('/avisolegal');
+        $response = $this->get('/avisolegal');
         $response->assertViewIs('legal.avisolegal');
     }
 
@@ -37,8 +37,7 @@ class FooterTest extends TestCase
      */
     public function testBotonCookies()
     {
-        $response= $this->get('/cookies');
+        $response = $this->get('/cookies');
         $response->assertViewIs('legal.cookies');
     }
-    
 }
