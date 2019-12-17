@@ -2,8 +2,9 @@
 use App\User;
 
 $user = new App\User();
-$user->identificador=$argv[0];
-$user->login=$argv[1];
-$user->email="prueba@uca.es";
-$user->password=$argv[2];
-$user->rolActivo=$argv[3];
+$user->identificador="33";
+$user->login='m25';
+$user->email="prueba33@uca.es";
+$user->password=Hash::make('c25');
+$user->rolActivo='estudiante';
+$user->save();
