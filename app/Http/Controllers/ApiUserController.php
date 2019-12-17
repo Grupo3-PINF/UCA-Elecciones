@@ -44,11 +44,18 @@ class ApiUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*
     public function show($id)
     {
         return User::where('id', $id)->get();
     }
-
+    */
+    public function show($id)
+    {
+        $arr['votos'] = [$id,450,200,300];//= array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+        return [json_encode($arr)];
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *
