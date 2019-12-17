@@ -18,12 +18,12 @@ body {
 }
 
 .hide {
-	display: none !important;
+	display: none !important; 
 }
 
 .overlap {
 	width: 100%;
-    height: 100px;
+    height: 32%;
     position: absolute;
 }
 

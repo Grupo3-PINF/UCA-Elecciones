@@ -26,8 +26,7 @@
                 </form>
             </div>
             <div id="div-resultado" class="col-12 col-md-6 hide">
-            <div class="overlap"></div>
-                <h4></h4>
+            <div class="overlap" class="col-12 col-md-6"></div>
                 <canvas id="doughnutChart" class="w-100"></canvas>
             </div>
         </div>
@@ -68,12 +67,12 @@ $("#btn-primary").click(function(){
                                 }]
                             },
                             options: {
-                                responsive: true,
-                                title: {
+                                /*title: {
+                                    responsive: true,
                                     display: true,
-                                    fontSize: 25,
+                                    fontSize: 10,
                                     text: vector['titulo'] // aquí va el titulo de la pregunta
-                                }
+                                }*/
                             }
                         });
 
