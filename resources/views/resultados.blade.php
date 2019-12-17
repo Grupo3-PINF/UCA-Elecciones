@@ -25,13 +25,14 @@
                 <div id ="btn-primary"><a class="btn btn-primary">Enviar</a></div>
                 </form>
             </div>
-            <div id="div-resultado" class="col-12 col-md-6 offset-md-1 hide">
-                <canvas id="bar-chart" width="800" height="450"></canvas>
+            <div id="div-resultado" class="col-12 col-md-6 hide">
+                <div class="overlap"></div>
+                <h4></h4>
+                <canvas id="doughnutChart" class="w-100"></canvas>
             </div>
         </div>
     </div>
 </div>
-
 <script>
 /*
     new Chart(document.getElementById("doughnut-chart"), {
@@ -113,6 +114,27 @@ $("#btn-primary").click(function(){
                     if($("#div-resultado").hasClass("hide")){
                         $("#div-resultado").toggleClass("hide"); //sin esta linea no va
                     }
+
+
+                        var ctxD = document.getElementById("doughnutChart").getContext('2d');
+                        var myLineChart = new Chart(ctxD, {
+                            type: 'doughnut',
+                            data: {
+                                labels: vector['opciones'],
+                                datasets: [{
+                                    data: vector['votos'],
+                                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                                }]
+                            },
+                            options: {
+                                responsive: true
+                            }
+                        });
+
+                        $('#div-resultado h4').text(vector['titulo']);
+
+                    /*
                     new Chart(document.getElementById("bar-chart"), {
                         type: 'bar',
                         data: {
@@ -139,7 +161,7 @@ $("#btn-primary").click(function(){
                             text: vector['titulo'] // aquí va el titulo de la pregunta
                         }
                         }
-                    });
+                    }); */
                 },
                 error: function()
                 {
