@@ -13,9 +13,9 @@ class ResultadosController extends Controller
 	public function openCon()
 	{
 		$dbhost = "localhost";
-		$dbuser = "pinf";
-		$db = "pinfdb";
-		$password = "pinf1234";
+		$dbuser = "root";
+		$db = "laravel";
+		$password = "";
 		$conn  =  mysqli_connect($dbhost,$dbuser,$password,$db) or die("Connect failed: %s\n". $conn -> error);
 		return $conn;
 	}
