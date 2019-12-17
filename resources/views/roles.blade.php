@@ -80,7 +80,7 @@
                     url: '{{route('roles.mostrar')}}',
                     data:{"login":data,"_token": "{{ csrf_token() }}"},
                     success: function(data) {
-                        if(data != "")
+                        if(data != "Sin roles")
                         {
                             $("#roles-si thead").append("<tr><th>Lista de roles del usuario</th></tr>");
                             $("#roles-si tbody").append("<tr><td>" + data + "</td></tr>");
