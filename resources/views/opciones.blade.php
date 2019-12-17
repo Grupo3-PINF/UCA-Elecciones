@@ -7,12 +7,10 @@
             <div class="col-12 col-md-5">
                 <form method="POST" action="{{url('/opciones')}}">
                     @csrf
-                    <p>Aquí debería ir una descripción breve y concisa de la votación que se está realizando</p>
+                    <h3>{{$titulo ? : 'Descripción de la pregunta'}}</h3>
                     <select class="form-control" id="respuesta" name="respuesta">
                     @foreach($ops as $p)
-                        <p>
-                            <option value="{{$loop->index}}.{{$id}}">{{$p}}</option>
-                        </p>
+                        <option value="{{$loop->index}}.{{$id}}">{{$p}}</option>
                     @endforeach
                     </select>
                     <button class="btn btn-primary" type="submit">Votar</button>
