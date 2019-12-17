@@ -65,8 +65,17 @@ class LoginController extends Controller
             if($user && Hash::check($password,$user->password))
             {
                 Auth::login($user);
-                //$_SESSION['idusuario'] = $user->login;
                 Session::put('idusuario', $user->login);
+                if($user->wallet==null)
+                {
+                    $wallet = "";
+                    $var = "";
+                    ob_start();
+                    echo(exec("python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/nuevaCuenta.py"));
+                    ob_get_clean();
+                    $user->wallet=$wallet;
+                    $user->save();
+                }
                 Session::put('rolusuario', strtolower($user->rolActivo));
                 return Redirect::to('/');
             }

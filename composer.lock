@@ -470,7 +470,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
             "version": "v6.5.2",
             "source": {
                 "type": "git",
@@ -481,18 +480,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/cca8906654e72d7bb118c3c18bb55e74c109a766",
                 "reference": "cca8906654e72d7bb118c3c18bb55e74c109a766",
-=======
-            "version": "v6.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "0a8e3e6e96e5ec3af6b9f30026cb8e5551554875"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0a8e3e6e96e5ec3af6b9f30026cb8e5551554875",
-                "reference": "0a8e3e6e96e5ec3af6b9f30026cb8e5551554875",
->>>>>>> 5702a7525ca6db0d008196d8ece54baedd5f9d8e
                 "shasum": ""
             },
             "require": {
@@ -625,11 +612,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
             "time": "2019-11-19T14:52:01+00:00"
-=======
-            "time": "2019-12-03T15:23:55+00:00"
->>>>>>> 5702a7525ca6db0d008196d8ece54baedd5f9d8e
         },
         {
             "name": "laravel/tinker",
@@ -3093,7 +3076,6 @@
         },
         {
             "name": "facade/flare-client-php",
-<<<<<<< HEAD
             "version": "1.2.1",
             "source": {
                 "type": "git",
@@ -3104,18 +3086,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/facade/flare-client-php/zipball/5a1bfe4425974d17addeefce737d66a4c921a8df",
                 "reference": "5a1bfe4425974d17addeefce737d66a4c921a8df",
-=======
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "0fd0c0a5c75a5acf04578311a08a7832e06a981c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/0fd0c0a5c75a5acf04578311a08a7832e06a981c",
-                "reference": "0fd0c0a5c75a5acf04578311a08a7832e06a981c",
->>>>>>> 5702a7525ca6db0d008196d8ece54baedd5f9d8e
                 "shasum": ""
             },
             "require": {
@@ -3156,7 +3126,6 @@
                 "flare",
                 "reporting"
             ],
-<<<<<<< HEAD
             "time": "2019-11-19T08:42:39+00:00"
         },
         {
@@ -3171,22 +3140,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/facade/ignition/zipball/67736a01597b9e08f00a1fc8966b92b918dba5ea",
                 "reference": "67736a01597b9e08f00a1fc8966b92b918dba5ea",
-=======
-            "time": "2019-11-27T10:09:46+00:00"
-        },
-        {
-            "name": "facade/ignition",
-            "version": "1.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facade/ignition.git",
-                "reference": "1d2103aefecc9c4e6975bcc77fc5eceb330adb33"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/1d2103aefecc9c4e6975bcc77fc5eceb330adb33",
-                "reference": "1d2103aefecc9c4e6975bcc77fc5eceb330adb33",
->>>>>>> 5702a7525ca6db0d008196d8ece54baedd5f9d8e
                 "shasum": ""
             },
             "require": {
@@ -3244,11 +3197,7 @@
                 "laravel",
                 "page"
             ],
-<<<<<<< HEAD
             "time": "2019-11-14T10:51:35+00:00"
-=======
-            "time": "2019-11-27T11:17:18+00:00"
->>>>>>> 5702a7525ca6db0d008196d8ece54baedd5f9d8e
         },
         {
             "name": "facade/ignition-contracts",

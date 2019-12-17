@@ -1,0 +1,8 @@
+{
+    "config": {
+        "chainId": 2000
+    },
+    "difficulty":"0x01",
+    "gasLimit":"0x80000000",
+    "alloc": {}
+}
