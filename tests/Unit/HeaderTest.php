@@ -41,11 +41,11 @@ class HeaderTest extends TestCase
      * 
      * @return void 
      */
-    public function test_ruta_votar_cuando_no_logeado()
+    public function test_ruta_accesovotaciones_cuando_no_logeado()
     {
         //TODO: Esta prueba fallará, vista "votar" aun no hecha
-        $response = $this->get('/votar');
-        $response->assertRedirect('login');
+        $response = $this->get('/accesovotaciones');
+        $response->assertViewIs('login');
     }
 
     /**
@@ -54,12 +54,12 @@ class HeaderTest extends TestCase
      * 
      * @return void
      */
-    public function test_ruta_votar_cuando_logeado_como_estudiante()
+    public function test_ruta_accesovotaciones_cuando_logeado_como_estudiante()
     {
         //TODO: Esta prueba fallará, vista "votar" aun no hecha
         //TODO: crear instancia de base de datos, insertar usuario
-        $response = $this->get('/votar');
-        $response->assertViewIs('votar');
+        $response = $this->get('/accesovotaciones');
+        $response->assertViewIs('accesovotaciones');
     }
 
     /**
@@ -84,7 +84,7 @@ class HeaderTest extends TestCase
     public function test_ruta_roles_cuando_logeado_como_estudiante()
     {
         $response = $this->get('/roles');
-        $response->assertViewIs('roles');
+        $response->assertRedirect('roles');
     }
 
     /**
