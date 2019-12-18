@@ -176,11 +176,11 @@ footer a:hover {
 
 /* Genérico */
 
-#crearvotacion h3, #resultados h3, #roles h3, #accesovotaciones h3 {
+#crearvotacion h3, #resultados h3, #roles h3, #accesovotaciones h3, #preguntasrestringidas h3, #preguntasnorestringidas h3 {
 	text-transform: uppercase;
 }
 
-#crearvotacion, #resultados, #roles, #accesovotaciones {
+#crearvotacion, #resultados, #roles, #accesovotaciones, #preguntasrestringidas, #preguntasnorestringidas {
 	padding: 40px 0;
 }
 
@@ -298,19 +298,27 @@ footer a:hover {
 
 /* Roles */
 
-#roles table {
+#roles table, #preguntasrestringidas table, #preguntasnorestringidas table {
 	margin: 20px 0;
 }
 
-#roles table th {
+#roles table th, #preguntasrestringidas table th, #preguntasnorestringidas table th {
 	background: #607D8B;
 	color: white;
 	text-transform: uppercase;
 }
 
-#roles table td {
+#roles table td, #preguntasrestringidas table td, #preguntasnorestringidas table td {
 	background: #CFD8DC;
 	border-top: 1px solid #455A64;
+}
+
+#preguntasrestringidas table a, #preguntasnorestringidas table a {
+	color: #607D8B !important;
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 1.0px;
+	font-weight: bold;
 }
 
 #roles #acciones-rol {

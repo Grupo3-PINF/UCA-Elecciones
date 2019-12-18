@@ -73,7 +73,8 @@ class AccesoVotaciones extends Controller
         if($votado != null)
         {
             $pregunta = $votado->idpregunta;
-        }else
+        }
+        else
         {
             //Si es null dará true en votado == null y para evitar que $pregunta esté vacío le asignaamos un valor cualquiera
             $pregunta = -1;
@@ -96,12 +97,14 @@ class AccesoVotaciones extends Controller
                 $participacion->opcion = 1000000;
                 $participacion->save();
 
-                return redirect('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
-            }else
+                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin)->with('titulo', $votacion->titulo);
+            }
+            else
             {
                 return "Votación finalizada";
             }
-        }else
+        }
+        else
         {
             return redirect('accesovotaciones');
         }
