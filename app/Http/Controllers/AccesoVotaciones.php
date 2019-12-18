@@ -96,14 +96,14 @@ class AccesoVotaciones extends Controller
                 $participacion->opcion = 1000000;
                 $participacion->save();
 
-                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
+                return redirect('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
             }else
             {
                 return "Votación finalizada";
             }
         }else
         {
-            return view('accesovotaciones');
+            return redirect('accesovotaciones');
         }
     }
     public function guardaropcion()
@@ -150,16 +150,16 @@ class AccesoVotaciones extends Controller
                     //return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
                     /*Le pasamos la opcion que voto para que si le da a rectificar
                       quitar el voto que ya se sumo*/
-                    return view('index');
+                    return redirect('/');
 
                 }else
                 {
-                    return view('index');
+                    return redirect('/');
                 }               
             }else
             {
                 echo 'ya has votado';
-                return view('accesovotaciones');
+                return redirect('accesovotaciones');
             }
         }
     }
@@ -199,14 +199,14 @@ class AccesoVotaciones extends Controller
                     $votacion->recuento = $s;
                     $votacion->save();
 
-                   return view('accesovotaciones')->with('ops', $ops['opciones'])->with('id', $id);
+                   return redirect('accesovotaciones')->with('ops', $ops['opciones'])->with('id', $id);
                 }else
                 {
                     return "Votación finalizada";
                 }
             }else
             {
-                return view('accesovotaciones');
+                return redirect('accesovotaciones');
             }
         }        
     }
