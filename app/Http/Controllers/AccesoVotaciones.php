@@ -79,7 +79,7 @@ class AccesoVotaciones extends Controller
             //Si es null dará true en votado == null y para evitar que $pregunta esté vacío le asignaamos un valor cualquiera
             $pregunta = -1;
         }
-        if($votado == null || $pregunta != $id)
+        if($votado == null || $pregunta != $id || $votado->opcion == 1000000)
         {            
             $votacion = Pregunta::find($id);
             $date = date('Y-m-d H:i:s');
@@ -97,7 +97,7 @@ class AccesoVotaciones extends Controller
                 $participacion->opcion = 1000000;
                 $participacion->save();
 
-                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin)->with('titulo', $votacion->titulo);
+                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin)->with('pregunta', $votacion->titulo);
             }
             else
             {

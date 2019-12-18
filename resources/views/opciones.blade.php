@@ -7,7 +7,7 @@
             <div class="col-12 col-md-5">
                 <form method="POST" action="{{url('/opciones')}}">
                     @csrf
-                    <h3>{{$titulo ? : 'Descripción de la pregunta'}}</h3>
+                    <h3>{{$pregunta}}</h3>
                     <select class="form-control" id="respuesta" name="respuesta">
                     @foreach($ops as $p)
                         <option value="{{$loop->index}}.{{$id}}">{{$p}}</option>
