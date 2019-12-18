@@ -45,7 +45,7 @@
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "administrador")
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
 					@endif
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
+					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
 					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
 				</ul>
 			</div>

@@ -392,6 +392,10 @@ footer a:hover {
 		display: none;
 	}
 
+	.margin-0-mobile {
+		margin: 0px !important;
+	}
+
 	#hamburger-menu {
 		margin-top: 5px;
 	}

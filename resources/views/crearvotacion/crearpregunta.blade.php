@@ -1,6 +1,6 @@
 <div id="steps-pregunta" class="hide">
 	<div class="row">
-	<div class="row" id="input-pregunta">
+	<div class="row margin-0-mobile" id="input-pregunta">
 		<div class="col-12">
 			<h5>Pregunta</h5>
 			<div class="form-group">
