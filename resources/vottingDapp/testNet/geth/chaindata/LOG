@@ -16,3 +16,13 @@
 16:33:57.039662 version@stat F·[1] S·2KiB[2KiB] Sc·[0.25]
 16:33:57.063378 db@janitor F·3 G·0
 16:33:57.063451 db@open done T·77.431248ms
+=============== Dec 19, 2019 (CET) ===============
+16:54:00.853006 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:54:00.855311 version@stat F·[1] S·2KiB[2KiB] Sc·[0.25]
+16:54:00.855412 db@open opening
+16:54:00.855639 journal@recovery F·1
+16:54:00.864393 journal@recovery recovering @3
+16:54:00.881128 memdb@flush created L0@5 N·112 S·6KiB "H\v;..yL#,v110":"r\x00\x00..0\xaa\x87,v142"
+16:54:00.913816 version@stat F·[2] S·8KiB[8KiB] Sc·[0.50]
+16:54:00.941594 db@janitor F·4 G·0
+16:54:00.942891 db@open done T·87.439741ms

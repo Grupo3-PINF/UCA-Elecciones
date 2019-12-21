@@ -7,6 +7,9 @@ use Session;
 use Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class LoginController extends Controller
 {
     /*
@@ -56,6 +59,7 @@ class LoginController extends Controller
     }
     public function login()
     {
+
         if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password']))
         {
             session_start(); 
@@ -68,12 +72,13 @@ class LoginController extends Controller
                 Session::put('idusuario', $user->login);
                 if($user->wallet==null)
                 {
-                    $wallet = "";
-                    $var = "";
-                    ob_start();
-                    echo(exec("python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/nuevaCuenta.py"));
-                    ob_get_clean();
-                    $user->wallet=$wallet;
+                    $process  = Process::fromShellCommandline("/usr/local/bin/python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/nuevaCuenta.py");
+                    $process->run();
+                    // executes after the command finishes
+                    if (!$process->isSuccessful()) {
+                        throw new ProcessFailedException($process);
+                    }
+                    $user->wallet = $process->getOutput();
                     $user->save();
                 }
                 Session::put('rolusuario', strtolower($user->rolActivo));
