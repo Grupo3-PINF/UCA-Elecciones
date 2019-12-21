@@ -10505,3 +10505,35 @@ DEBUG[12-21|19:21:45.733] Recalculated downloader QoS values       rtt=20s confi
 DEBUG[12-21|19:22:05.734] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
 DEBUG[12-21|19:22:20.948] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
 DEBUG[12-21|19:22:25.736] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:22:45.739] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:23:05.743] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:23:20.956] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:23:25.747] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:23:45.751] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:24:05.755] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:24:20.963] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:24:25.758] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:24:45.762] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:25:05.768] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:25:20.966] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:25:25.770] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:25:45.772] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:26:05.777] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:26:20.973] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:26:25.783] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:26:45.788] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:27:05.794] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:27:20.978] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:27:25.797] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:27:45.803] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:28:05.808] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:28:20.985] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:28:25.814] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:28:45.816] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:29:05.818] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:29:20.994] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:29:25.822] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:29:45.828] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:30:05.832] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-21|19:30:20.999] Current full block not old enough        number=7  hash=6840c9…bb336e delay=90000
+DEBUG[12-21|19:30:25.834] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
