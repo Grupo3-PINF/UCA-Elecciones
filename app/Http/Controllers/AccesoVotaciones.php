@@ -73,12 +73,13 @@ class AccesoVotaciones extends Controller
         if($votado != null)
         {
             $pregunta = $votado->idpregunta;
-        }else
+        }
+        else
         {
             //Si es null dará true en votado == null y para evitar que $pregunta esté vacío le asignaamos un valor cualquiera
             $pregunta = -1;
         }
-        if($votado == null || $pregunta != $id)
+        if($votado == null || $pregunta != $id || $votado->opcion == 1000000)
         {            
             $votacion = Pregunta::find($id);
             $date = date('Y-m-d H:i:s');
@@ -96,14 +97,16 @@ class AccesoVotaciones extends Controller
                 $participacion->opcion = 1000000;
                 $participacion->save();
 
-                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin);
-            }else
+                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin)->with('pregunta', $votacion->titulo);
+            }
+            else
             {
                 return "Votación finalizada";
             }
-        }else
+        }
+        else
         {
-            return view('accesovotaciones');
+            return redirect('accesovotaciones');
         }
     }
     public function guardaropcion()
@@ -147,17 +150,19 @@ class AccesoVotaciones extends Controller
 
                 if($date > $tiempo_ini && $date < $tiempo_fin)
                 {
-                    return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
+                    //return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
                     /*Le pasamos la opcion que voto para que si le da a rectificar
                       quitar el voto que ya se sumo*/
+                    return redirect('/');
+
                 }else
                 {
-                    return view('index');
+                    return redirect('/');
                 }               
             }else
             {
                 echo 'ya has votado';
-                return view('accesovotaciones');
+                return redirect('accesovotaciones');
             }
         }
     }
@@ -197,14 +202,14 @@ class AccesoVotaciones extends Controller
                     $votacion->recuento = $s;
                     $votacion->save();
 
-                   return view('opciones')->with('ops', $ops['opciones'])->with('id', $id);
+                   return redirect('accesovotaciones')->with('ops', $ops['opciones'])->with('id', $id);
                 }else
                 {
                     return "Votación finalizada";
                 }
             }else
             {
-                return view('accesovotaciones');
+                return redirect('accesovotaciones');
             }
         }        
     }

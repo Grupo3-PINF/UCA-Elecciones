@@ -1,6 +1,6 @@
 <div id="steps-eleccion" class="hide">
 	<div class="row">
-		<div id="1" class="row">
+		<div id="1" class="row margin-0-mobile">
 			<div class="col-12">
 				<h5>Elección</h5>
 			</div>

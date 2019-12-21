@@ -1,6 +1,6 @@
 <div id="steps-pregunta" class="hide">
 	<div class="row">
-	<div class="row" id="input-pregunta">
+	<div class="row margin-0-mobile" id="input-pregunta">
 		<div class="col-12">
 			<h5>Pregunta</h5>
 			<div class="form-group">
@@ -37,6 +37,13 @@
 				<label>Pregunta compleja</label>
 				<p>Por defecto, las respuestas serán sí, no o abstenerse. Que sea compleja permite editar las posibles respuestas.</p>
 				<input type="checkbox" name="compleja-pregunta">
+			</div>
+		</div>
+		<div class="col-12 col-md-4">
+			<div class="form-group">
+				<label>Tiempo real</label>
+				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
+				<input type="checkbox" name="tiemporeal-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-4">
@@ -102,9 +109,8 @@
 		var arr = [];
 		var container = document.querySelectorAll('.input-div-caja-pregunta');
 		for (var i = 0; i < container.length; i++) {
-			arr.push(container[i].placeholder);
+			arr.push(container[i].getAttribute('name').replace('grupo-',''));
 		}
-		console.log(arr);
 		return arr;
 	}
 
