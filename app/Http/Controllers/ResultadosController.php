@@ -8,14 +8,18 @@ use Auth;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class ResultadosController extends Controller
 {
 	public function openCon()
 	{
 		$dbhost = "localhost";
-		$dbuser = "root";
-		$db = "laravel";
-		$password = "";
+		$dbuser = "pinf";
+		$db = "pinfDB";
+		$password = "pinf1234";
 		$conn  =  mysqli_connect($dbhost,$dbuser,$password,$db) or die("Connect failed: %s\n". $conn -> error);
 		return $conn;
 	}
@@ -33,8 +37,8 @@ class ResultadosController extends Controller
 			date_default_timezone_set('Europe/Madrid'); 
 			$date = date('d/m/Y h:i:s a', time());
 			$conn = $this->openCon();
-			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
-			$votacion = Pregunta::find($id);
+			$votacion = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
+			$resultados = Pregunta::find($id);
 			$vector = ["OK" => 1,
 				"titulo" => $resultados->titulo
 			];
@@ -100,6 +104,16 @@ class ResultadosController extends Controller
 				//$vector['OK'] = 1;
 				//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
 				//($vector['votos'] = [450,200,300];
+				$creador = User::where('identificador',$resultados->idCreador)->first();
+				$process = Process::fromShellCommandline("/usr/local/bin/python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/cambiar_estado.py ".$votacion->wallet." ".$creador->wallet." 0");
+				$process->run();
+				$process = Process::fromShellCommandline("/usr/local/bin/python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/resultados.py ".$votacion->wallet);
+				$process->run();
+				if (!$process->isSuccessful()) {
+					throw new ProcessFailedException($process);
+				}
+				$resultados = $process->getOutput();
+				$vector['votos']=json_decode($resultados);
 				return $vector;
 		}
 	}

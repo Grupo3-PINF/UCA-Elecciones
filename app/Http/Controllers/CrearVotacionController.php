@@ -13,6 +13,10 @@ use App\Pregunta;
 use App\Censo;
 use Illuminate\Http\Request;
 
+
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class CrearVotacionController extends Controller
 {
 	public function view()
@@ -94,7 +98,7 @@ class CrearVotacionController extends Controller
 
             $fechaAnticipada = date_create($fechaAnticipadaStr);
         }
-
+        $user = Auth::user();
         // validar las opciones
         $esCompleja = $request->input('es-compleja') == "true" ? true : false;
         if ($esCompleja) {
@@ -107,6 +111,7 @@ class CrearVotacionController extends Controller
 
         $pregunta = new Pregunta;
         $pregunta->titulo = $titulo;
+        $pregunta->idCreador = $user->identificador;
         
         $pregunta->esVinculante = $request->input('es-secreta') == "true" ? true : false;
         $pregunta->esCompleja = $request->input('es-compleja') == "true" ? true : false;
@@ -125,9 +130,14 @@ class CrearVotacionController extends Controller
 
         $pregunta->censoVotante = json_encode(['grupos' => $request->input('grupos')]);
 
-        $pregunta->idCreador = \Auth::user()->id;
+        
 
-        // $pregunta->wallet = EL SCRIPT DE LA BLOCKCHAIN;
+        $process  = Process::fromShellCommandline("/usr/local/bin/python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/deploy.py ".$user->wallet." 3");
+        $process->run();
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+        $pregunta->wallet = trim($process->getOutput());
 
         $pregunta->save();
 

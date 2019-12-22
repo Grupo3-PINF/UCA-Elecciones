@@ -14,6 +14,9 @@ use App\User;
 use App\Pregunta;
 use App\Participacion;
 
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class AccesoVotaciones extends Controller
 {
     public function index()
@@ -80,7 +83,8 @@ class AccesoVotaciones extends Controller
             $pregunta = -1;
         }
         if($votado == null || $pregunta != $id || $votado->opcion == 1000000)
-        {            
+        {      
+
             $votacion = Pregunta::find($id);
             $date = date('Y-m-d H:i:s');
             $tiempo_ini = $votacion->fechaComienzo;
@@ -132,10 +136,10 @@ class AccesoVotaciones extends Controller
             //Si no es nulo es que ha retrocedido la página e intenta votar otra vez
             if($votado->opcion == 1000000)
             {
+                $votacion = Pregunta::find($id);
                 $votado->opcion = $idopcion;
                 $votado->save();
-
-                $votacion = Pregunta::find($id);
+                
                 $date = date('Y-m-d H:i:s');
                 $tiempo_ini = $votacion->fechaComienzo;
                 $tiempo_fin = $votacion->fechaFin;
@@ -146,10 +150,17 @@ class AccesoVotaciones extends Controller
 
                 $s = json_encode($opciones);
                 $votacion->recuento = $s;
-                $votacion->save();
 
                 if($date > $tiempo_ini && $date < $tiempo_fin)
                 {
+                    $process = Process::fromShellCommandline("/usr/local/bin/python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/cambiar_estado.py ".$votacion->wallet." ".$user->wallet." 1");
+                    $process->run();
+                    $process = Process::fromShellCommandline("/usr/local/bin/python3 /Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/votar.py ".$votacion->wallet." ".$user->wallet." ".$idopcion);
+                    $process->run();
+                    if (!$process->isSuccessful()) {
+                        throw new ProcessFailedException($process);
+                    }
+                    $votacion->save();
                     //return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
                     /*Le pasamos la opcion que voto para que si le da a rectificar
                       quitar el voto que ya se sumo*/

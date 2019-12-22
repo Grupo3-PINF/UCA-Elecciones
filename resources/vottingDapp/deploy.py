@@ -3,6 +3,7 @@ from web3 import Web3, HTTPProvider
 import sys
 
 w3=None
+DIR = "/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/"
 
 def deployContract(contract,creador,candidatos):
     construct_txn = contract.constructor(candidatos).transact({
@@ -24,7 +25,7 @@ if __name__ == "__main__":
     carteraCreador=argumentos[1]
     w3.geth.personal.unlockAccount(carteraCreador,'space treat blame exhibit tissue book decide fury exhaust hazard library effort',1500)
 
-    truffleFile = json.load(open('./build/contracts/Votacion.json'))
+    truffleFile = json.load(open(DIR+'build/contracts/Votacion.json'))
     abi = truffleFile['abi']
     bytecode = truffleFile['bytecode']
     contrato= w3.eth.contract(bytecode=bytecode, abi=abi)

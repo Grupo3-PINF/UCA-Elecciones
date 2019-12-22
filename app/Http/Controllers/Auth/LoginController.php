@@ -78,7 +78,7 @@ class LoginController extends Controller
                     if (!$process->isSuccessful()) {
                         throw new ProcessFailedException($process);
                     }
-                    $user->wallet = $process->getOutput();
+                    $user->wallet = trim($process->getOutput());
                     $user->save();
                 }
                 Session::put('rolusuario', strtolower($user->rolActivo));
