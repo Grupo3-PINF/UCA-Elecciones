@@ -11634,3 +11634,27 @@ DEBUG[12-22|13:06:03.626] Recalculated downloader QoS values       rtt=20s confi
 DEBUG[12-22|13:06:23.454] Current full block not old enough        number=6  hash=bcad08…cbe27c delay=90000
 DEBUG[12-22|13:06:23.632] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
 DEBUG[12-22|13:06:43.637] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:07:03.643] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+INFO [12-22|13:07:08.159] HTTP endpoint closed                     url=http://127.0.0.1:8545
+DEBUG[12-22|13:07:08.160] RPC server shutting down 
+INFO [12-22|13:07:08.161] IPC endpoint closed                      url=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth.ipc
+DEBUG[12-22|13:07:08.161] RPC server shutting down 
+INFO [12-22|13:07:08.161] Writing cached state to disk             block=6 hash=bcad08…cbe27c root=8706c1…4445be
+INFO [12-22|13:07:08.163] Persisted trie from memory database      nodes=15 size=4.28KiB time=1.502465ms gcnodes=0 gcsize=0.00B gctime=0s livenodes=30 livesize=4.91KiB
+INFO [12-22|13:07:08.163] Writing cached state to disk             block=5 hash=81adcc…d88a07 root=3fcd16…12afeb
+INFO [12-22|13:07:08.163] Persisted trie from memory database      nodes=4  size=773.00B time=135.637µs  gcnodes=0 gcsize=0.00B gctime=0s livenodes=26 livesize=4.15KiB
+DEBUG[12-22|13:07:08.164] Dereferenced trie from memory database   nodes=4  size=741.00B time=19.735µs   gcnodes=4 gcsize=741.00B gctime=19.151µs livenodes=22 livesize=3.43KiB
+DEBUG[12-22|13:07:08.164] Dereferenced trie from memory database   nodes=6  size=1.10KiB time=18.98µs    gcnodes=10 gcsize=1.82KiB gctime=37.729µs livenodes=16 livesize=2.33KiB
+DEBUG[12-22|13:07:08.164] Dereferenced trie from memory database   nodes=8  size=1.23KiB time=20.435µs   gcnodes=18 gcsize=3.05KiB gctime=57.815µs livenodes=8  livesize=1.10KiB
+DEBUG[12-22|13:07:08.164] Dereferenced trie from memory database   nodes=7  size=1.22KiB time=16.793µs   gcnodes=25 gcsize=4.26KiB gctime=74.063µs livenodes=1  livesize=-116.00B
+DEBUG[12-22|13:07:08.164] Dereferenced trie from memory database   nodes=0  size=0.00B   time=1.64µs     gcnodes=25 gcsize=4.26KiB gctime=75.355µs livenodes=1  livesize=-116.00B
+DEBUG[12-22|13:07:08.164] Dereferenced trie from memory database   nodes=0  size=0.00B   time=1.661µs    gcnodes=25 gcsize=4.26KiB gctime=76.671µs livenodes=1  livesize=-116.00B
+INFO [12-22|13:07:08.164] Blockchain manager stopped 
+INFO [12-22|13:07:08.164] Stopping Ethereum protocol 
+INFO [12-22|13:07:08.165] Ethereum protocol stopped 
+INFO [12-22|13:07:08.165] Transaction pool stopped 
+DEBUG[12-22|13:07:08.165] Reset ancient limit to zero 
+INFO [12-22|13:07:08.166] whisper stopped 
+DEBUG[12-22|13:07:08.167] Read error                               err="accept tcp [::]:60725: use of closed network connection"
+TRACE[12-22|13:07:08.167] P2P networking is spinning down 
+DEBUG[12-22|13:07:08.167] Deleting port mapping                    proto=tcp extport=60725 intport=60725 interface="UPnP or NAT-PMP"
