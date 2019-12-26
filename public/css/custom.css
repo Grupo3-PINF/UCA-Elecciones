@@ -21,6 +21,12 @@ body {
 	display: none !important;
 }
 
+.overlap {
+	width: 100%;
+    height: 100px;
+    position: absolute;
+}
+
 /* Header */
 
 #header {
@@ -119,6 +125,7 @@ body {
 
 .btn-primary {
 	background-color: #455A64;
+	color: white !important;
 }
 
 .btn-primary:hover {
@@ -167,20 +174,26 @@ footer a:hover {
 	object-fit: cover;
 }
 
-/* Encuesta */
+/* Genérico */
 
-#crearvotacion, #resultados, #roles {
+#crearvotacion h3, #resultados h3, #roles h3, #accesovotaciones h3 {
+	text-transform: uppercase;
+}
+
+#crearvotacion, #resultados, #roles, #accesovotaciones {
 	padding: 40px 0;
 }
 
-#crearvotacion .votacion {
+/* Encuesta */
+
+#crearvotacion .votacion, #accesovotaciones .pregunta {
 	padding: 10px 40px;
 	border: 3px solid #455A64;
 	text-align: center;
 	margin-top: 20px;
 }
 
-#crearvotacion .votacion h4 {
+#crearvotacion .votacion h4, #accesovotaciones .pregunta h4 {
 	color: #212121;
 	text-transform: uppercase;
 	font-weight: 600;
@@ -188,14 +201,14 @@ footer a:hover {
 	margin-bottom: 20px;
 }
 
-#crearvotacion .votacion i {
+#crearvotacion .votacion i, #accesovotaciones .pregunta i {
 	opacity: 0.7;
 	font-size: 96px;
 	color: #212121;
 	margin-bottom: 20px;
 }
 
-#crearvotacion .votacion p {
+#crearvotacion .votacion p, #accesovotaciones .pregunta p {
 	color: #161616;
 }
 
@@ -269,6 +282,12 @@ footer a:hover {
     text-transform: uppercase;
     color: black;
     font-weight: 600;
+}
+
+/* Acceso votaciones */
+
+#accesovotaciones .pregunta h4 {
+	font-size: 14px;
 }
 
 /* Resultados */
