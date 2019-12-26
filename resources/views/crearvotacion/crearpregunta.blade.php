@@ -150,9 +150,8 @@
 		let arr = [];
 		let container = document.querySelectorAll('.input-div-caja-pregunta');
 		for (let i = 0; i < container.length; i++) {
-			arr.push(container[i].placeholder);
+			arr.push(container[i].getAttribute('name').replace('grupo-',''));
 		}
-		console.log(arr);
 		return arr;
 	}
 
