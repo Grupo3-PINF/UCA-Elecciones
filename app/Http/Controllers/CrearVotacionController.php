@@ -98,10 +98,9 @@ class CrearVotacionController extends Controller
         // validar las opciones
         $esCompleja = $request->input('es-compleja') == "true" ? true : false;
         if ($esCompleja) {
-            // TODO sustituir con las opciones de la pregunta compleja cuando se haga
-            $opciones = json_encode(["Si", "No", "Abstencion"]);
+            $opciones = json_encode(["opciones"=>$request->input('opciones-compleja')]);
         } else {
-            $opciones = json_encode(["Si", "No", "Abstencion"]);
+            $opciones = json_encode(["opciones"=>["Si","No","Abstencion"]]);
         }
 
         $pregunta = new Pregunta;
@@ -120,6 +119,8 @@ class CrearVotacionController extends Controller
         }
 
         $pregunta->opciones = $opciones;
+
+        $pregunta->censoVotante = json_encode(['grupos' => $request->input('grupos')]);
 
         $pregunta->idCreador = \Auth::user()->id;
 

@@ -128,18 +128,28 @@
 		let lista = opcion.parentElement.parentElement;
 		let opciones = lista.children;
 		let count = opciones.length;
-		for (let i = opciones.length - 2; i >= 0; --i) {
-			if (opciones[i].firstChild.value === "" && count > 2) {
-				opciones[i].remove();
-				--count;
-			}
+		if (count > 2 && opcion.value === "") {
+			opcion.parentElement.remove();
 		}
 	}
 
+	function obtenerOpciones() {
+		let arr = [];
+		const lista = document.querySelector('ol#lista-compleja');
+		const opciones = lista.children;
+		for (let i = 0; i < opciones.length; ++i) {
+			let str = opciones[i].firstChild.value;
+			if (str !== "") {
+				arr.push(str);
+			}
+		}
+		return arr;
+	}
+
 	function guardarGruposPregunta() {
-		var arr = [];
-		var container = document.querySelectorAll('.input-div-caja-pregunta');
-		for (var i = 0; i < container.length; i++) {
+		let arr = [];
+		let container = document.querySelectorAll('.input-div-caja-pregunta');
+		for (let i = 0; i < container.length; i++) {
 			arr.push(container[i].placeholder);
 		}
 		console.log(arr);
@@ -147,7 +157,8 @@
 	}
 
 	function crearPregunta() {
-		var grupos = guardarGruposPregunta();
+		let grupos = guardarGruposPregunta();
+		let opciones = obtenerOpciones();
 		$.ajax({
 			type: 'POST',
 			url: "crearvotacion/crearPregunta",
@@ -156,6 +167,7 @@
 				'titulo': $('input[name=titulo-pregunta]').val(),
 				'grupos': grupos,
 				'es-compleja': $('input[name=compleja-pregunta]').is(':checked'),
+				'opciones-compleja': opciones,
 				'fecha-inicio': $('input[name=fecha-pregunta]').val(),
 				'tiempo-pregunta': $('input[name=tiempo-pregunta]').val(),
 				'es-anticipada': $('input[name=anticipada-pregunta]').is(':checked'),
@@ -198,13 +210,13 @@
 				"_token": "{{ csrf_token() }}",
 			},
 			success: function(response) {
-				var grupos = response.grupos;
-				for (var i = 0; i < grupos.length; i++) {
+				let grupos = response.grupos;
+				for (let i = 0; i < grupos.length; i++) {
 					if (typeof grupos[i] != "undefined") {
 						console.log(grupos[i].nombre);
-						var nombre = grupos[i].nombre;
-						var id = grupos[i].id;
-						var html = '<option value="' + id + '">' + nombre + '</option>';
+						let nombre = grupos[i].nombre;
+						let id = grupos[i].id;
+						let html = '<option value="' + id + '">' + nombre + '</option>';
 						$('select[name=grupos-pregunta]').append(html);
 					}
 				}
@@ -217,9 +229,9 @@
 
 	function anadirGruposPregunta() {
 		$('#button-groups').click(function() {
-			var nombre = $('select[name=grupos-pregunta] option:selected').text();
-			var id = $('select[name=grupos-pregunta]').val();
-			var html = '<input class="input-div-caja-pregunta" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
+			let nombre = $('select[name=grupos-pregunta] option:selected').text();
+			let id = $('select[name=grupos-pregunta]').val();
+			let html = '<input class="input-div-caja-pregunta" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
 			if (!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length)
 				$('#grupos-div-pregunta').append(html);
 		});
