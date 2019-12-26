@@ -36,7 +36,13 @@
 			<div class="form-group">
 				<label>Pregunta compleja</label>
 				<p>Por defecto, las respuestas serán sí, no o abstenerse. Que sea compleja permite editar las posibles respuestas.</p>
-				<input type="checkbox" name="compleja-pregunta">
+				<input type="checkbox" name="compleja-pregunta" id="checkbox-compleja" onchange=cambioCompleja(this)>
+				<div id="opciones-compleja" hidden>
+					<ol id="lista-compleja">
+						<li><input type="text" onblur="eliminarVacios(this)"></li>
+						<li><input type="text" onblur="eliminarVacios(this)" onfocus="nuevoInput(this)"></li>
+					</ol>
+				</div>
 			</div>
 		</div>
 		<div class="col-12 col-md-4">
@@ -98,6 +104,38 @@
 		}
 	});
 
+	function cambioCompleja(checkbox) {
+		let div = document.getElementById("opciones-compleja");
+		if (checkbox.checked) {
+			div.hidden = false;
+		} else {
+			div.hidden = true;
+		}
+	}
+
+	function nuevoInput(opcion) {
+		let lista = opcion.parentElement.parentElement;
+		let opciones = lista.children;
+
+		if (opcion.parentElement === opciones[opciones.length - 1]) {
+			let nueva = document.createElement('li');
+			nueva.innerHTML = '<input type="text" onblur=eliminarVacios(this) onfocus="nuevoInput(this)">';
+			lista.appendChild(nueva);
+		}
+	}
+
+	function eliminarVacios(opcion) {
+		let lista = opcion.parentElement.parentElement;
+		let opciones = lista.children;
+		let count = opciones.length;
+		for (let i = opciones.length - 2; i >= 0; --i) {
+			if (opciones[i].firstChild.value === "" && count > 2) {
+				opciones[i].remove();
+				--count;
+			}
+		}
+	}
+
 	function guardarGruposPregunta() {
 		var arr = [];
 		var container = document.querySelectorAll('.input-div-caja-pregunta');
@@ -138,6 +176,7 @@
 						window.location.reload();
 					}, 3000);
 				} else {
+					window.navigator.vibrate(250)
 					$('#res_message').show();
 					$('#res_message').html(response.mensaje);
 					$('#msg_div').removeClass('alert-success');
