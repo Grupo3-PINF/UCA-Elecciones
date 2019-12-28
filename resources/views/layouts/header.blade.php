@@ -41,6 +41,7 @@
 				<ul class="list-group">
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "secretario")
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
+						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/borrarvotacion') ? 'active' : ''}}" href="{{url ('/borrarvotacion') }}">Borrar votacion</a></li>
 					@endif
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "administrador")
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
@@ -53,6 +54,7 @@
 				<ul class="nav">
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "secretario")
 						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
+						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/borrarvotacion') }}">Borrar votacion</a></li>
 					@endif
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "administrador")
 						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
