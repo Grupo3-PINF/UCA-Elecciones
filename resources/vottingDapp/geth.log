@@ -11658,3 +11658,498 @@ INFO [12-22|13:07:08.166] whisper stopped
 DEBUG[12-22|13:07:08.167] Read error                               err="accept tcp [::]:60725: use of closed network connection"
 TRACE[12-22|13:07:08.167] P2P networking is spinning down 
 DEBUG[12-22|13:07:08.167] Deleting port mapping                    proto=tcp extport=60725 intport=60725 interface="UPnP or NAT-PMP"
+WARN [12-22|13:07:35.729] Sanitizing cache to Go's GC limits       provided=4096 updated=2730
+DEBUG[12-22|13:07:35.729] Sanitizing Go's GC trigger               percent=37
+INFO [12-22|13:07:35.731] Maximum peer count                       ETH=50 LES=0 total=50
+DEBUG[12-22|13:07:35.731] FS scan times                            list=408.862µs set=30.15µs diff=12.029µs
+TRACE[12-22|13:07:35.731] Started watching keystore folder         path=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/keystore
+TRACE[12-22|13:07:35.743] Handled keystore changes                 time=11.571698ms
+INFO [12-22|13:07:36.542] Using developer account                  address=0x0909218975e321185F06B9A8c52b1D7c97Ea0620
+INFO [12-22|13:07:36.544] Starting peer-to-peer node               instance=Geth/v1.9.9-stable/darwin-amd64/go1.13.4
+INFO [12-22|13:07:36.544] Allocated trie memory caches             clean=682.00MiB dirty=682.00MiB
+INFO [12-22|13:07:36.544] Allocated cache and file handles         database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata cache=1.33GiB handles=5120
+DEBUG[12-22|13:07:36.629] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=headers items=0 size=0.00B
+DEBUG[12-22|13:07:36.641] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=hashes  items=0 size=0.00B
+DEBUG[12-22|13:07:36.657] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=bodies  items=0 size=0.00B
+DEBUG[12-22|13:07:36.661] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=receipts items=0 size=0.00B
+DEBUG[12-22|13:07:36.668] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=diffs    items=0 size=0.00B
+INFO [12-22|13:07:36.668] Opened ancient database                  database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient
+DEBUG[12-22|13:07:36.672] Current full block not old enough        number=6 hash=bcad08…cbe27c delay=90000
+INFO [12-22|13:07:36.672] Persisted trie from memory database      nodes=12 size=1.75KiB time=183.146µs   gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [12-22|13:07:36.673] Initialised chain configuration          config="{ChainID: 1337 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: <nil>, Engine: clique}"
+INFO [12-22|13:07:36.673] Initialising Ethereum protocol           versions="[64 63]" network=2000 dbversion=7
+INFO [12-22|13:07:36.675] Loaded most recent local header          number=6 hash=bcad08…cbe27c td=13 age=1m59s
+INFO [12-22|13:07:36.675] Loaded most recent local full block      number=6 hash=bcad08…cbe27c td=13 age=1m59s
+INFO [12-22|13:07:36.675] Loaded most recent local fast block      number=6 hash=bcad08…cbe27c td=13 age=1m59s
+TRACE[12-22|13:07:36.676] Loaded voting snapshot from disk         number=0 hash=098796…b0177a
+DEBUG[12-22|13:07:36.678] Reinjecting stale transactions           count=0
+TRACE[12-22|13:07:36.680] Discarding invalid transaction           hash=eef00b…21e8e4 err="nonce too low"
+TRACE[12-22|13:07:36.680] Discarding invalid transaction           hash=f6c49a…52a522 err="nonce too low"
+TRACE[12-22|13:07:36.680] Discarding invalid transaction           hash=864e33…2a9209 err="nonce too low"
+TRACE[12-22|13:07:36.680] Discarding invalid transaction           hash=c28b94…bfbc78 err="nonce too low"
+TRACE[12-22|13:07:36.680] Discarding invalid transaction           hash=b40b85…81433d err="nonce too low"
+TRACE[12-22|13:07:36.680] Discarding invalid transaction           hash=2b8ecf…0e574c err="nonce too low"
+DEBUG[12-22|13:07:36.680] Failed to add journaled transaction      err="nonce too low"
+DEBUG[12-22|13:07:36.680] Failed to add journaled transaction      err="nonce too low"
+DEBUG[12-22|13:07:36.680] Failed to add journaled transaction      err="nonce too low"
+DEBUG[12-22|13:07:36.681] Failed to add journaled transaction      err="nonce too low"
+DEBUG[12-22|13:07:36.681] Failed to add journaled transaction      err="nonce too low"
+DEBUG[12-22|13:07:36.681] Failed to add journaled transaction      err="nonce too low"
+INFO [12-22|13:07:36.681] Loaded local transaction journal         transactions=6 dropped=6
+INFO [12-22|13:07:36.681] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [12-22|13:07:36.681] Switch sync mode from fast sync to full sync 
+DEBUG[12-22|13:07:36.681] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+INFO [12-22|13:07:36.719] started whisper v.6.0 
+DEBUG[12-22|13:07:36.720] TCP listener up                          addr=[::]:64523
+DEBUG[12-22|13:07:36.722] InProc registered                        namespace=admin
+DEBUG[12-22|13:07:36.722] InProc registered                        namespace=admin
+DEBUG[12-22|13:07:36.722] InProc registered                        namespace=debug
+DEBUG[12-22|13:07:36.722] InProc registered                        namespace=web3
+INFO [12-22|13:07:36.722] New local node record                    seq=5 id=2cfd73eeb844b008 ip=127.0.0.1 udp=0 tcp=64523
+INFO [12-22|13:07:36.723] Started P2P networking                   self="enode://51c24323d76b38e323f6d258887375206d7a660d4c15c05268190ba840ac1fdaa12db5bd3aa1a2e807d62d6437df0ef0833e021141947d1a1afc6f47b5567937@127.0.0.1:64523?discport=0"
+DEBUG[12-22|13:07:36.722] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.723] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.723] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.723] InProc registered                        namespace=txpool
+DEBUG[12-22|13:07:36.723] InProc registered                        namespace=debug
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=debug
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=personal
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=clique
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=miner
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=eth
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=admin
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=debug
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=debug
+DEBUG[12-22|13:07:36.724] InProc registered                        namespace=net
+DEBUG[12-22|13:07:36.725] InProc registered                        namespace=shh
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=admin
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=admin
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=debug
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=web3
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=txpool
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=debug
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=debug
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=personal
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=clique
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=miner
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=eth
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=admin
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=debug
+DEBUG[12-22|13:07:36.725] IPC registered                           namespace=debug
+DEBUG[12-22|13:07:36.726] IPC registered                           namespace=net
+DEBUG[12-22|13:07:36.726] IPC registered                           namespace=shh
+INFO [12-22|13:07:36.726] IPC endpoint opened                      url=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth.ipc
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=web3
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=personal
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=eth
+DEBUG[12-22|13:07:36.726] HTTP registered                          namespace=net
+INFO [12-22|13:07:36.727] HTTP endpoint opened                     url=http://127.0.0.1:8545 cors=* vhosts=localhost
+INFO [12-22|13:07:36.727] Transaction pool price threshold updated price=1000000000
+INFO [12-22|13:07:36.727] Transaction pool price threshold updated price=1
+INFO [12-22|13:07:36.727] Etherbase automatically configured       address=0x0909218975e321185F06B9A8c52b1D7c97Ea0620
+INFO [12-22|13:07:36.727] Commit new mining work                   number=7 sealhash=d3dcaa…4fc03b uncles=0 txs=0 gas=0 fees=0 elapsed=139.04µs
+INFO [12-22|13:07:36.728] Sealing paused, waiting for transactions 
+DEBUG[12-22|13:07:36.789] Served rpc_modules                       reqid=1 t=51.182µs
+TRACE[12-22|13:07:36.790] Handled RPC response                     reqid=1 t=729ns
+DEBUG[12-22|13:07:36.796] Served web3_clientVersion                reqid=2 t=25.58µs
+TRACE[12-22|13:07:36.796] Handled RPC response                     reqid=2 t=845ns
+DEBUG[12-22|13:07:36.796] Served eth_coinbase                      reqid=3 t=21.518µs
+TRACE[12-22|13:07:36.796] Handled RPC response                     reqid=3 t=960ns
+DEBUG[12-22|13:07:36.796] Served eth_blockNumber                   reqid=4 t=45.059µs
+TRACE[12-22|13:07:36.796] Handled RPC response                     reqid=4 t=855ns
+DEBUG[12-22|13:07:36.797] Served eth_blockNumber                   reqid=5 t=25.896µs
+TRACE[12-22|13:07:36.797] Handled RPC response                     reqid=5 t=807ns
+DEBUG[12-22|13:07:36.798] Served eth_getBlockByNumber              reqid=6 t=223.139µs
+TRACE[12-22|13:07:36.798] Handled RPC response                     reqid=6 t=782ns
+DEBUG[12-22|13:07:36.803] Served admin_datadir                     reqid=7 t=35.078µs
+TRACE[12-22|13:07:36.803] Handled RPC response                     reqid=7 t=719ns
+DEBUG[12-22|13:07:36.803] Served rpc_modules                       reqid=8 t=20.667µs
+TRACE[12-22|13:07:36.804] Handled RPC response                     reqid=8 t=594ns
+DEBUG[12-22|13:07:38.831] Couldn't add port mapping                proto=tcp extport=64523 intport=64523 interface="UPnP or NAT-PMP" err="no UPnP or NAT-PMP router discovered"
+DEBUG[12-22|13:07:45.280] Served personal_unlockAccount            conn=127.0.0.1:64537 reqid=0 t=872.489809ms
+DEBUG[12-22|13:07:45.302] Executing EVM call finished              runtime=480.602µs
+DEBUG[12-22|13:07:45.302] Served eth_call                          conn=127.0.0.1:64537 reqid=1 t=714.709µs
+INFO [12-22|13:07:45.309] Setting new local account                address=0x5501d3b059931097C14475e8dC3f18F9880387E9
+TRACE[12-22|13:07:45.310] Pooled new future transaction            hash=8d412e…b2c8ae from=0x5501d3b059931097C14475e8dC3f18F9880387E9 to=0x798AA3b5367ce92FE776DF000F3c2372d88a2588
+TRACE[12-22|13:07:45.310] Promoting queued transaction             hash=8d412e…b2c8ae
+TRACE[12-22|13:07:45.310] Broadcast transaction                    hash=8d412e…b2c8ae recipients=0
+INFO [12-22|13:07:45.310] Submitted transaction                    fullhash=0x8d412ecb1d56dc982916e39e2f401e5048b835e85f015bbb66b33419b1b2c8ae recipient=0x798AA3b5367ce92FE776DF000F3c2372d88a2588
+DEBUG[12-22|13:07:45.310] Served eth_sendTransaction               conn=127.0.0.1:64537 reqid=2 t=2.519397ms
+INFO [12-22|13:07:45.311] Commit new mining work                   number=7 sealhash=fb2d72…9dd88a uncles=0 txs=1 gas=23839 fees=2.3839e-14 elapsed=914.914µs
+TRACE[12-22|13:07:45.311] Waiting for slot to sign and propagate   delay=-311.6ms
+INFO [12-22|13:07:45.312] Successfully sealed new block            number=7 sealhash=fb2d72…9dd88a hash=15a41c…9bf57e elapsed=1.048ms
+DEBUG[12-22|13:07:45.312] Reinjecting stale transactions           count=0
+INFO [12-22|13:07:45.312] 🔨 mined potential block                  number=7 hash=15a41c…9bf57e
+TRACE[12-22|13:07:45.312] Propagated block                         hash=15a41c…9bf57e recipients=0 duration=2562047h47m16.854s
+TRACE[12-22|13:07:45.312] Removed old pending transaction          hash=8d412e…b2c8ae
+TRACE[12-22|13:07:45.312] Announced block                          hash=15a41c…9bf57e recipients=0 duration=2562047h47m16.854s
+INFO [12-22|13:07:45.312] Commit new mining work                   number=8 sealhash=ef1064…2b232c uncles=0 txs=0 gas=0     fees=0          elapsed=446.878µs
+INFO [12-22|13:07:45.312] Sealing paused, waiting for transactions 
+DEBUG[12-22|13:07:45.315] Served personal_lockAccount              conn=127.0.0.1:64537 reqid=3 t=63.757µs
+DEBUG[12-22|13:07:46.004] Executing EVM call finished              runtime=175.138µs
+DEBUG[12-22|13:07:46.004] Served eth_call                          conn=127.0.0.1:64539 reqid=0 t=285.05µs
+DEBUG[12-22|13:07:46.010] Executing EVM call finished              runtime=280.419µs
+DEBUG[12-22|13:07:46.010] Served eth_call                          conn=127.0.0.1:64539 reqid=1 t=396.76µs
+DEBUG[12-22|13:07:56.684] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:08:16.685] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:08:36.677] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:08:36.687] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:08:56.691] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:09:16.693] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:09:36.682] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:09:36.694] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:09:56.695] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:10:16.697] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:10:36.688] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:10:36.699] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:10:56.700] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:11:16.704] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:11:36.691] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:11:36.708] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:11:56.714] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:12:16.720] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:12:36.695] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:12:36.721] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:12:56.725] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:13:16.731] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:13:36.698] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:13:36.734] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:13:56.739] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:14:16.744] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:14:36.700] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+DEBUG[12-22|13:14:36.746] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-22|13:14:56.748] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+WARN [12-23|13:09:27.641] Sanitizing cache to Go's GC limits       provided=4096 updated=2730
+DEBUG[12-23|13:09:27.642] Sanitizing Go's GC trigger               percent=37
+INFO [12-23|13:09:27.646] Maximum peer count                       ETH=50 LES=0 total=50
+DEBUG[12-23|13:09:27.647] FS scan times                            list=409.938µs set=45.688µs diff=14.793µs
+TRACE[12-23|13:09:27.648] Started watching keystore folder         path=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/keystore
+TRACE[12-23|13:09:27.658] Handled keystore changes                 time=9.627905ms
+INFO [12-23|13:09:28.501] Using developer account                  address=0x0909218975e321185F06B9A8c52b1D7c97Ea0620
+INFO [12-23|13:09:28.502] Starting peer-to-peer node               instance=Geth/v1.9.9-stable/darwin-amd64/go1.13.4
+INFO [12-23|13:09:28.503] Allocated trie memory caches             clean=682.00MiB dirty=682.00MiB
+INFO [12-23|13:09:28.504] Allocated cache and file handles         database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata cache=1.33GiB handles=5120
+DEBUG[12-23|13:09:28.602] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=headers items=0 size=0.00B
+DEBUG[12-23|13:09:28.610] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=hashes  items=0 size=0.00B
+DEBUG[12-23|13:09:28.618] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=bodies  items=0 size=0.00B
+DEBUG[12-23|13:09:28.626] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=receipts items=0 size=0.00B
+DEBUG[12-23|13:09:28.633] Chain freezer table opened               database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient table=diffs    items=0 size=0.00B
+INFO [12-23|13:09:28.634] Opened ancient database                  database=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth/chaindata/ancient
+DEBUG[12-23|13:09:28.636] Current full block not old enough        number=7 hash=15a41c…9bf57e delay=90000
+INFO [12-23|13:09:28.640] Persisted trie from memory database      nodes=12 size=1.75KiB time=118.449µs  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [12-23|13:09:28.641] Initialised chain configuration          config="{ChainID: 1337 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: <nil>, Engine: clique}"
+INFO [12-23|13:09:28.642] Initialising Ethereum protocol           versions="[64 63]" network=2000 dbversion=7
+WARN [12-23|13:09:28.645] Head state missing, repairing chain      number=7 hash=15a41c…9bf57e
+INFO [12-23|13:09:28.647] Rewound blockchain to past state         number=6 hash=bcad08…cbe27c
+INFO [12-23|13:09:28.648] Loaded most recent local header          number=7 hash=15a41c…9bf57e td=15 age=1d1m43s
+INFO [12-23|13:09:28.648] Loaded most recent local full block      number=6 hash=bcad08…cbe27c td=13 age=1d3m51s
+INFO [12-23|13:09:28.648] Loaded most recent local fast block      number=7 hash=15a41c…9bf57e td=15 age=1d1m43s
+TRACE[12-23|13:09:28.648] Loaded voting snapshot from disk         number=0 hash=098796…b0177a
+DEBUG[12-23|13:09:28.653] Reinjecting stale transactions           count=0
+INFO [12-23|13:09:28.655] Setting new local account                address=0x5501d3b059931097C14475e8dC3f18F9880387E9
+TRACE[12-23|13:09:28.655] Pooled new future transaction            hash=8d412e…b2c8ae from=0x5501d3b059931097C14475e8dC3f18F9880387E9 to=0x798AA3b5367ce92FE776DF000F3c2372d88a2588
+TRACE[12-23|13:09:28.656] Promoting queued transaction             hash=8d412e…b2c8ae
+INFO [12-23|13:09:28.656] Loaded local transaction journal         transactions=1 dropped=0
+INFO [12-23|13:09:28.658] Regenerated local transaction journal    transactions=1 accounts=1
+WARN [12-23|13:09:28.658] Switch sync mode from fast sync to full sync 
+DEBUG[12-23|13:09:28.660] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+TRACE[12-23|13:09:28.666] Decrease miner recommit interval         from=3s to=3s
+INFO [12-23|13:09:28.704] started whisper v.6.0 
+DEBUG[12-23|13:09:28.706] TCP listener up                          addr=[::]:64826
+DEBUG[12-23|13:09:28.707] InProc registered                        namespace=admin
+DEBUG[12-23|13:09:28.707] InProc registered                        namespace=admin
+DEBUG[12-23|13:09:28.708] InProc registered                        namespace=debug
+DEBUG[12-23|13:09:28.708] InProc registered                        namespace=web3
+DEBUG[12-23|13:09:28.708] InProc registered                        namespace=shh
+DEBUG[12-23|13:09:28.708] InProc registered                        namespace=eth
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=eth
+INFO [12-23|13:09:28.709] New local node record                    seq=6 id=2cfd73eeb844b008 ip=127.0.0.1 udp=0 tcp=64826
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=eth
+INFO [12-23|13:09:28.709] Started P2P networking                   self="enode://51c24323d76b38e323f6d258887375206d7a660d4c15c05268190ba840ac1fdaa12db5bd3aa1a2e807d62d6437df0ef0833e021141947d1a1afc6f47b5567937@127.0.0.1:64826?discport=0"
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=txpool
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=debug
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=debug
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=eth
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=personal
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=clique
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=eth
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=eth
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=eth
+DEBUG[12-23|13:09:28.709] InProc registered                        namespace=miner
+DEBUG[12-23|13:09:28.710] InProc registered                        namespace=eth
+DEBUG[12-23|13:09:28.710] InProc registered                        namespace=admin
+DEBUG[12-23|13:09:28.710] InProc registered                        namespace=debug
+DEBUG[12-23|13:09:28.710] InProc registered                        namespace=debug
+DEBUG[12-23|13:09:28.710] InProc registered                        namespace=net
+DEBUG[12-23|13:09:28.710] IPC registered                           namespace=admin
+DEBUG[12-23|13:09:28.710] IPC registered                           namespace=admin
+DEBUG[12-23|13:09:28.710] IPC registered                           namespace=debug
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=web3
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=shh
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=txpool
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=debug
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=debug
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=personal
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=clique
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=miner
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=eth
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=admin
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=debug
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=debug
+DEBUG[12-23|13:09:28.711] IPC registered                           namespace=net
+INFO [12-23|13:09:28.713] IPC endpoint opened                      url=/Applications/MAMP/htdocs/UCA-Elecciones/resources/vottingDapp/testNet/geth.ipc
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=web3
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=personal
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=eth
+DEBUG[12-23|13:09:28.713] HTTP registered                          namespace=net
+INFO [12-23|13:09:28.714] HTTP endpoint opened                     url=http://127.0.0.1:8545 cors=* vhosts=localhost
+INFO [12-23|13:09:28.714] Transaction pool price threshold updated price=1000000000
+INFO [12-23|13:09:28.714] Transaction pool price threshold updated price=1
+INFO [12-23|13:09:28.714] Etherbase automatically configured       address=0x0909218975e321185F06B9A8c52b1D7c97Ea0620
+INFO [12-23|13:09:28.715] Commit new mining work                   number=7 sealhash=1732c9…4c0302 uncles=0 txs=0 gas=0 fees=0 elapsed=160.903µs
+INFO [12-23|13:09:28.715] Sealing paused, waiting for transactions 
+TRACE[12-23|13:09:28.716] Decrease miner recommit interval         from=3s to=3s
+INFO [12-23|13:09:28.716] Commit new mining work                   number=7 sealhash=2a212a…f1d0e1 uncles=0 txs=1 gas=23839 fees=2.3839e-14 elapsed=1.214ms
+TRACE[12-23|13:09:28.716] Waiting for slot to sign and propagate   delay=-716.488ms
+INFO [12-23|13:09:28.717] Successfully sealed new block            number=7 sealhash=2a212a…f1d0e1 hash=bed20f…b3f6d2 elapsed=1.143ms
+INFO [12-23|13:09:28.717] 🔨 mined potential block                  number=7 hash=bed20f…b3f6d2
+INFO [12-23|13:09:28.718] Commit new mining work                   number=8 sealhash=6a4934…6d72ed uncles=0 txs=0 gas=0     fees=0          elapsed=471.844µs
+TRACE[12-23|13:09:28.718] Propagated block                         hash=bed20f…b3f6d2 recipients=0 duration=2562047h47m16.854s
+INFO [12-23|13:09:28.718] Sealing paused, waiting for transactions 
+TRACE[12-23|13:09:28.718] Announced block                          hash=bed20f…b3f6d2 recipients=0 duration=2562047h47m16.854s
+DEBUG[12-23|13:09:28.718] Reinjecting stale transactions           count=0
+TRACE[12-23|13:09:28.718] Removed old pending transaction          hash=8d412e…b2c8ae
+DEBUG[12-23|13:09:28.790] Served rpc_modules                       reqid=1 t=855.847µs
+TRACE[12-23|13:09:28.790] Handled RPC response                     reqid=1 t=1.697µs
+DEBUG[12-23|13:09:28.797] Served web3_clientVersion                reqid=2 t=45.043µs
+TRACE[12-23|13:09:28.797] Handled RPC response                     reqid=2 t=1.435µs
+DEBUG[12-23|13:09:28.798] Served eth_coinbase                      reqid=3 t=55.082µs
+TRACE[12-23|13:09:28.798] Handled RPC response                     reqid=3 t=1.589µs
+DEBUG[12-23|13:09:28.798] Served eth_blockNumber                   reqid=4 t=39.784µs
+TRACE[12-23|13:09:28.798] Handled RPC response                     reqid=4 t=519ns
+DEBUG[12-23|13:09:28.799] Served eth_blockNumber                   reqid=5 t=12.343µs
+TRACE[12-23|13:09:28.799] Handled RPC response                     reqid=5 t=635ns
+DEBUG[12-23|13:09:28.801] Served eth_getBlockByNumber              reqid=6 t=1.71038ms
+TRACE[12-23|13:09:28.801] Handled RPC response                     reqid=6 t=1.721µs
+DEBUG[12-23|13:09:28.805] Served admin_datadir                     reqid=7 t=25.352µs
+TRACE[12-23|13:09:28.805] Handled RPC response                     reqid=7 t=580ns
+DEBUG[12-23|13:09:28.805] Served rpc_modules                       reqid=8 t=24.769µs
+TRACE[12-23|13:09:28.805] Handled RPC response                     reqid=8 t=486ns
+INFO [12-23|13:09:30.891] Mapped network port                      proto=tcp extport=64826 intport=64826 interface="UPNP IGDv1-IP1"
+DEBUG[12-23|13:09:48.661] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:10:08.662] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:10:28.639] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:10:28.663] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:10:48.665] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:11:08.667] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:11:28.643] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:11:28.674] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:11:48.678] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:12:08.679] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:12:28.649] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:12:28.683] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:12:48.689] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:13:08.691] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:13:28.656] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:13:28.694] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:13:48.699] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:14:08.704] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:14:28.659] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:14:28.709] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:14:48.715] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:15:08.718] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:15:28.666] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:15:28.721] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:15:48.725] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:16:08.726] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:16:28.671] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:16:28.728] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:16:48.730] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:17:08.733] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:17:28.676] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:17:28.736] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:17:48.741] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:18:08.746] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:18:28.682] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:18:28.751] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:18:48.752] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:19:08.757] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:19:28.688] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:19:28.761] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:19:48.764] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:20:08.766] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:20:28.692] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:20:28.769] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:20:48.773] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:21:08.779] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:21:28.699] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:21:28.782] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:21:48.785] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:22:08.791] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:22:28.706] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:22:28.792] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:22:48.793] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:23:08.795] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:23:28.711] Current full block not old enough        number=7 hash=bed20f…b3f6d2 delay=90000
+DEBUG[12-23|13:23:28.801] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:23:48.808] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:24:08.812] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:24:12.774] Served personal_unlockAccount            conn=127.0.0.1:65000 reqid=0 t=876.626968ms
+DEBUG[12-23|13:24:12.794] Served eth_getTransactionCount           conn=127.0.0.1:65000 reqid=1 t=1.576596ms
+TRACE[12-23|13:24:12.802] Pooled new future transaction            hash=6dbbc9…b79a1f from=0x5501d3b059931097C14475e8dC3f18F9880387E9 to=nil
+TRACE[12-23|13:24:12.804] Promoting queued transaction             hash=6dbbc9…b79a1f
+INFO [12-23|13:24:12.804] Submitted contract creation              fullhash=0x6dbbc9ade0511a8076e793bf768aa5a2df52c5212b00e5f0bad0e9c1e8b79a1f contract=0x677d34Cb1d5927bE7b407684a1B456449a874251
+DEBUG[12-23|13:24:12.805] Served eth_sendTransaction               conn=127.0.0.1:65000 reqid=2 t=5.586876ms
+TRACE[12-23|13:24:12.805] Broadcast transaction                    hash=6dbbc9…b79a1f recipients=0
+INFO [12-23|13:24:12.809] Commit new mining work                   number=8 sealhash=0e6aed…bea383 uncles=0 txs=1 gas=1228687 fees=0.025802427 elapsed=4.513ms
+TRACE[12-23|13:24:12.809] Waiting for slot to sign and propagate   delay=-809.434ms
+DEBUG[12-23|13:24:12.810] Served eth_getTransactionReceipt         conn=127.0.0.1:65000 reqid=3 t=69.376µs
+INFO [12-23|13:24:12.811] Successfully sealed new block            number=8 sealhash=0e6aed…bea383 hash=f7733b…f521fa elapsed=2.374ms
+INFO [12-23|13:24:12.811] 🔨 mined potential block                  number=8 hash=f7733b…f521fa
+TRACE[12-23|13:24:12.811] Propagated block                         hash=f7733b…f521fa recipients=0 duration=2562047h47m16.854s
+DEBUG[12-23|13:24:12.811] Reinjecting stale transactions           count=0
+TRACE[12-23|13:24:12.811] Announced block                          hash=f7733b…f521fa recipients=0 duration=2562047h47m16.854s
+TRACE[12-23|13:24:12.812] Removed old pending transaction          hash=6dbbc9…b79a1f
+INFO [12-23|13:24:12.812] Commit new mining work                   number=9 sealhash=d9cc33…4ff758 uncles=0 txs=0 gas=0       fees=0           elapsed=651.097µs
+INFO [12-23|13:24:12.812] Sealing paused, waiting for transactions 
+DEBUG[12-23|13:24:12.923] Served eth_getTransactionReceipt         conn=127.0.0.1:65000 reqid=4 t=1.104921ms
+DEBUG[12-23|13:24:12.931] Served personal_lockAccount              conn=127.0.0.1:65000 reqid=5 t=103.361µs
+DEBUG[12-23|13:24:28.715] Current full block not old enough        number=8 hash=f7733b…f521fa delay=90000
+TRACE[12-23|13:24:28.738] Refreshing port mapping                  proto=tcp extport=64826 intport=64826 interface="UPNP IGDv1-IP1"
+DEBUG[12-23|13:24:28.814] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:24:48.816] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:25:08.819] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:25:09.792] Served personal_unlockAccount            conn=127.0.0.1:65034 reqid=0 t=930.269478ms
+DEBUG[12-23|13:25:09.818] Executing EVM call finished              runtime=1.570796ms
+DEBUG[12-23|13:25:09.820] Served eth_call                          conn=127.0.0.1:65034 reqid=1 t=3.689823ms
+TRACE[12-23|13:25:09.831] Pooled new future transaction            hash=5a05f8…a6c83f from=0x5501d3b059931097C14475e8dC3f18F9880387E9 to=0x677d34Cb1d5927bE7b407684a1B456449a874251
+TRACE[12-23|13:25:09.831] Promoting queued transaction             hash=5a05f8…a6c83f
+INFO [12-23|13:25:09.831] Submitted transaction                    fullhash=0x5a05f855cffd5ab391871fb42e9c5e34fb8cdc5a83c5f725f43f0abf5ba6c83f recipient=0x677d34Cb1d5927bE7b407684a1B456449a874251
+TRACE[12-23|13:25:09.831] Broadcast transaction                    hash=5a05f8…a6c83f recipients=0
+DEBUG[12-23|13:25:09.831] Served eth_sendTransaction               conn=127.0.0.1:65034 reqid=2 t=4.094761ms
+INFO [12-23|13:25:09.833] Commit new mining work                   number=9 sealhash=a7e8f3…0fb2af uncles=0 txs=1 gas=28017   fees=2.8017e-14  elapsed=1.616ms
+TRACE[12-23|13:25:09.833] Waiting for slot to sign and propagate   delay=-833.198ms
+INFO [12-23|13:25:09.835] Successfully sealed new block            number=9 sealhash=a7e8f3…0fb2af hash=68a2fc…af86c6 elapsed=2.691ms
+INFO [12-23|13:25:09.835] 🔨 mined potential block                  number=9 hash=68a2fc…af86c6
+DEBUG[12-23|13:25:09.835] Reinjecting stale transactions           count=0
+TRACE[12-23|13:25:09.835] Propagated block                         hash=68a2fc…af86c6 recipients=0 duration=2562047h47m16.854s
+TRACE[12-23|13:25:09.836] Announced block                          hash=68a2fc…af86c6 recipients=0 duration=2562047h47m16.854s
+TRACE[12-23|13:25:09.835] Removed old pending transaction          hash=5a05f8…a6c83f
+INFO [12-23|13:25:09.836] Commit new mining work                   number=10 sealhash=369eb8…851d9e uncles=0 txs=0 gas=0       fees=0           elapsed=409.595µs
+INFO [12-23|13:25:09.836] Sealing paused, waiting for transactions 
+DEBUG[12-23|13:25:09.837] Served personal_lockAccount              conn=127.0.0.1:65034 reqid=3 t=60.979µs
+DEBUG[12-23|13:25:11.777] Served eth_getTransactionCount           conn=127.0.0.1:65036 reqid=0 t=86.077µs
+DEBUG[12-23|13:25:11.784] Served eth_gasPrice                      conn=127.0.0.1:65036 reqid=1 t=466.747µs
+DEBUG[12-23|13:25:11.789] Served eth_chainId                       conn=127.0.0.1:65036 reqid=2 t=45.847µs
+TRACE[12-23|13:25:11.808] Pooled new future transaction            hash=1d7a60…144f9d from=0x5501d3b059931097C14475e8dC3f18F9880387E9 to=0x677d34Cb1d5927bE7b407684a1B456449a874251
+TRACE[12-23|13:25:11.808] Promoting queued transaction             hash=1d7a60…144f9d
+TRACE[12-23|13:25:11.808] Broadcast transaction                    hash=1d7a60…144f9d recipients=0
+INFO [12-23|13:25:11.808] Submitted transaction                    fullhash=0x1d7a60e7dc734e854f68909763719d9008b172b2a28a672852cf73cdc1144f9d recipient=0x677d34Cb1d5927bE7b407684a1B456449a874251
+DEBUG[12-23|13:25:11.808] Served eth_sendRawTransaction            conn=127.0.0.1:65036 reqid=3 t=1.780555ms
+INFO [12-23|13:25:11.812] Commit new mining work                   number=10 sealhash=ef2ee7…a2f396 uncles=0 txs=1 gas=398625  fees=3.98625e-13 elapsed=3.235ms
+TRACE[12-23|13:25:11.812] Waiting for slot to sign and propagate   delay=-812.165ms
+INFO [12-23|13:25:11.812] Successfully sealed new block            number=10 sealhash=ef2ee7…a2f396 hash=66416e…8ef582 elapsed=896.904µs
+INFO [12-23|13:25:11.813] 🔨 mined potential block                  number=10 hash=66416e…8ef582
+TRACE[12-23|13:25:11.813] Propagated block                         hash=66416e…8ef582 recipients=0 duration=2562047h47m16.854s
+DEBUG[12-23|13:25:11.813] Reinjecting stale transactions           count=0
+TRACE[12-23|13:25:11.813] Announced block                          hash=66416e…8ef582 recipients=0 duration=2562047h47m16.854s
+TRACE[12-23|13:25:11.813] Removed old pending transaction          hash=1d7a60…144f9d
+INFO [12-23|13:25:11.813] Commit new mining work                   number=11 sealhash=68adfc…01c0af uncles=0 txs=0 gas=0       fees=0           elapsed=572.569µs
+INFO [12-23|13:25:11.813] Sealing paused, waiting for transactions 
+DEBUG[12-23|13:25:22.656] Served personal_unlockAccount            conn=127.0.0.1:65047 reqid=0 t=783.270083ms
+DEBUG[12-23|13:25:22.676] Executing EVM call finished              runtime=196.868µs
+DEBUG[12-23|13:25:22.676] Served eth_call                          conn=127.0.0.1:65047 reqid=1 t=328.835µs
+TRACE[12-23|13:25:22.683] Pooled new future transaction            hash=5e7f8e…9cb2b0 from=0x5501d3b059931097C14475e8dC3f18F9880387E9 to=0x677d34Cb1d5927bE7b407684a1B456449a874251
+TRACE[12-23|13:25:22.683] Promoting queued transaction             hash=5e7f8e…9cb2b0
+TRACE[12-23|13:25:22.683] Broadcast transaction                    hash=5e7f8e…9cb2b0 recipients=0
+INFO [12-23|13:25:22.683] Submitted transaction                    fullhash=0x5e7f8e206e2c8f9be9b711b25b1a2cb9c5086b8a76e2e1240ee19c4cf99cb2b0 recipient=0x677d34Cb1d5927bE7b407684a1B456449a874251
+DEBUG[12-23|13:25:22.683] Served eth_sendTransaction               conn=127.0.0.1:65047 reqid=2 t=1.112457ms
+INFO [12-23|13:25:22.683] Commit new mining work                   number=11 sealhash=eac567…85703a uncles=0 txs=1 gas=28039   fees=2.8039e-14  elapsed=272.247µs
+TRACE[12-23|13:25:22.683] Waiting for slot to sign and propagate   delay=-683.565ms
+INFO [12-23|13:25:22.684] Successfully sealed new block            number=11 sealhash=eac567…85703a hash=da4d3e…c77e6f elapsed=536.615µs
+INFO [12-23|13:25:22.684] 🔨 mined potential block                  number=11 hash=da4d3e…c77e6f
+TRACE[12-23|13:25:22.684] Propagated block                         hash=da4d3e…c77e6f recipients=0 duration=2562047h47m16.854s
+TRACE[12-23|13:25:22.684] Announced block                          hash=da4d3e…c77e6f recipients=0 duration=2562047h47m16.854s
+DEBUG[12-23|13:25:22.684] Reinjecting stale transactions           count=0
+TRACE[12-23|13:25:22.684] Removed old pending transaction          hash=5e7f8e…9cb2b0
+INFO [12-23|13:25:22.684] Commit new mining work                   number=12 sealhash=a01768…4cc9ff uncles=0 txs=0 gas=0       fees=0           elapsed=379.883µs
+INFO [12-23|13:25:22.684] Sealing paused, waiting for transactions 
+DEBUG[12-23|13:25:22.688] Served personal_lockAccount              conn=127.0.0.1:65047 reqid=3 t=59.27µs
+DEBUG[12-23|13:25:23.383] Executing EVM call finished              runtime=197.985µs
+DEBUG[12-23|13:25:23.383] Served eth_call                          conn=127.0.0.1:65049 reqid=0 t=326.036µs
+DEBUG[12-23|13:25:23.389] Executing EVM call finished              runtime=217.401µs
+DEBUG[12-23|13:25:23.389] Served eth_call                          conn=127.0.0.1:65049 reqid=1 t=350.855µs
+DEBUG[12-23|13:25:28.719] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|13:25:28.820] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:25:48.808] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:26:32.581] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:27:40.016] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|13:27:40.141] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:28:23.921] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|13:29:07.697] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:14:41.666] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:14:41.805] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:15:01.805] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:15:21.807] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:15:41.669] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:15:41.808] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:16:01.809] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:16:21.811] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:16:41.673] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:16:41.812] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:17:01.817] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:17:21.822] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:17:41.680] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:17:41.823] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:18:01.828] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:18:21.831] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:18:41.686] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:18:41.837] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:19:01.840] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:19:21.842] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:19:41.688] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:19:41.848] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:20:01.853] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:20:21.854] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:20:41.691] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:20:41.860] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:21:01.864] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:21:21.868] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:21:41.694] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:21:41.873] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:22:01.874] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:22:21.878] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
+DEBUG[12-23|15:22:41.700] Current full block not old enough        number=11 hash=da4d3e…c77e6f delay=90000
+DEBUG[12-23|15:22:41.879] Recalculated downloader QoS values       rtt=20s confidence=1.000 ttl=1m0s
