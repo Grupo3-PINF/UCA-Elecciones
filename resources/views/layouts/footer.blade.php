@@ -18,4 +18,5 @@
 		</div>
 	</footer>
 	@endif
-</html>
+
+	</html>

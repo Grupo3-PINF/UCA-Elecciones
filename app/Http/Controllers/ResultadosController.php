@@ -39,65 +39,73 @@ class ResultadosController extends Controller
 				"titulo" => $resultados->titulo
 			];
 			$vector = array_merge($vector,json_decode($resultados->opciones,true));
-			$vector = array_merge($vector,json_decode($resultados->recuento,true));
-			//hay que sacar también el título de la pregunta para que la puedan mostrar en el chart
-			$finalizada = true;
-			if($votacion->esAnticipada == true)
+			if(json_decode($resultados->recuento,true)==null)
 			{
-				if($date <= $votacion->fechaFinAnticipada)
-				{
-					$finalizada = false;
-				}
+				$resultados->recuento=["votos"=>[0,0,0]];
+				$vector = array_merge($vector,$resultados->recuento);
 			}
-			else
-			{
-				if($date <= $votacion->fechaFin)
-				{
-					$finalizada = false;
-				}
+			else{
+				$vector = array_merge($vector,json_decode($resultados->recuento,true));
 			}
-			if($finalizada == false)
-			{
-				if($votacion->esTiempoReal == false)
+				//hay que sacar también el título de la pregunta para que la puedan mostrar en el chart
+				$finalizada = true;
+				if($votacion->esAnticipada == true)
 				{
-					$vector["OK"] = 0;
-				}
-				else 
-				{
-					if($votacion->seMuestraAntes == false)
+					if($date <= $votacion->fechaFinAnticipada)
 					{
-						$participaciones = Participacion::where('idpregunta', $id) -> pluck('idusuario');
-						$participa = false;
-						foreach ($participaciones as $participacion) 
-						{
-							if($participacion == $_SESSION['idusuario'])
-							{
-								$participa = true;
-							}
-						}
-						if($participa == false)
-						{ 
-							$vector["OK"] = 0;
-						}
-					}	
+						$finalizada = false;
+					}
 				}
-			}
-			$this->closeCon($conn);
-			/*if($vector["OK"] == 0)
-			{
-				$vector["votos"] = 0;
-				$vector["opciones"] = 0;
-			}*/
-			$vector["OK"] == 1;
-			//dd($vector['votos']);
-			//$vector['OK'] = 1;
-			//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
-			//($vector['votos'] = [450,200,300];
-			return $vector;
+				else
+				{
+					if($date <= $votacion->fechaFin)
+					{
+						$finalizada = false;
+					}
+				}
+				if($finalizada == false)
+				{
+					if($votacion->esTiempoReal == false)
+					{
+						$vector["OK"] = 0;
+					}
+					else 
+					{
+						if($votacion->seMuestraAntes == false)
+						{
+							$participaciones = Participacion::where('idpregunta', $id) -> pluck('idusuario');
+							$participa = false;
+							foreach ($participaciones as $participacion) 
+							{
+								if($participacion == $_SESSION['idusuario'])
+								{
+									$participa = true;
+								}
+							}
+							if($participa == false)
+							{ 
+								$vector["OK"] = 0;
+							}
+						}	
+					}
+				}
+				$this->closeCon($conn);
+				/*if($vector["OK"] == 0)
+				{
+					$vector["votos"] = 0;
+					$vector["opciones"] = 0;
+				}*/
+				$vector["OK"] == 1;
+				//dd($vector['votos']);
+				//$vector['OK'] = 1;
+				//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
+				//($vector['votos'] = [450,200,300];
+				return $vector;
 		}
 	}
 	public function view()
 	{
-		return view('resultados');
+		$preguntas = Pregunta::all();
+		return view('resultados')->with("preguntas",$preguntas);
 	}
 }

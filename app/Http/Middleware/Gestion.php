@@ -26,7 +26,7 @@ class Gestion
         {
             $user = User::where('login',$idusuario)->first();
             $rol = strtolower($user->rolActivo);
-            if($rol == 'administrador' || $rol == 'secretario')
+            if($rol == 'secretario')
             {
                 return $next($request);
             }

@@ -1,5 +1,6 @@
 <div id="steps-pregunta" class="hide">
 	<div class="row">
+	<div class="row margin-0-mobile" id="input-pregunta">
 		<div class="col-12">
 			<h5>Pregunta</h5>
 			<div class="form-group">
@@ -12,12 +13,8 @@
 			<div class="form-group">
 				<label>Grupos con permiso para votar</label>
 				<p>Censos que pueden participar en esta pregunta.</p>
-				<select class="form-control" name="grupos-pregunta">
-					<option value="alumnos">Alumnos</option>
-					<option value="profesores">Profesores</option>
-					<option value="todos">Todos</option>
-				</select>
-				<a onclick="anadirGrupos();" class="btn btn-secondary" id="button-groups">Añadir</a>
+				<select class="form-control" name="grupos-pregunta"></select>
+				<a onclick="anadirGruposPregunta();" class="btn btn-secondary" id="button-groups">Añadir</a>
 				<input type="hidden" name="buscador-grupos">
 			</div>
 		</div>
@@ -37,19 +34,23 @@
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="form-group">
-				<label>Simple o compleja</label>
-				<p>Preguntas simples serán sí, no o abstenerse</p>
-				<select class="form-control" name="tipo-pregunta">
-					<option value="1">Simple</option>
-					<option value="2">Compleja</option>
-				</select>
+				<label>Pregunta compleja</label>
+				<p>Por defecto, las respuestas serán sí, no o abstenerse. Que sea compleja permite editar las posibles respuestas.</p>
+				<input type="checkbox" name="compleja-pregunta">
+			</div>
+		</div>
+		<div class="col-12 col-md-4">
+			<div class="form-group">
+				<label>Tiempo real</label>
+				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
+				<input type="checkbox" name="tiemporeal-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="form-group">
 				<label>Tiempo de votación (minutos)</label>
 				<p>Tiempo máximo para realizar la votación una vez abierta</p>
-				<input class="form-control" type="number" value="1">
+				<input class="form-control" type="number" value="1" name="tiempo-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-3">
@@ -80,11 +81,119 @@
 				<input class="form-control" type="text" name="participantes-anticipada-pregunta">
 			</div>
 		</div>
+	</div>
 		<div class="col-12">
+			<div class="alert d-none" id="msg_div">
+				<span id="res_message"></span>
+			</div>
 			<div class="form-group">
-				<button class="btn btn-primary" type="submit">Enviar</button>
+				<button onclick="crearPregunta()" id="enviar" class="btn btn-primary">Enviar</button>
 				<a class="btn btn-cancel" href="{{url('/crearvotacion')}}">Cancelar</a>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	$('input[name="anticipada-pregunta"]').click(function() {
+		if ($('input[name="anticipada-pregunta"]').prop('checked')) {
+			$('#fecha-anticipada-pregunta').show();
+			$('#participantes-anticipada-pregunta').show();
+		} else {
+			$('#fecha-anticipada-pregunta').hide();
+			$('#participantes-anticipada-pregunta').hide();
+		}
+	});
+
+	function guardarGruposPregunta() {
+		var arr = [];
+		var container = document.querySelectorAll('.input-div-caja-pregunta');
+		for (var i = 0; i < container.length; i++) {
+			arr.push(container[i].getAttribute('name').replace('grupo-',''));
+		}
+		return arr;
+	}
+
+	function crearPregunta() {
+		var grupos = guardarGruposPregunta();
+		$.ajax({
+			type: 'POST',
+			url: "crearvotacion/crearPregunta",
+			data: {
+				"_token": "{{ csrf_token() }}",
+				'titulo': $('input[name=titulo-pregunta]').val(),
+				'grupos': grupos,
+				'es-compleja': $('input[name=compleja-pregunta]').is(':checked'),
+				'fecha-inicio': $('input[name=fecha-pregunta]').val(),
+				'tiempo-pregunta': $('input[name=tiempo-pregunta]').val(),
+				'es-anticipada': $('input[name=anticipada-pregunta]').is(':checked'),
+				'es-secreta': $('input[name=secreta-pregunta]').is(':checked'),
+				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val()
+			},
+			success: function(response) {
+				console.log(response.status);
+				if (response.status) {
+					$('#enviar').prop('disabled', true);
+					$('#res_message').show();
+					$('#res_message').html(response.mensaje);
+					$('#msg_div').removeClass('alert-danger');
+					$('#msg_div').addClass('alert-success');
+					$('#msg_div').removeClass('d-none');
+					$('#input-pregunta').slideUp(700);
+					setTimeout(function() {
+						window.location.reload();
+					}, 3000);
+				} else {
+					$('#res_message').show();
+					$('#res_message').html(response.mensaje);
+					$('#msg_div').removeClass('alert-success');
+					$('#msg_div').addClass('alert-danger');
+					$('#msg_div').removeClass('d-none');
+				}
+			},
+			error: function(error) {
+				console.error(error)
+			}
+		})
+	}
+
+	function recibirGruposPregunta() {
+		$.ajax({
+			type: 'POST',
+			url: "crearvotacion/recibirGrupos",
+			data: {
+				"_token": "{{ csrf_token() }}",
+			},
+			success: function(response) {
+				var grupos = response.grupos;
+				for (var i = 0; i < grupos.length; i++) {
+					if (typeof grupos[i] != "undefined") {
+						console.log(grupos[i].nombre);
+						var nombre = grupos[i].nombre;
+						var id = grupos[i].id;
+						var html = '<option value="' + id + '">' + nombre + '</option>';
+						$('select[name=grupos-pregunta]').append(html);
+					}
+				}
+			},
+			error: function(error) {
+				console.error(error)
+			}
+		})
+	}
+
+	function anadirGruposPregunta() {
+		$('#button-groups').click(function() {
+			var nombre = $('select[name=grupos-pregunta] option:selected').text();
+			var id = $('select[name=grupos-pregunta]').val();
+			var html = '<input class="input-div-caja-pregunta" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
+			if (!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length)
+				$('#grupos-div-pregunta').append(html);
+		});
+	}
+
+	function borrarInputPregunta(nombre, tipo) {
+		$('input[name=' + tipo + '-' + nombre + ']').remove();
+		$('a[name=borrar-' + nombre + ']').remove();
+	}
+</script>
