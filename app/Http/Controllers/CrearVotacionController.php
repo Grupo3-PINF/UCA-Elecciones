@@ -11,6 +11,7 @@ use Auth;
 use App\User;
 use App\Pregunta;
 use App\Censo;
+use App\Eleccion;
 use Illuminate\Http\Request;
 
 class CrearVotacionController extends Controller
@@ -142,38 +143,53 @@ class CrearVotacionController extends Controller
 
     public function crearEleccion(Request $request)
     {
-        /*
+        // validar la fecha
+        $fechaStr = $request->input('fecha-inicio');
+
+        if ($fechaStr == NULL) {
+           return response()->json([
+               'status' => false,
+               'mensaje' => "Fecha incompleta"
+           ]);
+        }
+
+        $fechaStr = $this->interpretarFecha($fechaStr);
+
+        // si no es correcta, o es anterior a "ahora"
+        if ($fechaStr == NULL || strtotime($fechaStr) - time() < 0) {
+            return response()->json([
+                'status' => false,
+                'mensaje' => "Fecha incorrecta",
+            ]);
+        }
+
+        $fechaIni = date_create($fechaStr);
+
+        $duracion = $request->input('tiempo-eleccion');
+        if (is_numeric($duracion)) {
+            $fechaFin = clone $fechaIni;
+            $fechaFin->modify("+$duracion minutes");
+        }
+
         $eleccion = new Eleccion;
 
-        $request->validate([
-            'fechaInicio' => 'date_format:Y-m-d H:m:s|after:today',
-            //'fechaFin' => 'date_format:Y-m-d H:m:s|after:today'
-        ]);
+        $eleccion->grupos = json_encode(['grupos' => $request->grupos]);
+        $eleccion->candidatos = json_encode(['candidatos' => $request->candidatos]);
 
-        $eleccion->grupos = (['grupos' => $request->grupos]);
-
-        $eleccion->candidatos = (['candidatos' => $request->candidatos]);
-
-        $fecha_inicio = date_create($request->input('fecha-eleccion'));
-        $eleccion->fechaInicio = $fecha_inicio;
-
-        //$fecha_fin = date_add($fecha_inicio, date_interval_create_from_date_string("10 days"));
-        //$eleccion->fechaFin = date_create($fecha_fin);
-        // me ha dicho el antonio que si esto debe de estar. 
-        // en el html meto en type='time' (buscar info)
+        $eleccion->fechaInicio = $fechaIni;
+        $eleccion->fechaFin = $fechaFin;
 
         $eleccion->tipoEleccion = $request->input('tipo-eleccion');
 
-        $eleccion->dobleVoto = $request->input('doblevoto') == "si" ? true : false;
+        $eleccion->dobleVoto = $request->input('doblevoto') == "true" ? true : false;
 
-        $eleccion->multiple = $request->input('tipo-votacion') == "si" ? true : false;
+        //$eleccion->multiple = $request->input('tipo-votacion') == "si" ? true : false;
 
         $eleccion->save();
-        */
 
-        $mensaje = "La eleccion ha sido creado con éxito.";
         return response()->json([
-            'mensaje' => $mensaje
+            'status' => true,
+            'mensaje' => "Elección creada correctamente"
         ]);
     }
 
