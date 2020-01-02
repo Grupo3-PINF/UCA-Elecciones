@@ -183,8 +183,7 @@ class CrearVotacionController extends Controller
     }
     
     public function mandarCandidatos() {
-        // !!! APLICAR FILTRO !!!
-        $candidatos = User::all();
+        $candidatos = User::all('nombre','apellido','identificador');
         return response()->json(['candidatos' => $candidatos]);
     }
 
