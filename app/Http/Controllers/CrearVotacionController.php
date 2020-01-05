@@ -171,6 +171,64 @@ class CrearVotacionController extends Controller
             $fechaFin->modify("+$duracion minutes");
         }
 
+        if($request->input('tipo-eleccion') == "Grupos no ponderados") {
+            if($request->input('pon-por') == 'false' && $request->input('pon-num') == 'false'){
+                return response()->json([
+                    'status' => false,
+                    'mensaje' => "Debe elegir el tipo de ponderacion",
+                ]);
+            }else {
+                if($request->input('pon-por') == 'true'){
+                    $ponderacion = "Porcentaje";
+                    if($request->input('porCan') == NULL) {
+                        $ponNum = 70;
+                    }else {
+                        if($request->input('porCan') < 0 || $request->input('porCan') > 100){
+                            return response()->json([
+                                'status' => false,
+                                'mensaje' => "El valor del porcentaje es incorrecto",
+                            ]);
+                        } else{
+                                $ponNum = $request->input('porCan');
+                        }
+                    }
+                }
+                 if($request->input('pon-num') == 'true') {
+                    $ponderacion ="Numero de candidatos";
+                    $arr_candidatos = $request->candidatos;
+                    $canSize = count($arr_candidatos);
+                    if($canSize == 0) {
+                        return response()->json([
+                            'status' => false,
+                            's' => $arr_candidatos,
+                            'canSize' => $canSize,
+                            'mensaje' => "Es necesario elegir al menos un candidato",
+                        ]);
+                    }
+                    if($request->input('numCan') <= 0 || $request->input('numCan') > $canSize){
+                        return response()->json([
+                            'status' => false,
+                            's' => $arr_candidatos,
+                            'canSize' => $canSize,
+                            'mensaje' => "El numero de candidatos es incorrecto",
+                        ]);
+                    } else if($request->input('numCan') == NULL){
+                        return response()->json([
+                            'status' => false,
+                            'mensaje' => "El numero de los candidatos es obligatorio",
+                        ]);
+                    } else{
+                        $ponNum = $request->input('numCan');
+                    }
+                }
+            }
+        } else if($request->input('tipo-eleccion') == "Cargos unipersonales") {
+            return response()->json([
+                'status' => false,
+                'mensaje' => "",
+            ]);
+        }
+
         $eleccion = new Eleccion;
 
         $eleccion->grupos = json_encode(['grupos' => $request->grupos]);
@@ -179,11 +237,19 @@ class CrearVotacionController extends Controller
         $eleccion->fechaInicio = $fechaIni;
         $eleccion->fechaFin = $fechaFin;
 
-        $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+        if($request->input('tipo-eleccion') == "Grupos no ponderados"){
+            $eleccion->multiGrupo = $request->input('multiGrupo') == "true" ? true : false;
+            $eleccion->adscripcion = $request->input('adscripcion') == "true" ? true : false;
+            $eleccion->tipoPon = $ponderacion;
+            $eleccion->ponNum = $ponNum;
+            $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+        }else if($request->input('tipo-eleccion') == "Cargos unipersonales"){
+            $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+        }else {
+            $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+        }
 
         $eleccion->dobleVoto = $request->input('doblevoto') == "true" ? true : false;
-
-        //$eleccion->multiple = $request->input('tipo-votacion') == "si" ? true : false;
 
         $eleccion->save();
 

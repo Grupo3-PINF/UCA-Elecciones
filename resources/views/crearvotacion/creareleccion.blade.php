@@ -56,12 +56,27 @@
 		</div>
 		<div class="col-12 col-md-6" id="grupos-no-ponderados">
 			<div class="form-group">
-				<label>Tipo de votación</label>
-				<select class="form-control" id="tipo-votacion">
-					<option>Solo un grupo</option>
-					<option>Multiple</option>
-					<option>Adscripción a grupos</option>
-				</select>
+				<label>Grupos no ponderados</label>
+				<p>¿Se va a poder ejercer la votación en múltiples grupos?
+					<input type="checkbox" name="multiGrupo">
+				</p>
+				<p>¿Los votantes pertenecientes a mas de un grupo podran adscribirse al grupo que quieran votar?
+					<input type="checkbox" name="adscripcion">
+				</p>
+				<p>¿Se va votar a un porcentaje de candidatos o a un numero determinado? (Selecciona una opcion.)
+					Porcentaje: <input class="test1" type="checkbox" name="pon-por">
+					Nº candidatos: <input class="test1" type="checkbox" name="pon-num">
+				</p>
+				<div class="form-group d-none" id="porcentaje">
+					<p>Introduzca el porcentaje (Si se daja en blanco, se asigna 70% por defecto):
+						<input class="form-control" type="number" name="porCan">
+					</p>
+				</div>
+				<div class="form-group d-none" id="num-det">
+					<p>Introduce el numero de candidatos:
+						<input class="form-control" type="number" name="numCan">
+					</p>
+				</div>
 			</div>
 		</div>
 		<div class="col-12" id="cargos-unipersonales">
@@ -102,10 +117,15 @@
 				'fecha-inicio': $('input[name=fecha-eleccion').val(),
 				'tiempo-eleccion': $('input[name=tiempo-eleccion').val(),
 				'tipo-eleccion': $('select[name=tipo-eleccion] option:selected').text(),
-				'doblevoto': $('input[name=doblevoto]').is(':checked'),
+				'multiGrupo': $('input[name=multiGrupo]').is(':checked'),
+				'adscripcion': $('input[name=adscripcion]').is(':checked'),
+				'pon-por': $('input[name=pon-por]').prop('checked'),
+				'pon-num': $('input[name=pon-num]').prop('checked'),
+				'porCan':$('input[name=porCan').val(),
+				'numCan':$('input[name=numCan').val(),
+				'doblevoto': $('input[name=doblevoto]').is(':checked')
 			},
 			success: function(response) {
-				console.log(response.status);
 				if (response.status) {
 					$('#enviar').prop('disabled', true);
 					$('#res_message').show();
@@ -209,9 +229,9 @@
 
 	function guardarCandidatos() {
 		let arr = [];
-		let container = document.querySelectorAll('input-div-caja-candidato');
+		let container = document.querySelectorAll('.input-div-caja-candidato');
 		for (let i = 0; i < container.length; i++) {
-			arr.push(container[i].getAttribute('name').replace('grupo-', ''));
+			arr.push(container[i].getAttribute('name').replace('candidato-', ''));
 		}
 		return arr;
 	}
@@ -237,5 +257,26 @@
 				}
 			});
 		}).change();
+	});
+
+	$('input[name=pon-por]').change(function() {
+		if ($(this).prop("checked")) {
+			$('#porcentaje').removeClass('d-none');
+			$('#num-det').addClass('d-none');
+		} else {
+			$('#porcentaje').addClass('d-none');
+		}
+	});
+	$('input[name=pon-num]').change(function() {
+		if ($(this).prop("checked")) {
+			$('#num-det').removeClass('d-none');
+			$('#porcentaje').addClass('d-none');
+		} else {
+			$('#num-det').addClass('d-none');
+		}
+	});
+
+	$('.test1').change(function() {
+		$('.test1').not(this).prop('checked', false);
 	});
 </script>

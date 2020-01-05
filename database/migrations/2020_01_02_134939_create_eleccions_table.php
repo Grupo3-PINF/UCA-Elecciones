@@ -28,7 +28,10 @@ class CreateEleccionsTable extends Migration
             
             $table->string('tipoEleccion');
             // si grupos no ponderamos
-                //$table->string('tipo-votacion');
+            $table->boolean('multiGrupo')->default(false); // solo un grupo o multiple
+            $table->boolean('adscripcion')->default(false); // si/no
+            $table->string('tipoPon')->nullable();
+            $table->integer('ponNum')->nullable();
             // si cargos unipersonales
             
             $table->boolean('dobleVoto')->default(false);
