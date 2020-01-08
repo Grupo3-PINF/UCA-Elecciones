@@ -178,10 +178,6 @@ class AccesoVotaciones extends Controller
                 $participacion->idpregunta = $id;
                 $participacion->opcion = 1000000;
                 $participacion->save();
-
-                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('tiempo_ini', $tiempo_ini)->with('tiempo_fin', $tiempo_fin)->with('pregunta', $votacion->titulo);
-            }
-            else
             {
                 return redirect()->route("accesovotaciones")->with('error','Votación finalizada');
             }
@@ -308,81 +304,3 @@ class AccesoVotaciones extends Controller
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    public function rectificar()
-    {
-        //Para comprobar que un usuario ya ha votado o no
-        $usuario = Session::get('idusuario');
-        //Sacamos el id del usuario a partir del login de usuario
-        $user = User::where('login', $usuario)->first();
-        $iduser = $user->id;
-        $opcion = 1000000;
-        $id = 1;
-
-        Participacion::where('idusuario', $iduser)->where('idpregunta', $id)->where('opcion', $opcion)->delete();
-        
-/*        
-        if(isset($_POST['rectificacion']) && !empty($_POST['rectificacion']))
-        {
-            $r1 = $_POST['rectificacion'];
-            $l1 = '.';
-            $l2 = '-';        
-            //Obtener el id de la opción(Si se rectifica o no)
-            $o1 = explode($l1, $r1);
-            $rct = $o1[0];
-            $r2 = $o1[1];
-            //Obtener el id de la votación y de la opción que se voto para quitar el voto anterior
-            $o2 = explode($l2, $r2);
-            $id = $o2[0];
-            $idop = $o2[1];
-
-            if($rct == 1)
-            {
-                $votacion = Pregunta::find($id);
-                $date = date('Y-m-d H:i:s');
-                $tiempo_ini = $votacion->fechaComienzo;
-                $tiempo_fin = $votacion->fechaFin;
-
-                if($date > $tiempo_ini && $date < $tiempo_fin)
-                {
-                    //Decrementar el voto anterior
-                    $rec = $votacion->recuento;
-                    $opciones = json_decode($rec, true);
-                    $json = $votacion->opciones;
-                    $ops = json_decode($json, true);
-
-                    $opciones['votos'][$idop]--;
-                    $s = json_encode($opciones);
-                    $votacion->recuento = $s;
-                    $votacion->save();
-
-                   return redirect('accesovotaciones')->with('ops', $ops['opciones'])->with('id', $id);
-                }else
-                {
-                    return "Votación finalizada";
-                }
-            }else
-            {
-                return redirect('accesovotaciones');
-            }
-        }
-       
-    }
-*/
