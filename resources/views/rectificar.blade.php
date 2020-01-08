@@ -7,12 +7,13 @@
             <div class="col-12 col-md-5">
                 <form method="POST" action="{{url('/rectificar')}}">
                     @csrf
-                    <label>Desea rectificar su voto</label>
-                    <select class="form-control" id="rectificacion" name="rectificacion">
-                        <option value="1.{{$id}}-{{$idopcion}}">Sí</option>
-                        <option value="2.{{$id}}-{{$idopcion}}">No</option>
+                    <h3>{{$pregunta}}</h3>
+                    <select class="form-control" id="respuesta" name="respuesta">
+                    @foreach($ops as $p)
+                        <option value="{{$loop->index}}.{{$id}}">{{$p}}</option>
+                    @endforeach
                     </select>
-                    <button class="btn btn-primary" type="submit">Enviar</button>
+                    <button class="btn btn-primary" type="submit">Votar</button>
                 </form>
             </div>
         </div>

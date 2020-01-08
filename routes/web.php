@@ -29,24 +29,13 @@ Route::group(
         Route::post('resultados','ResultadosController@mostrarResultado')->name('resultado.post');
         Route::get('accesovotaciones', 'AccesoVotaciones@index')->name('accesovotaciones');
 
-        Route::get('opciones/{id?}/{tiempo_ini?}/{tiempo_fin?}', 'AccesoVotaciones@enviar');
-
-        Route::get('preguntasrestringidas', 'AccesoVotaciones@Vistapr');
-        Route::get('preguntasrestringidas', 'AccesoVotaciones@preguntasRestringidas');
-
-        Route::get('preguntasnorestringidas', 'AccesoVotaciones@Vistapnr');
-        Route::get('preguntasnorestringidas', 'AccesoVotaciones@preguntasNoRestringidas');
-
-        Route::get('consultas', 'AccesoVotaciones@Vistapnr');
-        Route::get('consultas', 'AccesoVotaciones@preguntasNoRestringidas');
-
-        Route::get('elecciones', 'AccesoVotaciones@Vistapnr');
-        Route::get('elecciones', 'AccesoVotaciones@preguntasNoRestringidas');
+        Route::get('opciones/{id?}{pregunta?}', 'AccesoVotaciones@enviar');
 
         Route::post('opciones', 'AccesoVotaciones@guardaropcion');
-        Route::get('rectificar/id', 'AccesoVotaciones@guardaropcion');
+        Route::post('rectificar', 'AccesoVotaciones@guardaropcion');        
+//        Route::get('rectificar/id', 'AccesoVotaciones@guardaropcion');
 
-        Route::post('rectificar', 'AccesoVotaciones@rectificar');
+        Route::get('rectificar/{id?}{pregunta?}', 'AccesoVotaciones@rectificarvoto');
     });
 
 
@@ -83,6 +72,3 @@ Route::view('/', 'index');
 Route::view('/accesibilidad', 'legal/accesibilidad');
 Route::view('/avisolegal', 'legal/avisolegal');
 Route::view('/cookies', 'legal/cookies');
-
-
-

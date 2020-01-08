@@ -26,6 +26,7 @@
 	</head>
 	<body>
 		@include('layouts/header')
+		@include('message')
 		@yield('content')
 		
 		@include('layouts/footer')
