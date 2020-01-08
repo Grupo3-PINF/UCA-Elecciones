@@ -57,10 +57,12 @@
 		<div class="col-12 col-md-6" id="grupos-no-ponderados">
 			<div class="form-group">
 				<label>Grupos no ponderados</label>
-				<p>¿Se va a poder ejercer la votación en múltiples grupos?
-					<input type="checkbox" name="multiGrupo">
+				<p>
+					¿Pueden los usuarios pertenecientes a mas de un grupo emitir un voto por cada uno de sus grupos?
+					<label><input class="test2" type="checkbox" name="multiGrupo">Si</label>
+					<label><input class="test2" type="checkbox" name="noMultiGrupo">No</label>
 				</p>
-				<p>¿Los votantes pertenecientes a mas de un grupo podran adscribirse al grupo que quieran votar?
+				<p class="d-none" id="ads">¿Los votantes pertenecientes a mas de un grupo podran adscribirse al grupo que quieran votar?
 					<input type="checkbox" name="adscripcion">
 				</p>
 				<p>¿Se va votar a un porcentaje de candidatos o a un numero determinado? (Selecciona una opcion.)
@@ -121,8 +123,8 @@
 				'adscripcion': $('input[name=adscripcion]').is(':checked'),
 				'pon-por': $('input[name=pon-por]').prop('checked'),
 				'pon-num': $('input[name=pon-num]').prop('checked'),
-				'porCan':$('input[name=porCan').val(),
-				'numCan':$('input[name=numCan').val(),
+				'porCan': $('input[name=porCan').val(),
+				'numCan': $('input[name=numCan').val(),
 				'doblevoto': $('input[name=doblevoto]').is(':checked')
 			},
 			success: function(response) {
@@ -278,5 +280,24 @@
 
 	$('.test1').change(function() {
 		$('.test1').not(this).prop('checked', false);
+	});
+
+	$('input[name=noMultiGrupo]').change(function() {
+		if ($(this).prop("checked")) {
+			$('#ads').removeClass('d-none');
+		} else {
+			$('#ads').addClass('d-none');
+		}
+	});
+
+	$('input[name=multiGrupo]').change(function() {
+		if ($(this).prop("checked")) {
+			$('#ads').addClass('d-none');
+			$('input[name=adscripcion]').prop("checked", false);
+		}
+	});
+
+	$('.test2').change(function() {
+		$('.test2').not(this).prop('checked', false);
 	});
 </script>
