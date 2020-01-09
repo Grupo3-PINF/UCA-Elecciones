@@ -1,7 +1,7 @@
 <div id="steps-pregunta" class="hide">
 	<div class="row">
 	<div class="row" id="input-pregunta">
-		<div class="col-12">
+		<div class="col-12 px-4">
 			<h5>Pregunta</h5>
 			<div class="form-group">
 				<label>Título</label>
@@ -9,7 +9,7 @@
 				<input class="form-control" type="text" name="titulo-pregunta" placeholder="Ponga título a su pregunta">
 			</div>
 		</div>
-		<div class="col-12 col-md-4">
+		<div class="col-12 col-md-4 px-4">
 			<div class="form-group">
 				<label>Grupos con permiso para votar</label>
 				<p>Censos que pueden participar en esta pregunta.</p>
@@ -18,21 +18,42 @@
 				<input type="hidden" name="buscador-grupos">
 			</div>
 		</div>
-		<div class="col-12 col-md-8">
+		<div class="col-12 col-md-8 px-4">
 			<div class="form-group">
 				<label>Lista de grupos</label>
 				<p>Grupos participantes en la votación, click para eliminar.</p>
 				<div class="w-100" id="grupos-div-pregunta"></div>
 			</div>
 		</div>
-		<div class="col-12 col-md-4">
+		<div class="col-12 col-md-4 px-4">
 			<div class="form-group">
 				<label>Fecha de la votación</label>
 				<p>Fecha de la votación en formato dd/mm/yyyy H:i</p>
 				<input class="form-control" type="datetime-local" name="fecha-pregunta">
 			</div>
 		</div>
-		<div class="col-12 col-md-4">
+		<div class="col-12 col-md-4 px-4">
+			<div class="form-group">
+				<label>Votación secreta</label>
+				<p>Las votaciones realizadas serán públicas o no. En una votación secreta el voto es irreversible.</p>
+				<input type="checkbox" name="secreta-pregunta">
+			</div>
+		</div>
+		<div class="col-12 col-md-4 px-4">
+			<div class="form-group">
+				<label>Tiempo real</label>
+				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
+				<input type="checkbox" name="compleja-pregunta">
+			</div>
+		</div>
+		<div class="col-12 col-md-4 px-4">
+			<div class="form-group">
+				<label>Tiempo de votación (minutos)</label>
+				<p>Tiempo máximo para realizar la votación una vez abierta</p>
+				<input class="form-control" type="number" value="1" name="tiempo-pregunta">
+			</div>
+		</div>
+		<div class="col-12 col-md-4 px-4">
 			<div class="form-group">
 				<label>Pregunta compleja</label>
 				<p>Por defecto, las respuestas serán sí, no o abstenerse. Que sea compleja permite editar las posibles respuestas.</p>
@@ -45,43 +66,20 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-12 col-md-4">
-			<div class="form-group">
-				<label>Tiempo real</label>
-				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
-				<input type="checkbox" name="compleja-pregunta">
-			</div>
-		</div>
-		<div class="col-12 col-md-4">
-			<div class="form-group">
-				<label>Tiempo de votación (minutos)</label>
-				<p>Tiempo máximo para realizar la votación una vez abierta</p>
-				<input class="form-control" type="number" value="1" name="tiempo-pregunta">
-			</div>
-		</div>
-		<div class="col-12 col-md-3">
+		<div class="col-12 col-md-4 px-4">
 			<div class="form-group">
 				<label>Votación anticipada</label>
 				<p>Permite seleccionar una fecha de votación anticipada mediante un calendario.</p>
 				<input type="checkbox" name="anticipada-pregunta">
 			</div>
 		</div>
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label>Votación secreta</label>
-				<p>Las votaciones realizadas serán públicas o no. En una votación secreta el voto es irreversible.</p>
-				<input type="checkbox" name="secreta-pregunta">
-			</div>
-		</div>
-		<div class="col-12 col-md-6">
-		</div>
-		<div class="col-12 col-md-6" id="fecha-anticipada-pregunta">
+		<div class="col-12 col-md-6 px-4" id="fecha-anticipada-pregunta">
 			<div class="form-group">
 				<label>Fecha votación anticipada</label>
 				<input class="form-control" type="datetime-local" name="fecha-anticipada-pregunta">
 			</div>
 		</div>
-		<div class="col-12 col-md-6" id="participantes-anticipada-pregunta">
+		<div class="col-12 col-md-6 px-4" id="participantes-anticipada-pregunta">
 			<div class="form-group">
 				<label>Participantes de votación anticipada</label>
 				<input class="form-control" type="text" name="participantes-anticipada-pregunta">
