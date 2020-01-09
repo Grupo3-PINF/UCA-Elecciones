@@ -110,6 +110,7 @@ class CrearVotacionController extends Controller
         $pregunta->esVinculante = $request->input('es-secreta') == "true" ? true : false;
         $pregunta->esCompleja = $request->input('es-compleja') == "true" ? true : false;
         $pregunta->esRestringida = $request->input('es-secreta') == "true" ? true : false;
+        $pregunta->esTiempoReal = $request->input('es-tiempo-real') == "true" ? true : false;
         
         $pregunta->fechaComienzo = $fechaIni;
         $pregunta->fechaFin = $fechaFin;

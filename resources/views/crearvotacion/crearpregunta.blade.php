@@ -43,7 +43,7 @@
 			<div class="form-group">
 				<label>Tiempo real</label>
 				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
-				<input type="checkbox" name="compleja-pregunta">
+				<input type="checkbox" name="tiempo-real-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-4 px-4">
@@ -175,6 +175,7 @@
 				'fecha-inicio': $('input[name=fecha-pregunta]').val(),
 				'tiempo-pregunta': $('input[name=tiempo-pregunta]').val(),
 				'es-anticipada': $('input[name=anticipada-pregunta]').is(':checked'),
+				'es-tiempo-real': $('input[name=tiempo-real-pregunta]').is(':checked'),
 				'es-secreta': $('input[name=secreta-pregunta]').is(':checked'),
 				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val()
 			},
