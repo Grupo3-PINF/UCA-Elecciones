@@ -100,8 +100,11 @@ class CrearVotacionController extends Controller
         $esCompleja = $request->input('es-compleja') == "true" ? true : false;
         if ($esCompleja) {
             $opciones = json_encode(["opciones"=>$request->input('opciones-compleja')]);
+            $n = count($request->input('opciones-compleja'));
+            $recuento = json_encode(['votos'=>array_fill(0, $n, 0)]);
         } else {
             $opciones = json_encode(["opciones"=>["Si","No","Abstencion"]]);
+            $recuento = json_encode(['votos' => [0, 0, 0]]);
         }
 
         $pregunta = new Pregunta;
@@ -137,9 +140,6 @@ class CrearVotacionController extends Controller
             'status' => true,
             'mensaje' => "Pregunta creada correctamente"
         ]);
-        
-        // mientras no tenemos ajax, devolvemos una vista
-        // return view('crearvotacion')->with('mensaje',$mensaje);
     }
 
     public function crearEleccion(Request $request)
