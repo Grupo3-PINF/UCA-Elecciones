@@ -31,21 +31,22 @@
 			</div>
 			@if (Auth::check())
 			<div class="col-3 offset-4 hide-desktop">
-				<button class="hamburger hamburger--elastic js-hamburguer navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse" id="hamburger-menu">
+				<button class="hamburger hamburger--elastic js-hamburguer navbar-toggle is-active" type="button" data-toggle="collapse" data-target=".navbar-collapse" id="hamburger-menu">
 			        <span class="hamburger-box">
 			            <span class="hamburger-inner"></span>
 			        </span>
 			    </button>
 			</div>
-			<div class="collapse navbar-collapse hide-desktop" id="burger-div">
+			<div class="collapse show navbar-collapse hide-desktop" id="burger-div">
 				<ul class="list-group">
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "secretario")
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
+						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/borrarvotacion') ? 'active' : ''}}" href="{{url ('/borrarvotacion') }}">Borrar votacion</a></li>
 					@endif
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "administrador")
 						<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
 					@endif
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
+					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="{{url ('/accesovotaciones') }}">Votar</a></li>
 					<li class="list-group-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
 				</ul>
 			</div>
@@ -53,11 +54,12 @@
 				<ul class="nav">
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "secretario")
 						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/crearvotacion') }}">Crear votacion</a></li>
+						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/crearvotacion') ? 'active' : ''}}" href="{{url ('/borrarvotacion') }}">Borrar votacion</a></li>
 					@endif
 					@if(Session::has('rolusuario') && Session::get('rolusuario') == "administrador")
 						<li class="nav-item"><a class="nav-link {{Request::url() === url ('/roles') ? 'active' : ''}}" href="{{url ('/roles') }}">Roles y grupos</a></li>
 					@endif
-					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="accesovotaciones">Votar</a></li>
+					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/accesovotaciones') ? 'active' : ''}}" href="{{url ('/accesovotaciones') }}">Votar</a></li>
 					<li class="nav-item"><a class="nav-link {{Request::url() === url ('/resultados') ? 'active' : ''}}" href="{{url ('/resultados') }}">Resultados</a></li>
 				</ul>
 
