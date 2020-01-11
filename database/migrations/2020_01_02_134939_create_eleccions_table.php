@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateEleccionsTable extends Migration
 {
     /**
@@ -13,35 +11,40 @@ class CreateEleccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('elecciones', function (Blueprint $table) {
+            Schema::create('elecciones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('idCreador')->nullable();
+            $table->string('titulo');
             
             // para la blockchain
             $table->string('wallet')->unique()->nullable();
-
+            /**
+             * {
+             *  opciones: ["Palomitas saladas", "Palomitas dulces"]
+             * }
+             */
             $table->json('candidatos')->nullable();
             $table->json('grupos')->nullable();
-
             $table->dateTime('fechaInicio');
             $table->dateTime('fechaFin');
-            
+            /**
+             * {
+             *  votos: [1, 2, 54, 3232...]
+             * }
+             */
+            $table->json('recuento')->nullable();
             $table->string('tipoEleccion');
             // si grupos no ponderamos
             $table->boolean('multiGrupo')->default(false); // solo un grupo o multiple
             $table->boolean('adscripcion')->default(false); // si/no
             $table->string('tipoPon')->nullable();
             $table->integer('ponNum')->nullable();
-            // si cargos unipersonales
-            
+            // si cargos unipersonales           
             $table->boolean('dobleVoto')->default(false);
-
             $table->timestamps();
-
         });
     }
     
-
     /**
      * Reverse the migrations.
      *
