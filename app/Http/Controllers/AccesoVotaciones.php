@@ -18,8 +18,11 @@ class AccesoVotaciones extends Controller
 {
     public function index()
     {
-        return view('accesovotaciones');
+        $date = date('Y-m-d H:i:s');
+        $pnr = Pregunta::where('fechaComienzo','<',$date)->where('fechaFin','>',$date)->get();
+        return view('accesovotaciones')->with('pnr',$pnr);
     }
+    /*
     public function Vistapr()
     {
         return view('preguntasrestringidas');
@@ -28,6 +31,8 @@ class AccesoVotaciones extends Controller
     {
         return view('preguntasnorestringidas');
     }
+    */
+    /*
     public function preguntasNoRestringidas()
     {
         $pnr = Pregunta::where('esRestringida', false)->get();
@@ -40,6 +45,8 @@ class AccesoVotaciones extends Controller
         }
         return view('preguntasnorestringidas')->with('pnr', $array);
     }
+    */
+    /*
     public function preguntasRestringidas()
     {
         $pr = Pregunta::where('esRestringida', true)->get();
@@ -53,6 +60,7 @@ class AccesoVotaciones extends Controller
         
         return view('preguntasrestringidas')->with('pr', $array);
     }
+    */
     public function mostrarElecciones()
     {
 
@@ -153,16 +161,17 @@ class AccesoVotaciones extends Controller
                     //return view('rectificar')->with('id', $id)->with('idopcion', $idopcion);
                     /*Le pasamos la opcion que voto para que si le da a rectificar
                       quitar el voto que ya se sumo*/
-                    return redirect('/');
+                    return view('opciones')->with('exito',1);
 
-                }else
+                }
+                else
                 {
-                    return redirect('/');
+                    return view('opciones')->with('exito',1);
                 }               
-            }else
+            }
+            else
             {
-                echo 'ya has votado';
-                return redirect('accesovotaciones');
+                return view('opciones')->with('votado',1);
             }
         }
     }

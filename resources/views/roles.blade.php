@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Introduzca el un nombre de usuario. (uxxxxxxx)</label>
+                            <label>Introduzca un nombre de usuario. (uxxxxxxx)</label>
                             <input class="form-control" type="text" id="loginroles" placeholder="Username (login)">
                             <button id="bmostrar-roles" type="button" class="btn btn-primary">Mostrar roles</button>
                         </div>

@@ -298,22 +298,22 @@ footer a:hover {
 
 /* Roles */
 
-#roles table, #preguntasrestringidas table, #preguntasnorestringidas table {
+#roles table, #accesovotaciones table {
 	margin: 20px 0;
 }
 
-#roles table th, #preguntasrestringidas table th, #preguntasnorestringidas table th {
+#roles table th, #accesovotaciones table th {
 	background: #607D8B;
 	color: white;
 	text-transform: uppercase;
 }
 
-#roles table td, #preguntasrestringidas table td, #preguntasnorestringidas table td {
+#roles table td, #accesovotaciones table td {
 	background: #CFD8DC;
 	border-top: 1px solid #455A64;
 }
 
-#preguntasrestringidas table a, #preguntasnorestringidas table a {
+#accesovotaciones table a {
 	color: #607D8B !important;
 	text-transform: uppercase;
 	font-size: 14px;
@@ -358,6 +358,13 @@ footer a:hover {
 /* Media query movil */
 
 @media (max-width: 600px) {
+
+	#header {
+		position: sticky !important;
+		top: 0;
+		z-index: 100;
+	}
+
 	#header h1 {
 		margin-top: 10px;
 		font-size: 30px;
@@ -372,6 +379,11 @@ footer a:hover {
 		float: none;
 	}
 
+	#sub-header {
+		position: sticky !important;
+		top: 0;
+		z-index: 1000;
+	}
 
 	#sub-header h2 {
 		margin-top: 5px;
