@@ -24,7 +24,6 @@ Route::group(
         {
             return view('index');
         });
-        Route::get('/api', 'apiController@API');
         Route::get('resultados','ResultadosController@view')->name('resultados');
         Route::post('resultados','ResultadosController@mostrarResultado')->name('resultado.post');
         Route::get('accesovotaciones', 'AccesoVotaciones@index')->name('accesovotaciones');
