@@ -224,15 +224,33 @@ class CrearVotacionController extends Controller
                 }
             }
         } else if($request->input('tipo-eleccion') == "Cargos unipersonales") {
-            return response()->json([
-                'status' => false,
-                'mensaje' => "",
-            ]);
+            $arr_aux = json_encode($request->grupos);
+            $arr_grupos = json_decode($arr_aux);
+            $sum = 0;
+            $zeros = 0;
+            foreach($arr_grupos as $obj){
+                $sum = $sum + $obj->ponderacion;
+                if($obj->ponderacion == 0) $zeros++;
+            }
+            if($sum > 100) {
+                return response()->json([
+                    'status' => false,
+                    'sum' => $sum,
+                    'mensaje' => "La ponderacion es incorrecta",
+                ]);
+            }
+            if($sum < 100){
+                $resto = 100 - $sum;
+                $pond = $resto / $zeros;
+                foreach($arr_grupos as $obj){
+                    if($obj->ponderacion == 0)
+                        $obj->ponderacion = $pond;
+                }
+            }
         }
 
         $eleccion = new Eleccion;
 
-        $eleccion->grupos = json_encode(['grupos' => $request->grupos]);
         $eleccion->candidatos = json_encode(['candidatos' => $request->candidatos]);
 
         $eleccion->fechaInicio = $fechaIni;
@@ -244,9 +262,12 @@ class CrearVotacionController extends Controller
             $eleccion->tipoPon = $ponderacion;
             $eleccion->ponNum = $ponNum;
             $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+            $eleccion->grupos = json_encode(['grupos' => $request->grupos]);
         }else if($request->input('tipo-eleccion') == "Cargos unipersonales"){
             $eleccion->tipoEleccion = $request->input('tipo-eleccion');
+            $eleccion->grupos = json_encode($arr_grupos);
         }else {
+            $eleccion->grupos = json_encode(['grupos' => $request->grupos]);
             $eleccion->tipoEleccion = $request->input('tipo-eleccion');
         }
 
@@ -268,19 +289,6 @@ class CrearVotacionController extends Controller
     public function mandarCandidatos() {
         $candidatos = User::all('nombre','apellido','identificador');
         return response()->json(['candidatos' => $candidatos]);
-    }
-
-    // Creo que esto ya no hace falta.
-    public function crearVotacion(Request $request)
-    {
-        switch($request->input('eleccion-1')) {
-            case 'pregunta':
-                return $this->crearPregunta($request);
-            break;
-            case 'eleccion':
-                return $this->crearEleccion($request);
-            break;
-        }
     }
 
     public function seleccionVotacion(Request $request)

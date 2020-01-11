@@ -84,6 +84,19 @@
 		<div class="col-12" id="cargos-unipersonales">
 			<div class="form-group">
 				<label>Cargos unipersonales</label>
+				<p>
+					Si deja en blanco la ponderacion de algun grupo, se le asignará una ponderacion por defecto.
+				</p>
+				<table id="example" class="display" style="width:100%">
+					<thead>
+						<tr>
+							<th>Grupo</th>
+							<th>Ponderacion(%)</th>
+						</tr>
+					</thead>
+					<tbody id="ponGrup"></tbody>
+				</table>
+				<a onclick="ponderarGrupos()" class="btn btn-secondary d-none" id="button-ponderar">Ponderar</a>
 			</div>
 		</div>
 		<div class="col-12">
@@ -179,18 +192,33 @@
 		$('#button-groups-elecciones').click(function() {
 			let nombre = $('select[name=grupos-eleccion] option:selected').text();
 			let id = $('select[name=grupos-eleccion]').val();
-			let html = '<input class="input-div-caja-eleccion" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputEleccion(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
-			if (!$("#grupos-div-eleccion input[name=grupo-" + id + "]").length)
+			let pon = 0;
+			let html = '<input class="input-div-caja-eleccion" type="text" name="grupo-' + id + '-ponderacion-' + pon + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputEleccion(\'' + id + '\',\'grupo\',\'' + pon + '\')"><i class="fas fa-window-close"></i></a>';
+			let html2 = '<tr id="tr-' + id + '" ><td>' + nombre + '</td><td><input type="text" class="input-ponderacion" name="pon-' + pon + '"></td></tr>';
+			$('#button-ponderar').removeClass('d-none');
+			console.log("Hola");
+			if (!$("#grupos-div-eleccion input[name=grupo-" + id + "-ponderacion-" + pon + "]").length) {
 				$('#grupos-div-eleccion').append(html);
+				$('#ponGrup').append(html2);
+			}
 		});
 	}
+
 
 	function guardarGruposElecciones() {
 		let arr = [];
 		let container = document.querySelectorAll('.input-div-caja-eleccion');
+		let arr_json = [];
 		for (let i = 0; i < container.length; i++) {
-			arr.push(container[i].getAttribute('name').replace('grupo-', ''));
-		}
+			let aux = container[i].getAttribute('name').replace('grupo-', '');
+			let grupo = aux.replace(/-.+/, '');
+			let ponderacion = aux.replace(/.+-/, '');
+			arr_json = {
+				"grupo": grupo,
+				"ponderacion": ponderacion
+			};
+			arr.push(arr_json);
+		};
 		return arr;
 	}
 
@@ -238,9 +266,42 @@
 		return arr;
 	}
 
-	function borrarInputEleccion(nombre, tipo) {
-		$('input[name=' + tipo + '-' + nombre + ']').remove();
-		$('a[name=borrar-' + nombre + ']').remove();
+	function borrarInputEleccion(nombre, tipo, pon) {
+		if (tipo == 'grupo') {
+			$('input[name=' + tipo + '-' + nombre + '-ponderacion-' + pon + ']').remove();
+			$('#tr-' + nombre + '').remove();
+			$('a[name=borrar-' + nombre + ']').remove();
+			let container = document.querySelectorAll('.input-div-caja-eleccion');
+			if (container.length == 0) {
+				$('#button-ponderar').addClass('d-none');
+			}
+		} else {
+			$('input[name=' + tipo + '-' + nombre + ']').remove();
+			$('a[name=borrar-' + nombre + ']').remove();
+		}
+	}
+
+	function ponderarGrupos() {
+		console.log("losmuetos");
+		let grupos = document.querySelectorAll('.input-div-caja-eleccion');
+		let ponderaciones = document.querySelectorAll('.input-ponderacion');
+		console.log("losmuetos2");
+		for (let i = 0; i < grupos.length; ++i) {
+			console.log("losmuetos3");
+			let pon = ponderaciones[i].value;
+			console.log("pon: " + pon);
+			let aux = grupos[i].getAttribute('name').replace('grupo-', '');
+			let grupo = aux.replace(/-.+/, '');
+			let grupoPon = aux.replace(/.+-/, '');
+			if (pon != 0) {
+				console.log("estoy aqui");
+				$('input[name=grupo-' + grupo + '-ponderacion-' + grupoPon + ']').attr("name", 'grupo-' + grupo + '-ponderacion-' + pon + '');
+				$('a[name=borrar-' + grupo + ']').attr("onclick", 'borrarInputEleccion(\'' + grupo + '\',\'grupo\',\'' + pon + '\')');
+			} else {
+				$('input[name=grupo-' + grupo + '-ponderacion-' + grupoPon + ']').attr("name", 'grupo-' + grupo + '-ponderacion-' + 0 + '');
+				$('a[name=borrar-' + grupo + ']').attr("onclick", 'borrarInputEleccion(\'' + grupo + '\',\'grupo\',\'' + 0 + '\')');
+			}
+		}
 	}
 
 	$(document).ready(function() {
