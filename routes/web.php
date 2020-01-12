@@ -27,26 +27,24 @@ Route::group(
         Route::get('/api', 'apiController@API');
         Route::get('resultados','ResultadosController@view')->name('resultados');
         Route::post('resultados','ResultadosController@mostrarResultado')->name('resultado.post');
+
+        //Acceder a la vista con todas las preguntas y elecciones
         Route::get('accesovotaciones', 'AccesoVotaciones@index')->name('accesovotaciones');
 
-        Route::get('opciones/{id?}/{tiempo_ini?}/{tiempo_fin?}', 'AccesoVotaciones@enviar');
-
-        Route::get('preguntasrestringidas', 'AccesoVotaciones@Vistapr');
-        Route::get('preguntasrestringidas', 'AccesoVotaciones@preguntasRestringidas');
-
-        Route::get('preguntasnorestringidas', 'AccesoVotaciones@Vistapnr');
-        Route::get('preguntasnorestringidas', 'AccesoVotaciones@preguntasNoRestringidas');
-
-        Route::get('consultas', 'AccesoVotaciones@Vistapnr');
-        Route::get('consultas', 'AccesoVotaciones@preguntasNoRestringidas');
-
-        Route::get('elecciones', 'AccesoVotaciones@Vistapnr');
-        Route::get('elecciones', 'AccesoVotaciones@preguntasNoRestringidas');
-
+        //Llegar a la vista opciones para preguntas
+        Route::get('opciones/{id?}{pregunta?}', 'AccesoVotaciones@enviar');
+        //Hacer el post desde opciones para preguntas
         Route::post('opciones', 'AccesoVotaciones@guardaropcion');
-        Route::get('rectificar/id', 'AccesoVotaciones@guardaropcion');
 
-        Route::post('rectificar', 'AccesoVotaciones@rectificar');
+        //Llegar a la vista de rectificar para preguntas
+        Route::get('rectificar/{id?}{pregunta?}', 'AccesoVotaciones@rectificarvoto');
+        //Hacer el post desde rectificar para preguntas
+        Route::post('rectificar', 'AccesoVotaciones@guardaropcion');
+
+        //Llegar a la vista opciones para elecciones
+        Route::get('opciones_eleccion/{id?}{pregunta?}', 'AccesoVotaciones@enviar_elecciones');
+        //Hacer el post desde opciones para elecciones
+        Route::post('opciones_eleccion', 'AccesoVotaciones@guardaropcion_elecciones');
     });
 
 
@@ -83,6 +81,3 @@ Route::view('/', 'index');
 Route::view('/accesibilidad', 'legal/accesibilidad');
 Route::view('/avisolegal', 'legal/avisolegal');
 Route::view('/cookies', 'legal/cookies');
-
-
-
