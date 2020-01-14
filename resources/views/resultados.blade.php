@@ -22,6 +22,9 @@
                             @endforeach
                         @endisset
                     </select>
+                    <div id="mensaje-error" class="hide alert alert-danger">
+                        <p>No se ha encontrado ningún resultado.</p>
+                    </div>
                 <div id ="btn-primary"><a class="btn btn-primary">Enviar</a></div>
                 </form>
             </div>
@@ -54,28 +57,33 @@ $("#btn-primary").click(function(){
                         $("#div-resultado").toggleClass("hide"); //sin esta linea no va
                     }
 
-
-                        var ctxD = document.getElementById("doughnutChart").getContext('2d');
-                        var myLineChart = new Chart(ctxD, {
-                            type: 'doughnut',
-                            data: {
-                                labels: vector['opciones'],
-                                datasets: [{
-                                    data: vector['votos'],
-                                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-                                }]
-                            },
-                            options: {
-                                /*title: {
-                                    responsive: true,
-                                    display: true,
-                                    fontSize: 10,
-                                    text: vector['titulo'] // aquí va el titulo de la pregunta
-                                }*/
-                            }
-                        });
-
+                        if(vector['OK'] == 0) 
+                        {
+                            $('#mensaje-error').toggleClass('hide');
+                        }  
+                        else
+                        {
+                            var ctxD = document.getElementById("doughnutChart").getContext('2d');
+                            var myLineChart = new Chart(ctxD, {
+                                type: 'doughnut',
+                                data: {
+                                    labels: vector['opciones'],
+                                    datasets: [{
+                                        data: vector['votos'],
+                                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                                    }]
+                                },
+                                options: {
+                                    /*title: {
+                                        responsive: true,
+                                        display: true,
+                                         fontSize: 10,
+                                        text: vector['titulo'] // aquí va el titulo de la pregunta
+                                    }*/
+                              }
+                           });
+                        }
                         //$('#div-resultado h4').text(vector['titulo']);
                         /*
                     

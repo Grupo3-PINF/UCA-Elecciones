@@ -8,6 +8,8 @@ use Auth;
 use App\Pregunta;
 use App\Participacion;
 use App\User;
+use DateTime;
+
 class ResultadosController extends Controller
 {
 	public function openCon()
@@ -30,11 +32,11 @@ class ResultadosController extends Controller
 		if(isset($_POST) && !empty($_POST))
 		{
 			$id = $_POST['id'];
-			date_default_timezone_set('Europe/Madrid'); 
-			$date = date('d/m/Y h:i:s a', time());
+			$date = microtime();
 			$conn = $this->openCon();
 			$resultados = Pregunta::where('id', $id)->first(); //cambiar esto para que se asgure de coger el recuento
 			$votacion = Pregunta::find($id);
+			$ffin = Pregunta::where('id', $id)->value('fechaFin');
 			$vector = ["OK" => 1,
 				"titulo" => $resultados->titulo
 			];
@@ -47,60 +49,38 @@ class ResultadosController extends Controller
 			else{
 				$vector = array_merge($vector,json_decode($resultados->recuento,true));
 			}
-				//hay que sacar también el título de la pregunta para que la puedan mostrar en el chart
-				$finalizada = true;
-				if($votacion->esAnticipada == true)
+			$participaciones = Participacion::where('idpregunta', $id)->pluck('idusuario');
+			$participa = false;
+			$us = User::where('login',Session::get('idusuario'))->value('identificador');
+			foreach ($participaciones as $participacion) 
+			{
+				//var_dump($participacion, intval($us));
+				if($participacion == intval($us))
 				{
-					if($date <= $votacion->fechaFinAnticipada)
-					{
-						$finalizada = false;
-					}
+					$participa = true;
 				}
-				else
+			}	
+			//comprobaciones
+			if($date <= strtotime($ffin)) //si la votación no ha finalizado
+			{
+				if($votacion->esTiempoReal == false) //si no es en tiempo real F
 				{
-					if($date <= $votacion->fechaFin)
-					{
-						$finalizada = false;
-					}
-				}
-				if($finalizada == false)
+					$vector['OK'] = 0;
+				}	
+				//fin t real muestra antes
+				if($votacion->seMuestraAntes == false)
 				{
-					if($votacion->esTiempoReal == false)
-					{
+					if($participa == false) //si no ha participado F
+					{ 
 						$vector["OK"] = 0;
 					}
-					else 
-					{
-						if($votacion->seMuestraAntes == false)
-						{
-							$participaciones = Participacion::where('idpregunta', $id) -> pluck('idusuario');
-							$participa = false;
-							foreach ($participaciones as $participacion) 
-							{
-								if($participacion == $_SESSION['idusuario'])
-								{
-									$participa = true;
-								}
-							}
-							if($participa == false)
-							{ 
-								$vector["OK"] = 0;
-							}
-						}	
-					}
 				}
-				$this->closeCon($conn);
-				/*if($vector["OK"] == 0)
-				{
-					$vector["votos"] = 0;
-					$vector["opciones"] = 0;
-				}*/
-				$vector["OK"] == 1;
-				//dd($vector['votos']);
-				//$vector['OK'] = 1;
-				//$vector['opciones'] = ["culo", "caca", "pis"]; // lineas de prueba
-				//($vector['votos'] = [450,200,300];
-				return $vector;
+			}
+			if($votacion->esRestringida == true && $participa ==false) 
+				$vector["OK"] = 0;
+			
+			$this->closeCon($conn);
+			return $vector;
 		}
 	}
 	public function view()
