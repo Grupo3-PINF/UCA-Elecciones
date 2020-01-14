@@ -54,6 +54,23 @@
 	</div>
 </div>
 <script>
+	function consultaPregunta() {
+		mostrarProceso('pregunta');
+	}
+
+	function consultaEleccion() {
+		mostrarProceso('eleccion');
+	}
+
+	function consulta() {
+		let tipo = document.getElementById("tipo-consulta");
+		if (tipo.value === "pregunta") {
+			consultaPregunta();
+		} else if (tipo.value === "eleccion") {
+			consultaEleccion();
+		}
+	}
+
 	function mostrarProceso(tipo) {
 		$.ajax({
 			type: 'POST',
@@ -74,10 +91,6 @@
 						onload = recibirCandidatos();
 						$("#steps-pregunta").remove();
 						$("#steps-consulta").remove();
-					break;
-					case "consulta":
-						$("#steps-eleccion").remove();
-						$("#steps-pregunta").remove();
 					break;
 				}
 				
