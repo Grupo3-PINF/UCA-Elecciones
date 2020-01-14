@@ -241,12 +241,16 @@ footer a:hover {
 	font-weight: 600;
 }
 
-#crearvotacion .form-group input, #crearvotacion .form-group select, #crearvotacion .form-group textarea, #opciones select {
+#crearvotacion .form-group input, #crearvotacion .form-group select, #crearvotacion .form-group textarea, #opciones select, .show>.btn-light.dropdown-toggle, .btn-light, .btn-light:hover {
 	padding: 0 5px;
 	background-color: #e8f0fe;
 	border: 1px solid #607D8B;
 	color: black;
 	border-radius: 0px;
+}
+
+.btn-light {
+	padding: 5px !important;
 }
 
 #crearvotacion .form-group input[type=checkbox] {

@@ -6,9 +6,8 @@
 		<div class="col-12 col-md-4">
 			<div class="form-group">
 				<label>Candidatos para la elección</label>
-				<select class="form-control" name="candidatos-eleccion"></select>
-				<a onclick="anadirCandidatos();" class="btn btn-secondary" id="button-candidatos">Añadir</a>
-				<input type="hidden" name="buscador-candidatos">
+				<select data-live-search="true" class="form-control selectpicker" name="candidatos-eleccion"></select>
+				<a class="btn btn-secondary" id="button-candidatos">Añadir</a>
 			</div>
 		</div>
 		<div class="col-12 col-md-8">
@@ -20,8 +19,8 @@
 		<div class="col-12 col-md-4">
 			<div class="form-group">
 				<label>Grupos participantes</label>
-				<select class="form-control" name="grupos-eleccion"></select>
-				<a onclick="anadirGruposElecciones();" class="btn btn-secondary" id="button-groups-elecciones">Añadir</a>
+				<select data-live-search="true" class="form-control selectpicker" name="grupos-eleccion"></select>
+				<a class="btn btn-secondary" id="button-groups-elecciones">Añadir</a>
 			</div>
 		</div>
 		<div class="col-12 col-md-8">
@@ -119,6 +118,29 @@
 	</div>
 </div>
 <script>
+	$(document).ready(function() {
+		$('#button-groups-elecciones').click(function(e) {
+			let nombre = $('select[name=grupos-eleccion] option:selected').text();
+			let id = $('select[name=grupos-eleccion]').val();
+			let pon = 0;
+			let html = '<input class="input-div-caja-eleccion" type="text" name="grupo-' + id + '-ponderacion-' + pon + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputEleccion(\'' + id + '\',\'grupo\',\'' + pon + '\')"><i class="fas fa-window-close"></i></a>';
+			let html2 = '<tr id="tr-' + id + '" ><td>' + nombre + '</td><td><input type="text" class="input-ponderacion" name="pon-' + pon + '"></td></tr>';
+			$('#button-ponderar').removeClass('d-none');
+			if (!$("#grupos-div-eleccion input[name=grupo-" + id + "-ponderacion-" + pon + "]").length) {
+				$('#grupos-div-eleccion').append(html);
+				$('#ponGrup').append(html2);
+			}
+		});
+
+		$('#button-candidatos').click(function(e) {
+			let nombre = $('select[name=candidatos-eleccion] option:selected').text();
+			let id = $('select[name=candidatos-eleccion]').val();
+			let html = '<input class="input-div-caja-candidato" type="text" name="candidato-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputEleccion(\'' + id + '\',\'candidato\')"><i class="fas fa-window-close"></i></a>';
+			if (!$("#candidatos-div-eleccion input[name=candidato-" + id + "]").length)
+				$('#candidatos-div-eleccion').append(html);
+		});
+	});
+
 	function crearEleccion() {
 		let grupos = guardarGruposElecciones();
 		let candidatos = guardarCandidatos();
@@ -177,33 +199,17 @@
 					if (typeof grupos[i] != "undefined") {
 						let nombre = grupos[i].nombre;
 						let id = grupos[i].id;
-						let html = '<option value="' + id + '">' + nombre + '</option>';
+						let html = '<option data-tokens="' + nombre + '" value="' + id + '">' + nombre + '</option>';
 						$('select[name=grupos-eleccion]').append(html);
 					}
 				}
+				$('select[name=grupos-eleccion]').selectpicker('refresh');
 			},
 			error: function(error) {
 				console.error(error)
 			}
 		})
 	}
-
-	function anadirGruposElecciones() {
-		$('#button-groups-elecciones').click(function() {
-			let nombre = $('select[name=grupos-eleccion] option:selected').text();
-			let id = $('select[name=grupos-eleccion]').val();
-			let pon = 0;
-			let html = '<input class="input-div-caja-eleccion" type="text" name="grupo-' + id + '-ponderacion-' + pon + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputEleccion(\'' + id + '\',\'grupo\',\'' + pon + '\')"><i class="fas fa-window-close"></i></a>';
-			let html2 = '<tr id="tr-' + id + '" ><td>' + nombre + '</td><td><input type="text" class="input-ponderacion" name="pon-' + pon + '"></td></tr>';
-			$('#button-ponderar').removeClass('d-none');
-			console.log("Hola");
-			if (!$("#grupos-div-eleccion input[name=grupo-" + id + "-ponderacion-" + pon + "]").length) {
-				$('#grupos-div-eleccion').append(html);
-				$('#ponGrup').append(html2);
-			}
-		});
-	}
-
 
 	function guardarGruposElecciones() {
 		let arr = [];
@@ -236,25 +242,16 @@
 						let nombre = candidatos[i].nombre;
 						let apellido = candidatos[i].apellido;
 						let identificador = candidatos[i].identificador;
-						let html = '<option value="' + identificador + '">' + nombre + ' ' + apellido + '</option>';
+						let html = '<option data-tokens="' + nombre + " " + apellido + '" value="' + identificador + '">' + nombre + ' ' + apellido + '</option>';
 						$('select[name=candidatos-eleccion]').append(html);
 					}
 				}
+				$('select[name=candidatos-eleccion]').selectpicker('refresh');
 			},
 			error: function(error) {
 				console.error(error)
 			}
 		})
-	}
-
-	function anadirCandidatos() {
-		$('#button-candidatos').click(function() {
-			let nombre = $('select[name=candidatos-eleccion] option:selected').text();
-			let id = $('select[name=candidatos-eleccion]').val();
-			let html = '<input class="input-div-caja-candidato" type="text" name="candidato-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputEleccion(\'' + id + '\',\'candidato\')"><i class="fas fa-window-close"></i></a>';
-			if (!$("#candidatos-div-eleccion input[name=candidato-" + id + "]").length)
-				$('#candidatos-div-eleccion').append(html);
-		});
 	}
 
 	function guardarCandidatos() {
