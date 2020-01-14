@@ -55,7 +55,11 @@
 </div>
 <script>
 	function consultaPregunta() {
+		const tiempoReal = document.getElementById("tiempo-consulta").checked;
 		mostrarProceso('pregunta');
+		let nuevoCheckbox = document.getElementById("tiempo-real-pregunta");
+		nuevoCheckbox.checked = tiempoReal;
+		nuevoCheckbox.disabled = true;
 	}
 
 	function consultaEleccion() {
