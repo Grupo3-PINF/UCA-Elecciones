@@ -36,7 +36,7 @@
 			<div class="form-group">
 				<label>Votación secreta</label>
 				<p>Las votaciones realizadas serán públicas o no. En una votación secreta el voto es irreversible.</p>
-				<input type="checkbox" name="secreta-pregunta">
+				<input type="checkbox" name="secreta-pregunta" id="secreta-pregunta">
 			</div>
 		</div>
 		<div class="col-12 col-md-4 px-4">
