@@ -23,11 +23,12 @@
 									<td><button type="button" class="btn btn-primary" id="{{('pregunta'.$p->id)}}">Eliminar</button>
 									<script type="text/javascript">
 										$(document).ready(function(){
+											console.log("bro")
 											$("#{{('pregunta'.$p->id)}}").click(function(){
 												var data = "{{$p->id}}"
 												$.ajax({
-													url:'{{route('borrarvotacion.borrarP')}}',
-													data:{"pregunta":data,"_token": "{{ csrf_token() }}"},
+													url:'{{route('borrarvotacion.borrar')}}',
+													data:{"pregunta":data,"_token": "{{ csrf_token() }}","tipo":"pregunta"},
 													type: 'POST',
 													success: function(response) {
 														alert(response);
@@ -45,7 +46,7 @@
 					@endif
 				<h3>ELECCIONES ABIERTAS</h3>
 				@if(count($elecciones) < 1)
-					<p>En estos momentos no hay preguntas abiertas</p>
+					<p>En estos momentos no hay elecciones abiertas</p>
 				@else
 					<table class="table">
 						<thead>
@@ -64,8 +65,8 @@
 										$("#{{('eleccion'.$e->id)}}").click(function(){
 											var data = "{{$e->id}}"
 											$.ajax({
-												url:'{{route('borrarvotacion.borrarE')}}',
-												data:{"eleccion":data,"_token": "{{ csrf_token() }}"},
+												url:'{{route('borrarvotacion.borrar')}}',
+												data:{"eleccion":data,"_token": "{{ csrf_token() }}","tipo":"eleccion"},
 												type: 'POST',
 												success: function(response) {
 													alert(response);

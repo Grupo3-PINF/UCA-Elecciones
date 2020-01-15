@@ -160,9 +160,38 @@
 		return arr;
 	}
 
+	function navDetect() { 
+		if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+		{
+			return 'Opera';
+		}
+		else if(navigator.userAgent.indexOf("Chrome") != -1 )
+		{
+			return 'Chrome';
+		}
+		else if(navigator.userAgent.indexOf("Safari") != -1)
+		{
+			return 'Safari'
+		}
+		else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+		{
+			return 'Firefox';
+		}
+		else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+		{
+			return 'IE' 
+		}  
+		else 
+		{
+			return 'unknown'
+		}
+    }
+
 	function crearPregunta() {
+		
 		let grupos = guardarGruposPregunta();
 		let opciones = obtenerOpciones();
+		let nav = navDetect();
 		$.ajax({
 			type: 'POST',
 			url: "crearvotacion/crearPregunta",
@@ -177,7 +206,8 @@
 				'es-anticipada': $('input[name=anticipada-pregunta]').is(':checked'),
 				'es-tiempo-real': $('input[name=tiempo-real-pregunta]').is(':checked'),
 				'es-secreta': $('input[name=secreta-pregunta]').is(':checked'),
-				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val()
+				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val(),
+				'navegador' : nav
 			},
 			success: function(response) {
 				console.log(response.status);

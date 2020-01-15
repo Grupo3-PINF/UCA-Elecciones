@@ -123,9 +123,36 @@
 	</div>
 </div>
 <script>
+	function navDetect() { 
+		if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) 
+		{
+			return 'Opera';
+		}
+		else if(navigator.userAgent.indexOf("Chrome") != -1 )
+		{
+			return 'Chrome';
+		}
+		else if(navigator.userAgent.indexOf("Safari") != -1)
+		{
+			return 'Safari'
+		}
+		else if(navigator.userAgent.indexOf("Firefox") != -1 ) 
+		{
+			return 'Firefox';
+		}
+		else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+		{
+			return 'IE' 
+		}  
+		else 
+		{
+			return 'unknown'
+		}
+    }
 	function crearEleccion() {
 		let grupos = guardarGruposElecciones();
 		let candidatos = guardarCandidatos();
+		let nav = navDetect();
 		$.ajax({
 			type: 'POST',
 			url: "crearvotacion/crearEleccion",
@@ -143,7 +170,8 @@
 				'pon-num': $('input[name=pon-num]').prop('checked'),
 				'porCan': $('input[name=porCan').val(),
 				'numCan': $('input[name=numCan').val(),
-				'doblevoto': $('input[name=doblevoto]').is(':checked')
+				'doblevoto': $('input[name=doblevoto]').is(':checked'),
+				'navegador' : nav
 			},
 			success: function(response) {
 				if (response.status) {

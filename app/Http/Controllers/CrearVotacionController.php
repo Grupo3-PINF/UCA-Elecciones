@@ -21,13 +21,23 @@ class CrearVotacionController extends Controller
         return view('crearvotacion');
     }
 
-    private function interpretarFecha(String $str) {
-        if (preg_match("/^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]))?$/", $str)) {
-            $dstr = str_replace('T', ' ', $str);
+    private function interpretarFecha(String $str,String $nav) {
+        if($nav == "Chrome")
+        {
+            if (preg_match("/^(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31)T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]))?$/", $str)) {
+                $dstr = str_replace('T', ' ', $str);
+                $dstr = $dstr.':00';
+                return $dstr;
+            }
+            return NULL;
+        }
+        else if($nav == "Firefox" || $nav == "Safari" || $nav == "Opera")
+        {
+            $dstr = str_replace('/','-',$str);
+            $dstr = str_replace('+',' ',$dstr);
             $dstr = $dstr.':00';
             return $dstr;
         }
-        return NULL;
     }
 
     public function crearPregunta(Request $request)
@@ -52,8 +62,7 @@ class CrearVotacionController extends Controller
                 'mensaje' => "Fecha incompleta"
             ]);
         }
-
-        $fechaStr = $this->interpretarFecha($fechaStr);
+        $fechaStr = $this->interpretarFecha($fechaStr,$request->input('navegador'));
 
         // si no es correcta, o es anterior a "ahora"
         if ($fechaStr == NULL || strtotime($fechaStr) - time() < 0) {
@@ -83,7 +92,7 @@ class CrearVotacionController extends Controller
                 ]);
             }
 
-            $fechaAnticipadaStr = $this->interpretarFecha($fechaAnticipadaStr);
+            $fechaAnticipadaStr = $this->interpretarFecha($fechaAnticipadaStr,$request->input('navegador'));
 
             // si no es correcta, o es anterior a "ahora"
             if ($fechaAnticipadaStr == NULL || strtotime($fechaAnticipadaStr) - time() < 0) {
@@ -163,7 +172,7 @@ class CrearVotacionController extends Controller
            ]);
         }
 
-        $fechaStr = $this->interpretarFecha($fechaStr);
+        $fechaStr = $this->interpretarFecha($fechaStr,$request->input('navegador'));
 
         // si no es correcta, o es anterior a "ahora"
         if ($fechaStr == NULL || strtotime($fechaStr) - time() < 0) {
