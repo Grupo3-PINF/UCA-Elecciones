@@ -2,6 +2,10 @@
 	<div class="row">
 		<div class="col-12">
 			<h5>Elección</h5>
+			<div class="form-group">
+				<label>Título</label>
+				<input class="form-control" type="text" name="titulo-eleccion" placeholder="Ponga título a su elección">
+			</div>
 		</div>
 		<div class="col-12 col-md-4">
 			<div class="form-group">
@@ -127,6 +131,7 @@
 			url: "crearvotacion/crearEleccion",
 			data: {
 				"_token": "{{ csrf_token() }}",
+				'titulo': $('input[name=titulo-eleccion]').val(),
 				'grupos': grupos,
 				'candidatos': candidatos,
 				'fecha-inicio': $('input[name=fecha-eleccion').val(),

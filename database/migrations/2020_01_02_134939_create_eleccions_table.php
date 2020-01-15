@@ -16,6 +16,7 @@ class CreateEleccionsTable extends Migration
         Schema::create('elecciones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('idCreador')->nullable();
+            $table->string('titulo');
             
             // para la blockchain
             $table->string('wallet')->unique()->nullable();

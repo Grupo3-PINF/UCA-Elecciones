@@ -57,7 +57,8 @@ Route::group(
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
         //Route::post('crearvotacion','CrearVotacionController@crearVotacion');
         Route::get('borrarvotacion','BorrarVotacionController@view')->name('borrarvotacion');
-        Route::post('borrarvotacion','BorrarVotacionController@eliminar')->name('borrarvotacion.borrar');
+        Route::post('borrarvotacion','BorrarVotacionController@eliminarP')->name('borrarvotacion.borrarP');
+        Route::post('borrarvotacion','BorrarVotacionController@eliminarE')->name('borrarvotacion.borrarE');
         Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
         Route::post('crearvotacion/recibirGrupos','CrearVotacionController@mandarGrupos');
         Route::post('crearvotacion/recibirCandidatos','CrearVotacionController@mandarCandidatos');

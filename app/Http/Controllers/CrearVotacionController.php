@@ -146,6 +146,15 @@ class CrearVotacionController extends Controller
     {
         // validar la fecha
         $fechaStr = $request->input('fecha-inicio');
+        
+        $titulo = $request->input('titulo');
+        if ($titulo == NULL) {
+            return response()->json([
+                'status' => false,
+                'mensaje' => "Es necesario poner un titulo",
+                'data' => $request->all()
+            ]);
+        }
 
         if ($fechaStr == NULL) {
            return response()->json([
@@ -251,6 +260,7 @@ class CrearVotacionController extends Controller
 
         $eleccion = new Eleccion;
 
+        $eleccion->titulo = $titulo;
         $eleccion->candidatos = json_encode(['candidatos' => $request->candidatos]);
 
         $eleccion->fechaInicio = $fechaIni;
