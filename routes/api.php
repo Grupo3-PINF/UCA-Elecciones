@@ -38,3 +38,20 @@ Route::middleware('auth:api')->get('hola', function (Request $request) {
         'user' => $request->user(),
     ], 200);
 });
+
+//fin testeo Carlos
+
+
+//Ruta de prueba para crear usuarios
+Route::middleware('auth:api')->get('holausuario','getresultController@index'); //hola mundo que necesita registrarse
+
+Route::middleware('auth:api')->post('crearusuario','getresultController@store'); //crear usuario que necesita registrarse
+
+//Rutas de metodos de Votaciones
+Route::middleware('auth:api')->get('getpreguntas','PreguntasController@getpreguntas');
+
+Route::middleware('auth:api')->post('crearpregunta','votacionesController@store');
+//Rutas de metodos de Elecciones
+Route::middleware('auth:api')->get('getelecciones','EleccionesController@getelecciones');
+
+Route::middleware('auth:api')->post('creareleccion','EleccionesController@store');

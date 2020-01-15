@@ -24,7 +24,9 @@ class getresultController extends Controller
      */
     public function create()
     {
-        //
+        $usuario=new User;
+        
+        $usuario->save();
     }
 
     /**
@@ -33,9 +35,21 @@ class getresultController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    
     public function store(Request $request)
     {
-        //
+        $usuario=new User;
+        $usuario->id=$request->id;
+        $usuario->identificador=$request->identificador;
+        $usuario->login=$request->login;
+        $usuario->email=$request->email;
+        $usuario->password=$request->passwd;
+        $usuario->rolActivo=$request->rolActivo;
+
+        $usuario->save();
+
+        return 'USUARIO CREADO';
     }
 
     /**
