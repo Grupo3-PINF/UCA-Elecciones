@@ -15,7 +15,6 @@ class CreateEleccionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('idCreador')->nullable();
             $table->string('titulo');
-            
             // para la blockchain
             $table->string('wallet')->unique()->nullable();
             /**
@@ -34,12 +33,10 @@ class CreateEleccionsTable extends Migration
              */
             $table->json('recuento')->nullable();
             $table->string('tipoEleccion');
-            // si grupos no ponderamos
-            $table->boolean('multiGrupo')->default(false); // solo un grupo o multiple
-            $table->boolean('adscripcion')->default(false); // si/no
+            $table->boolean('multiGrupo')->default(false); 
+            $table->boolean('adscripcion')->default(false); 
             $table->string('tipoPon')->nullable();
-            $table->integer('ponNum')->nullable();
-            // si cargos unipersonales           
+            $table->integer('ponNum')->nullable();   
             $table->boolean('dobleVoto')->default(false);
             $table->timestamps();
         });

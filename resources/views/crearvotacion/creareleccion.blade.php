@@ -279,19 +279,14 @@
 	}
 
 	function ponderarGrupos() {
-		console.log("losmuetos");
 		let grupos = document.querySelectorAll('.input-div-caja-eleccion');
 		let ponderaciones = document.querySelectorAll('.input-ponderacion');
-		console.log("losmuetos2");
 		for (let i = 0; i < grupos.length; ++i) {
-			console.log("losmuetos3");
 			let pon = ponderaciones[i].value;
-			console.log("pon: " + pon);
 			let aux = grupos[i].getAttribute('name').replace('grupo-', '');
 			let grupo = aux.replace(/-.+/, '');
 			let grupoPon = aux.replace(/.+-/, '');
 			if (pon != 0) {
-				console.log("estoy aqui");
 				$('input[name=grupo-' + grupo + '-ponderacion-' + grupoPon + ']').attr("name", 'grupo-' + grupo + '-ponderacion-' + pon + '');
 				$('a[name=borrar-' + grupo + ']').attr("onclick", 'borrarInputEleccion(\'' + grupo + '\',\'grupo\',\'' + pon + '\')');
 			} else {
