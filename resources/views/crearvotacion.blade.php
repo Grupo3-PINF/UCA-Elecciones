@@ -55,18 +55,25 @@
 </div>
 <script>
 	function consultaPregunta() {
-		mostrarProceso('pregunta');
+		mostrarProceso('pregunta', true);
 		let chTiempoReal = document.getElementById("tiempo-real-pregunta");
 		chTiempoReal.checked = true;
-		chTiempoReal.disabled = true;
 
 		let chSecreta = document.getElementById("secreta-pregunta");
 		chSecreta.checked = false;
 		chSecreta.disabled = true;
+		chSecreta.style = "cursor: not-allowed;";
 	}
 
 	function consultaEleccion() {
-		mostrarProceso('eleccion');
+		mostrarProceso('eleccion', true);
+		let chTiempoReal = document.getElementById("tiempo-real-eleccion");
+		chTiempoReal.checked = true;
+
+		let chSecreta = document.getElementById("secreta-eleccion");
+		chSecreta.checked = false;
+		chSecreta.disabled = true;
+		chSecreta.style = "cursor: not-allowed;";
 	}
 
 	function consulta() {
@@ -78,7 +85,7 @@
 		}
 	}
 
-	function mostrarProceso(tipo) {
+	function mostrarProceso(tipo, deConsulta) {
 		$.ajax({
 			type: 'POST',
 			url: "crearvotacion/seleccionVotacion",
@@ -92,12 +99,22 @@
 						onload = recibirGruposPregunta();
 						$("#steps-eleccion").remove();
 						$("#steps-consulta").remove();
+						if (!deConsulta) {
+							let ch = document.getElementById("tiempo-real-pregunta");
+							ch.checked = false;
+							ch.parentElement.hidden = true;
+						}
 					break;
 					case "eleccion":
 						onload = recibirGruposEleccion();
 						onload = recibirCandidatos();
 						$("#steps-pregunta").remove();
 						$("#steps-consulta").remove();
+						if (!deConsulta) {
+							let ch = document.getElementById("tiempo-real-eleccion");
+							ch.checked = false;
+							ch.parentElement.hidden = true;
+						}
 					break;
 				}
 				

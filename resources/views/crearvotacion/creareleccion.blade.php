@@ -1,5 +1,6 @@
 <div id="steps-eleccion" class="hide">
 	<div class="row">
+	<div class="row" id="input-eleccion">
 		<div class="col-12">
 			<h5>Elección</h5>
 			<div class="form-group">
@@ -103,14 +104,56 @@
 				<a onclick="ponderarGrupos()" class="btn btn-secondary d-none" id="button-ponderar">Ponderar</a>
 			</div>
 		</div>
-		<div class="col-12">
+
+		<hr style="border: 0;
+		clear:both;
+		display:block;
+		width: 96%;               
+		background-color: darkgray;
+		height: 1px;">
+		
+		<div class="col-12 col-md-4 px-4">
 			<div class="form-group">
 				<label>Votación doble</label>
-				<p>¿Se va a poder ejercer doble voto?
-					<input type="checkbox" name="doblevoto">
-				</p>
+				<p>¿Se va a poder ejercer doble voto?</p>
+				<input type="checkbox" name="doblevoto">
 			</div>
 		</div>
+		<div class="col-12 col-md-4 px-4">
+			<div class="form-group">
+				<label>Votación secreta</label>
+				<p>Las votaciones realizadas serán públicas o no. En una votación secreta el voto es irreversible.
+				</p>
+				<input type="checkbox" name="secreta-eleccion" id="secreta-eleccion">
+			</div>
+		</div>
+		<div class="col-12 col-md-4 px-4">
+			<div class="form-group">
+				<label>Tiempo real</label>
+				<p>Por defecto, los resultados de una votación solo se pueden ver al terminarse. Esta opción permite que se puedan ver en cualquier momento.</p>
+				<input type="checkbox" name="tiempo-real-eleccion" id="tiempo-real-eleccion">
+			</div>
+		</div>
+		<div class="col-12 col-md-4 px-4">
+			<div class="form-group">
+				<label>Votación anticipada</label>
+				<p>Permite seleccionar una fecha de votación anticipada mediante un calendario.</p>
+				<input type="checkbox" name="anticipada-eleccion">
+			</div>
+		</div>
+		<div class="col-12 col-md-6 px-4" id="fecha-anticipada-eleccion">
+			<div class="form-group">
+				<label>Fecha votación anticipada</label>
+				<input class="form-control" type="datetime-local" name="fecha-anticipada-eleccion">
+			</div>
+		</div>
+		<div class="col-12 col-md-6 px-4" id="participantes-anticipada-eleccion">
+			<div class="form-group">
+				<label>Participantes de votación anticipada</label>
+				<input class="form-control" type="text" name="participantes-anticipada-eleccion">
+			</div>
+		</div>
+	</div>
 		<div class="col-12">
 			<div class="alert alert-success d-none" id="msg_div">
 				<span id="res_message"></span>
@@ -149,6 +192,18 @@
 			return 'unknown'
 		}
     }
+	$('#fecha-anticipada-eleccion').hide();
+	$('#participantes-anticipada-eleccion').hide();
+	$('input[name="anticipada-eleccion"]').click(function() {
+		if ($('input[name="anticipada-eleccion"]').prop('checked')) {
+			$('#fecha-anticipada-eleccion').show();
+			$('#participantes-anticipada-eleccion').show();
+		} else {
+			$('#fecha-anticipada-eleccion').hide();
+			$('#participantes-anticipada-eleccion').hide();
+		}
+	});
+
 	function crearEleccion() {
 		let grupos = guardarGruposElecciones();
 		let candidatos = guardarCandidatos();
@@ -171,7 +226,11 @@
 				'porCan': $('input[name=porCan').val(),
 				'numCan': $('input[name=numCan').val(),
 				'doblevoto': $('input[name=doblevoto]').is(':checked'),
-				'navegador' : nav
+				'navegador' : nav,
+				'esTiempoReal': $('input[name=tiempo-real-eleccion]').is(':checked'),
+				'esSecreta': $('input[name=secreta-eleccion]').is(':checked'),
+				'esAnticipada': $('input[name=anticipada-eleccion]').is(':checked'),
+				'fecha-anticipada': $('input[name=fecha-anticipada-eleccion').val()
 			},
 			success: function(response) {
 				if (response.status) {
@@ -181,7 +240,7 @@
 					$('#msg_div').removeClass('alert-danger');
 					$('#msg_div').addClass('alert-success');
 					$('#msg_div').removeClass('d-none');
-					$('#input-pregunta').slideUp(700);
+					$('#input-eleccion').slideUp(700);
 					setTimeout(function() {
 						window.location.reload();
 					}, 3000);

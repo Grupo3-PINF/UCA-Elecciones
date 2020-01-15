@@ -123,6 +123,7 @@ class CrearVotacionController extends Controller
         $pregunta->esCompleja = $request->input('es-compleja') == "true" ? true : false;
         $pregunta->esRestringida = $request->input('es-secreta') == "true" ? true : false;
         $pregunta->esTiempoReal = $request->input('es-tiempo-real') == "true" ? true : false;
+        $pregunta->seMuestraAntes = $request->input('es-tiempo-real') == "true" ? true : false;
         
         $pregunta->fechaComienzo = $fechaIni;
         $pregunta->fechaFin = $fechaFin;
@@ -188,6 +189,30 @@ class CrearVotacionController extends Controller
         if (is_numeric($duracion)) {
             $fechaFin = clone $fechaIni;
             $fechaFin->modify("+$duracion minutes");
+        }
+
+        $esAnticipada = $request->input('esAnticipada') == "true" ? true : false;
+        if ($esAnticipada) {
+            $fechaAnticipadaStr = $request->input('fecha-anticipada');
+
+            if ($fechaAnticipadaStr == NULL) {
+                return response()->json([
+                    'status' => false,
+                    'mensaje' => "Fecha anticipada incompleta",
+                ]);
+            }
+
+            $fechaAnticipadaStr = $this->interpretarFecha($fechaAnticipadaStr);
+
+            // si no es correcta, o es anterior a "ahora"
+            if ($fechaAnticipadaStr == NULL || strtotime($fechaAnticipadaStr) - time() < 0) {
+                return response()->json([
+                    'status' => false,
+                    'mensaje' => "Fecha anticipada incorrecta"
+                ]);
+            }
+
+            $fechaAnticipada = date_create($fechaAnticipadaStr);
         }
 
         if($request->input('tipo-eleccion') == "Grupos no ponderados") {
@@ -291,6 +316,13 @@ class CrearVotacionController extends Controller
         }
 
         $eleccion->dobleVoto = $request->input('doblevoto') == "true" ? true : false;
+
+        $eleccion->esAnticipada = $esAnticipada;
+        $eleccion->esSecreta = $request->input('esSecreta') == "true" ? true : false;
+        $eleccion->esTiempoReal = $request->input('esTiempoReal') == "true" ? true : false;
+        if ($esAnticipada) {
+            $eleccion->fechaComienzoAnticipada = $fechaAnticipada;
+        }
 
         $eleccion->save();
 

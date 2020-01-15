@@ -26,6 +26,8 @@ class CreateEleccionsTable extends Migration
 
             $table->dateTime('fechaInicio');
             $table->dateTime('fechaFin');
+            $table->dateTime('fechaComienzoAnticipada')->nullable();
+            $table->dateTime('fechaFinAnticipada')->nullable();
             
             $table->string('tipoEleccion');
             // si grupos no ponderamos
@@ -36,6 +38,11 @@ class CreateEleccionsTable extends Migration
             // si cargos unipersonales
             
             $table->boolean('dobleVoto')->default(false);
+
+            // Opciones
+            $table->boolean('esSecreta')->default(false);
+            $table->boolean('esTiempoReal')->default(false);
+            $table->boolean('esAnticipada')->default(false);
 
             $table->timestamps();
 
