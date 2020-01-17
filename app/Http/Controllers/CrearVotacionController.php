@@ -225,7 +225,7 @@ class CrearVotacionController extends Controller
                 ]);
             }
 
-            $fechaAnticipadaStr = $this->interpretarFecha($fechaAnticipadaStr);
+            $fechaAnticipadaStr = $this->interpretarFecha($fechaAnticipadaStr,$request->input('navegador'));
 
             // si no es correcta, o es anterior a "ahora"
             if ($fechaAnticipadaStr == NULL || strtotime($fechaAnticipadaStr) - time() < 0) {

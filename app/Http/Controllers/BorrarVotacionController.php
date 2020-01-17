@@ -31,10 +31,12 @@ class BorrarVotacionController extends Controller
             if(isset($pregunta))
             {
                 $pregunta->delete();
-                return "Pregunta eliminada correctamente";
+                return response()->json(['value'=>true,
+                                'message'=>"Pregunta eliminada correctamente"]);
             }
             else
-                return "Ha ocurrido un error.";
+                return response()->json(["value"=>false,
+                                        "message"=>"Ha  ocurrido un error"]);
     }
 
     public function eliminarE(Request $request)
@@ -43,19 +45,22 @@ class BorrarVotacionController extends Controller
             if(isset($eleccion))
             {
                 $eleccion->delete();
-                return "Elección eliminada correctamente" ;
+                return response()->json(["value"=>true,
+                                "message"=>"Elección eliminada correctamente"]);
             }
             else
-                return "Ha ocurrido un error.";
+                return response()->json(["value"=>false,
+                                "message"=>"Ha  ocurrido un error"]);
     }
 
     public function eliminar(Request $request)
     {
         if($request->input('tipo')=="pregunta")
-            $this->eliminarP($request);
+            return $this->eliminarP($request);
         else if($request->input('tipo')=="eleccion")
-            $this->eliminarE($request);
+            return $this->eliminarE($request);
         else
-            return "Ha ocurrido un error.";
+            return response()->json(["value"=>false,
+                                    "message"=>"Ha  ocurrido un error"]);
     }
 }
