@@ -14,14 +14,25 @@ use App\User;
 use App\Pregunta;
 use App\Eleccion;
 use App\Participacion;
+use App\CensosUsuario;
 use App\ParticipacionElecciones;
 
 class AccesoVotaciones extends Controller
 {
     public function index()
     {
+        //Sacamos el id del usuario a partir del login de usuario y de ahí sacamos al censo al que pertenece
+        $usuario = Session::get('idusuario');
+        $user = User::where('login', $usuario)->first();
+        $id_user = $user->id;
+        $censo_user = CensosUsuario::where('idUsuario', $id_user)->first();
+
+        if($censo_user != null)
+        {
+            $id_censo_user = $censo_user->idCenso;
+        }
         //Hacer 3 grupos: las preguntas que se pueden rectificar, las que no y las elecciones
-        //para que así rectificar sólo salgan a las quie puedan
+        //para que así rectificar sólo salgan a las que puedan
         //Preguntas
         $preguntas = Pregunta::all();
         $date = date('Y-m-d H:i:s');
@@ -29,7 +40,22 @@ class AccesoVotaciones extends Controller
         $array_norec = [];
         foreach($preguntas as $p)
         {
-            if($date > $p->fechaComienzo && $date < $p->fechaFin)
+            //Comprobar que el usuario tiene acceso a la votacion
+            $censos_json = $p->censoVotante;
+            $acceso = true;
+            if($censos_json != null && $censo_user != null)
+            {
+                $censos = json_decode($censos_json, true);
+                $acceso = false;
+                foreach($censos['censos'] as $key)
+                {
+                    if($key == $id_censo_user)
+                    {
+                        $acceso = true;
+                    }
+                }
+            }
+            if($date > $p->fechaComienzo && $date < $p->fechaFin && $acceso == true)
             {
                 //Votación rectificable
                 if($p->esVinculante == false || $p->esRestringida == false)
@@ -73,26 +99,52 @@ class AccesoVotaciones extends Controller
         if($votado == null || $pregunta != $id || $votado->opcion == 1000000)
         {            
             $votacion = Pregunta::find($id);
-            $date = date('Y-m-d H:i:s');
-            $tiempo_ini = $votacion->fechaComienzo;
-            $tiempo_fin = $votacion->fechaFin;
-
-            if($date > $tiempo_ini && $date < $tiempo_fin)
+            //Comprobar que el usuario tiene acceso a la pregunta
+            $censo_user = CensosUsuario::where('idUsuario', $iduser)->first();
+            if($censo_user != null)
             {
-                $json = $votacion->opciones;
-                $ops = json_decode($json, true);
-                //Apuntamos que el usuario ha votado(la opción la apuntamos después)
-                $participacion = new Participacion;
-                $participacion->idusuario = $iduser;
-                $participacion->idpregunta = $id;
-                $participacion->opcion = 1000000;
-                $participacion->save();
-
-                return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('pregunta', $votacion->titulo);
+                $id_censo_user = $censo_user->idCenso;
             }
-            else
+            $censos_json = $votacion->censoVotante;
+            $acceso = true;
+            if($censos_json != null && $censo_user != null)
             {
-                return redirect()->route("accesovotaciones")->with('error','Votación finalizada');
+                $censos = json_decode($censos_json, true);
+                $acceso = false;
+                foreach($censos['censos'] as $key)
+                {
+                    if($key == $id_censo_user)
+                    {
+                        $acceso = true;
+                    }
+                }
+            }
+            if($acceso == true)
+            {
+                $date = date('Y-m-d H:i:s');
+                $tiempo_ini = $votacion->fechaComienzo;
+                $tiempo_fin = $votacion->fechaFin;
+
+                if($date > $tiempo_ini && $date < $tiempo_fin)
+                {
+                    $json = $votacion->opciones;
+                    $ops = json_decode($json, true);
+                    //Apuntamos que el usuario ha votado(la opción la apuntamos después)
+                    $participacion = new Participacion;
+                    $participacion->idusuario = $iduser;
+                    $participacion->idpregunta = $id;
+                    $participacion->opcion = 1000000;
+                    $participacion->save();
+
+                    return view('opciones')->with('ops', $ops['opciones'])->with('id', $id)->with('pregunta', $votacion->titulo);
+                }
+                else
+                {
+                    return redirect()->route("accesovotaciones")->with('error','Votación finalizada');
+                }
+            }else
+            {
+                return redirect()->route("accesovotaciones")->with('error','No tienes acceso a esta pregunta');
             }
         }
         else
@@ -111,7 +163,7 @@ class AccesoVotaciones extends Controller
             $ops = explode($limite, $idvotacion);
             $idopcion = $ops[0];
             $id = $ops[1];
-
+            
             //Registrar el usuario como que ya ha votado a dicha pregunta y comprobar que no vota más de 1 vez
             $usuario = Session::get('idusuario');
             //Sacamos el id del usuario a partir del login de usuario
@@ -180,29 +232,29 @@ class AccesoVotaciones extends Controller
                     return redirect()->route("accesovotaciones")->with('error','Usted aun no ha votado');
                 }else
                 {
-                        //Sacamos las opciones para pasarselas a la vista
-                        $json = $votacion->opciones;
-                        $ops = json_decode($json, true);
+                    //Sacamos las opciones para pasarselas a la vista
+                    $json = $votacion->opciones;
+                    $ops = json_decode($json, true);
+                    //Decrementamos la opción a la que votó antes
+                    $idopcion = $p_rect->opcion;
+                    $rec = $votacion->recuento;
+                    $opciones = json_decode($rec, true);
+                    $opciones['votos'][$idopcion]--;
 
-                        $idopcion = $p_rect->opcion;
-                        $rec = $votacion->recuento;
-                        $opciones = json_decode($rec, true);
-                        $opciones['votos'][$idopcion]--;
+                    $s = json_encode($opciones);
+                    $votacion->recuento = $s;
+                    $votacion->save(); 
 
-                        $s = json_encode($opciones);
-                        $votacion->recuento = $s;
-                        $votacion->save(); 
+                    //Eliminamos la participación del usuario en esa votación para que el sistema nos deje votar
+                    Participacion::where('idusuario', $iduser)->where('idpregunta', $id)->delete();
 
-                        //Eliminamos la participación del usuario en esa votación para que el sistema nos deje votar
-                        Participacion::where('idusuario', $iduser)->where('idpregunta', $id)->delete();
-
-                        //Apuntamos que el usuario ha votado(la opción la apuntamos después)
-                        $participacion = new Participacion;
-                        $participacion->idusuario = $iduser;
-                        $participacion->idpregunta = $id;
-                        $participacion->opcion = 1000000;
-                        $participacion->save();
-                        return view('rectificar')->with('ops', $ops['opciones'])->with('id', $id)->with('pregunta', $votacion->titulo);
+                    //Apuntamos que el usuario ha votado(la opción la apuntamos después)
+                    $participacion = new Participacion;
+                    $participacion->idusuario = $iduser;
+                    $participacion->idpregunta = $id;
+                    $participacion->opcion = 1000000;
+                    $participacion->save();
+                    return view('rectificar')->with('ops', $ops['opciones'])->with('id', $id)->with('pregunta', $votacion->titulo);
                 }
             }else
             {
