@@ -15,7 +15,8 @@ class CreateVotanteAnticipadosTable extends Migration
     {
         Schema::create('votantes_anticipados', function (Blueprint $table) {
             $table->bigInteger('id_usuario');
-            $table->bigInteger('id_pregunta');
+            $table->bigInteger('id_pregunta')->nullable();
+            $table->bigInteger('id_eleccion')->nullable();
             $table->timestamps();
         });
     }

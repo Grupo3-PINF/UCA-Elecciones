@@ -46,7 +46,7 @@ class CrearVotacionController extends Controller
         $participantes = [];
         foreach ($correos as $correo) {
             $user = User::where('email', $correo)->first();
-            if ($user) {
+            if ($user != null) {
                 array_push($participantes, $user->id);
             }
         }
@@ -348,13 +348,13 @@ class CrearVotacionController extends Controller
         }
 
         $eleccion->save();
-
+        
         if ($esAnticipada) {
             $participantesAnticipada = $this->getIDsParticipantes($request->input('votantes-anticipados'));
             foreach ($participantesAnticipada as $participante) {
                 $link = new VotanteAnticipado;
                 $link->id_usuario = $participante;
-                $link->id_pregunta = $eleccion->id;
+                $link->id_eleccion = $eleccion->id;
                 $link->save();
             }
         }
