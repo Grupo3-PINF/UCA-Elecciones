@@ -36,7 +36,6 @@
 													data:{"pregunta":data,"_token": "{{ csrf_token() }}","tipo":"pregunta"},
 													type: 'POST',
 													success: function(response) {
-														console.log(response);
 														if(response.value)
 														{
 															$("#{{('pregunta'.$p->id)}}").hide();

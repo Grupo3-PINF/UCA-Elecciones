@@ -56,6 +56,12 @@ Route::group(
     {
         Route::get('crearvotacion','CrearVotacionController@view')->name('crearvotacion');
         //Route::post('crearvotacion','CrearVotacionController@crearVotacion');
+        Route::get('modificarvotacion','ModificarVotacionController@view')->name('modificarvotacion');
+        Route::get('modificarvotacion/elecciones','ModificarVotacionController@consultarElecciones');
+        Route::get('modificarvotacion/preguntas','ModificarVotacionController@consultarPreguntas');
+        Route::post('modificarvotacion/recibirGrupos','ModificarVotacionController@mandarGrupos')->name('modvotacion.recibirGrupos');
+        Route::post('modificarvotacion/modificarPregunta','ModificarVotacionController@modificarPregunta')->name('modvotacion.modificarPregunta');
+        Route::post('modificarvotacion/mostrarCampos','ModificarVotacionController@mostrarCampos')->name('modvotacion.mostrarCampos');
         Route::get('borrarvotacion','BorrarVotacionController@index')->name('borrarvotacion');
         Route::post('borrarvotacion','BorrarVotacionController@eliminar')->name('borrarvotacion.borrar');
         Route::post('crearvotacion/seleccionVotacion','CrearVotacionController@seleccionVotacion');
