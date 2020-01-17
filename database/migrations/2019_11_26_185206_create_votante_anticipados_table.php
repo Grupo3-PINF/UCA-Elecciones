@@ -14,8 +14,8 @@ class CreateVotanteAnticipadosTable extends Migration
     public function up()
     {
         Schema::create('votantes_anticipados', function (Blueprint $table) {
-            $table->bigInteger('id-usuario')->unique();
-            $table->bigInteger('id-pregunta')->unique();
+            $table->bigInteger('id_usuario');
+            $table->bigInteger('id_pregunta');
             $table->timestamps();
         });
     }

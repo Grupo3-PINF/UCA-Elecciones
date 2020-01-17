@@ -12,6 +12,7 @@ use App\User;
 use App\Pregunta;
 use App\Censo;
 use App\Eleccion;
+use App\VotanteAnticipado;
 use Illuminate\Http\Request;
 
 class CrearVotacionController extends Controller
@@ -38,6 +39,18 @@ class CrearVotacionController extends Controller
             $dstr = $dstr.':00';
             return $dstr;
         }
+    }
+
+    private function getIDsParticipantes(String $correos) {
+        $correos = preg_split("/; /", $correos);
+        $participantes = [];
+        foreach ($correos as $correo) {
+            $user = User::where('email', $correo)->first();
+            if ($user) {
+                array_push($participantes, $user->id);
+            }
+        }
+        return $participantes;
     }
 
     public function crearPregunta(Request $request)
@@ -145,6 +158,16 @@ class CrearVotacionController extends Controller
         // $pregunta->wallet = EL SCRIPT DE LA BLOCKCHAIN;
 
         $pregunta->save();
+
+        if ($esAnticipada) {
+            $participantesAnticipada = $this->getIDsParticipantes($request->input('votantes-anticipados'));
+            foreach ($participantesAnticipada as $participante) {
+                $link = new VotanteAnticipado;
+                $link->id_usuario = $participante;
+                $link->id_pregunta = $pregunta->id;
+                $link->save();
+            }
+        }
 
         return response()->json([
             'status' => true,
@@ -325,6 +348,16 @@ class CrearVotacionController extends Controller
         }
 
         $eleccion->save();
+
+        if ($esAnticipada) {
+            $participantesAnticipada = $this->getIDsParticipantes($request->input('votantes-anticipados'));
+            foreach ($participantesAnticipada as $participante) {
+                $link = new VotanteAnticipado;
+                $link->id_usuario = $participante;
+                $link->id_pregunta = $eleccion->id;
+                $link->save();
+            }
+        }
 
         return response()->json([
             'status' => true,

@@ -82,6 +82,7 @@
 		<div class="col-12 col-md-6 px-4" id="participantes-anticipada-pregunta">
 			<div class="form-group">
 				<label>Participantes de votación anticipada</label>
+				<p>Correos de las cuentas de los votantes que podrán votar de manera anticipada. Separados por ';'</p>
 				<input class="form-control" type="text" name="participantes-anticipada-pregunta">
 			</div>
 		</div>
@@ -207,7 +208,8 @@
 				'es-tiempo-real': $('input[name=tiempo-real-pregunta]').is(':checked'),
 				'es-secreta': $('input[name=secreta-pregunta]').is(':checked'),
 				'fecha-pregunta-anticipada': $('input[name=fecha-anticipada-pregunta]').val(),
-				'navegador' : nav
+				'navegador' : nav,
+				'votantes-anticipados': $('input[name=participantes-anticipada-pregunta]').val()
 			},
 			success: function(response) {
 				console.log(response.status);
