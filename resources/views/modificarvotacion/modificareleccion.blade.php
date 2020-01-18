@@ -211,7 +211,7 @@
 		let nav = navDetect();
 		$.ajax({
 			type: 'POST',
-			url: "crearvotacion/crearEleccion",
+			url: "{{route('modvotacion.modificarEleccion')}}",
 			data: {
 				"_token": "{{ csrf_token() }}",
 				'titulo': $('input[name=titulo-eleccion]').val(),
@@ -261,7 +261,7 @@
 	function recibirGruposEleccion() {
 		$.ajax({
 			type: 'POST',
-			url: "crearvotacion/recibirGrupos",
+			url: "{{route('modvotacion.recibirGrupos')}}",
 			data: {
 				"_token": "{{ csrf_token() }}",
 			},
@@ -319,7 +319,7 @@
 	function recibirCandidatos() {
 		$.ajax({
 			type: 'POST',
-			url: "crearvotacion/recibirCandidatos",
+			url: "{{route('modvotacion.recibirCandidatos')}}",
 			data: {
 				"_token": "{{ csrf_token() }}",
 			},

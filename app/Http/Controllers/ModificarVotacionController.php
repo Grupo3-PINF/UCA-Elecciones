@@ -25,8 +25,13 @@ class ModificarVotacionController extends Controller
 
     public function mostrarCampos(Request $request)
     {
-        $str = explode("pregunta",$request->input('id'));
-        Session::put('id',$str[1]);
+        if(Session::has('idvotacion'))
+        {
+            Session::forget('idvotacion');
+        }
+        $str = explode($request->input('tipo'),$request->input('id'));
+        echo $str[1];
+        Session::put('idvotacion',$str[1]);
     }
     public function consultarPreguntas()
     {
@@ -39,7 +44,7 @@ class ModificarVotacionController extends Controller
     {
         $date = date('Y-m-d H:i:s');
         $elecciones = Eleccion::where('fechaInicio','>',$date)->get();
-        return $elecciones;
+        return view('listaelecciones')->with('elecciones',$elecciones);
     }
 
     private function interpretarFecha(String $str,String $nav) {
@@ -75,7 +80,7 @@ class ModificarVotacionController extends Controller
 
     public function modificarPregunta(Request $request)
     {    
-        if(!Session::has('id'))
+        if(!Session::has('idvotacion'))
         {
             return response()->json([
                 'status' => false,
@@ -158,11 +163,9 @@ class ModificarVotacionController extends Controller
             $recuento = json_encode(['votos' => [0, 0, 0]]);
         }
 
-        $pregunta = Pregunta::find(Session::get('id'));
+        $pregunta = Pregunta::find(Session::get('idvotacion'));
         
-        $pregunta->delete();
 
-        $pregunta = new Pregunta;
 
         if($pregunta == null)
         {
@@ -171,6 +174,11 @@ class ModificarVotacionController extends Controller
                 'mensaje' => "Ha habido un error con la pregunta seleccionada",
             ]);
         }
+
+        $pregunta->delete();
+
+        $pregunta = new Pregunta;
+
         $pregunta->titulo = $titulo;
         
         $pregunta->esVinculante = $request->input('es-secreta') == "true" ? true : false;
@@ -212,12 +220,21 @@ class ModificarVotacionController extends Controller
 
         return response()->json([
             'status' => true,
-            'mensaje' => "Pregunta creada correctamente"
+            'mensaje' => "Pregunta modificada correctamente"
         ]);
     }
 
-    public function crearEleccion(Request $request)
+    public function modificarEleccion(Request $request)
     {
+        if(!Session::has('idvotacion'))
+        {
+            return response()->json([
+                'status' => false,
+                'mensaje' => "Ha habido un error con la pregunta seleccionada.",
+                'data' => $request->all()
+            ]);
+        }
+
         // validar la fecha
         $fechaStr = $request->input('fecha-inicio');
         
@@ -356,8 +373,7 @@ class ModificarVotacionController extends Controller
             }
         }
 
-        $eleccion = Eleccion::find($request->input('id'));
-
+        $eleccion = Eleccion::find(Session::get('idvotacion'));
         if($eleccion == null)
         {
             return response()->json([
@@ -365,7 +381,8 @@ class ModificarVotacionController extends Controller
                 'mensaje' => "La elección no existe",
             ]);
         }
-
+        $eleccion->delete();
+        $eleccion = new Eleccion;
         $eleccion->titulo = $titulo;
         $eleccion->candidatos = json_encode(['candidatos' => $request->candidatos]);
 
@@ -410,7 +427,7 @@ class ModificarVotacionController extends Controller
 
         return response()->json([
             'status' => true,
-            'mensaje' => "Elección creada correctamente"
+            'mensaje' => "Elección modificada correctamente"
         ]);
     }
 

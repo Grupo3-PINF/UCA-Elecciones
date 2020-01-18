@@ -49,8 +49,8 @@ class LoginController extends Controller
     public function logout()
     {
         session_start();
-        unset($_SESSION['idusuario']);
-        unset($_SESSION['rolusuario']);
+        Session::forget('idusuario');
+        Session::forget('rolusuario');
         Auth::logout();
         return Redirect::to('login');
     }

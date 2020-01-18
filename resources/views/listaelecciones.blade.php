@@ -16,21 +16,21 @@
 		<div class="helper">
 			<div class="step-1 row">
 				<div class="col-12 col-md-4">
-                    <h4> PREGUNTAS ABIERTAS </h3>
-                        @if(count($preguntas)>0)
+                    <h4> ELECCIONES ABIERTAS </h3>
+                        @if(count($elecciones)>0)
                             <ul id="list-questions">
-                                @foreach ($preguntas as $p)
-                                    <a id="{{('pregunta'.$p->id)}}" onclick="seleccionaPregunta({{('pregunta'.$p->id)}});" href="#">
-                                    <li >{{$p->titulo}}</li>
+                                @foreach ($elecciones as $e)
+                                    <a id="{{('eleccion'.$e->id)}}" onclick="seleccionaEleccion({{('eleccion'.$e->id)}});" href="#">
+                                    <li >{{$e->titulo}}</li>
                                     </a>
                                 @endforeach
                             </ul>
                         @else
-                            <a>Sin preguntas</a>
+                            <a>Sin elecciones</a>
                         @endif
                  </div>
 			</div>
-            @include('modificarvotacion/modificarpregunta')
+            @include('modificarvotacion/modificareleccion')
 		</div>
 		<!--</form> -->
 		@else
@@ -45,23 +45,24 @@
 	</div>
 </div>
 <script>
-	function seleccionaPregunta(valor, deConsulta) {
+	function seleccionaEleccion(valor) {
 		$.ajax({
 			type: 'POST',
 			url: "{{route('modvotacion.mostrarCampos')}}",
 			data: {
 				"_token": "{{ csrf_token() }}",
 				"id": valor.id,
-				"tipo":"pregunta",
+				"tipo":"eleccion",
 			},
 			success: function(response) {
-				onload = recibirGruposPregunta();
-				let ch = document.getElementById("tiempo-real-pregunta");
+				onload = recibirGruposEleccion();
+				onload = recibirCandidatos();
+				let ch = document.getElementById("tiempo-real-eleccion");
 				ch.checked = false;
-				ch.parentElement.hidden = true;	
+				ch.parentElement.hidden = true;
 				$(".step-1").hide();
-				$("#steps-pregunta").toggleClass("hide").delay(1200);
-				$("#steps-pregunta").addClass("flex").delay(1200)
+				$("#steps-eleccion").toggleClass("hide").delay(1200);
+				$("#steps-eleccion").addClass("flex").delay(1200)
 			},
 			error: function(error) {
 				console.error(error)
