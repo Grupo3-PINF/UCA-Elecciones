@@ -342,7 +342,7 @@ class CrearVotacionController extends Controller
         if ($esAnticipada) {
             $eleccion->fechaComienzoAnticipada = $fechaAnticipada;
         }
-
+        $eleccion->idCreador = \Auth::user()->id;
         $eleccion->save();
         
         if ($esAnticipada) {
