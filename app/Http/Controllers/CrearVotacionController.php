@@ -267,16 +267,12 @@ class CrearVotacionController extends Controller
                     if($canSize == 0) {
                         return response()->json([
                             'status' => false,
-                            's' => $arr_candidatos,
-                            'canSize' => $canSize,
                             'mensaje' => "Es necesario elegir al menos un candidato",
                         ]);
                     }
                     if($request->input('numCan') <= 0 || $request->input('numCan') > $canSize){
                         return response()->json([
                             'status' => false,
-                            's' => $arr_candidatos,
-                            'canSize' => $canSize,
                             'mensaje' => "El numero de candidatos es incorrecto",
                         ]);
                     } else if($request->input('numCan') == NULL){

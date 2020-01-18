@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateEleccionsTable extends Migration
 {
     /**
@@ -13,30 +11,30 @@ class CreateEleccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('elecciones', function (Blueprint $table) {
+            Schema::create('elecciones', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('idCreador')->nullable();
             $table->string('titulo');
             
             // para la blockchain
             $table->string('wallet')->unique()->nullable();
-
+            /**
+             * {
+             *  opciones: ["Palomitas saladas", "Palomitas dulces"]
+             * }
+             */
             $table->json('candidatos')->nullable();
             $table->json('grupos')->nullable();
-
             $table->dateTime('fechaInicio');
             $table->dateTime('fechaFin');
             $table->dateTime('fechaComienzoAnticipada')->nullable();
             $table->dateTime('fechaFinAnticipada')->nullable();
             
             $table->string('tipoEleccion');
-            // si grupos no ponderamos
-            $table->boolean('multiGrupo')->default(false); // solo un grupo o multiple
-            $table->boolean('adscripcion')->default(false); // si/no
+            $table->boolean('multiGrupo')->default(false); 
+            $table->boolean('adscripcion')->default(false); 
             $table->string('tipoPon')->nullable();
-            $table->integer('ponNum')->nullable();
-            // si cargos unipersonales
-            
+            $table->integer('ponNum')->nullable();   
             $table->boolean('dobleVoto')->default(false);
 
             // Opciones
@@ -45,11 +43,9 @@ class CreateEleccionsTable extends Migration
             $table->boolean('esAnticipada')->default(false);
 
             $table->timestamps();
-
         });
     }
     
-
     /**
      * Reverse the migrations.
      *

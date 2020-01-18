@@ -13,9 +13,8 @@
 			<div class="form-group">
 				<label>Grupos con permiso para votar</label>
 				<p>Censos que pueden participar en esta pregunta.</p>
-				<select class="form-control" name="grupos-pregunta"></select>
-				<a onclick="anadirGruposPregunta();" class="btn btn-secondary" id="button-groups">Añadir</a>
-				<input type="hidden" name="buscador-grupos">
+				<select data-live-search="true" class="form-control selectpicker" name="grupos-pregunta"></select>
+				<a class="btn btn-secondary" id="button-groups">Añadir</a>
 			</div>
 		</div>
 		<div class="col-12 col-md-8 px-4">
@@ -100,14 +99,27 @@
 </div>
 
 <script>
-	$('input[name="anticipada-pregunta"]').click(function() {
-		if ($('input[name="anticipada-pregunta"]').prop('checked')) {
-			$('#fecha-anticipada-pregunta').show();
-			$('#participantes-anticipada-pregunta').show();
-		} else {
-			$('#fecha-anticipada-pregunta').hide();
-			$('#participantes-anticipada-pregunta').hide();
-		}
+
+	$(document).ready(function() {
+		$('input[name="anticipada-pregunta"]').click(function(e) {
+			if ($('input[name="anticipada-pregunta"]').prop('checked')) {
+				$('#fecha-anticipada-pregunta').show();
+				$('#participantes-anticipada-pregunta').show();
+			} else {
+				$('#fecha-anticipada-pregunta').hide();
+				$('#participantes-anticipada-pregunta').hide();
+			}
+		});
+
+		//Evita doble click
+		$('#button-groups').click(function(e) {
+			let nombre = $('select[name=grupos-pregunta] option:selected').text();
+			let id = $('select[name=grupos-pregunta]').val();
+			let html = '<input class="input-div-caja-pregunta" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
+			if (!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length) {
+				$('#grupos-div-pregunta').append(html);
+			}
+		});
 	});
 
 	function cambioCompleja(checkbox) {
@@ -253,25 +265,16 @@
 						console.log(grupos[i].nombre);
 						let nombre = grupos[i].nombre;
 						let id = grupos[i].id;
-						let html = '<option value="' + id + '">' + nombre + '</option>';
+						let html = '<option data-tokens="' + nombre + '" value="' + id + '">' + nombre + '</option>';
 						$('select[name=grupos-pregunta]').append(html);
 					}
 				}
+				$('select[name=grupos-pregunta]').selectpicker('refresh');
 			},
 			error: function(error) {
 				console.error(error)
 			}
 		})
-	}
-
-	function anadirGruposPregunta() {
-		$('#button-groups').click(function() {
-			let nombre = $('select[name=grupos-pregunta] option:selected').text();
-			let id = $('select[name=grupos-pregunta]').val();
-			let html = '<input class="input-div-caja-pregunta" type="text" name="grupo-' + id + '" placeholder="' + nombre + '" readonly><a name="borrar-' + id + '" onclick="borrarInputPregunta(\'' + id + '\',\'grupo\')"><i class="fas fa-window-close"></i></a>';
-			if (!$("#grupos-div-pregunta input[name=grupo-" + id + "]").length)
-				$('#grupos-div-pregunta').append(html);
-		});
 	}
 
 	function borrarInputPregunta(nombre, tipo) {
