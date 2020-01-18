@@ -1,31 +1,29 @@
-<?php $titulo = "preguntasrestringidas"; ?>
+<?php $titulo = "elecciones"; ?>
 @extends('layouts/layout')
 @section('content')
-<div id="preguntasnorestringidas">
+<div id="elecciones">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h3>PREGUNTAS NO RESTRINGIDAS</h3>
-                    @if(count($pnr) < 1)
-                        <p>En estos momentos no hay preguntas activas</p>
+				<h3>ELECCIONES</h3>
+                    @if(count($elecciones) < 1)
+                        <p>En estos momentos no hay elecciones activas</p>
                     @else
                     	<table class="table">
   							<thead>
   								<tr>
-                            	@foreach($pnr as $preguntas)
+                            	@foreach($elecciones as $preguntas)
                                 	<th>{{$preguntas->titulo}}</th>
                             	@endforeach
                             	</tr>
                             </thead>
                             <tbody>
                             	<tr>
-                            	@foreach($pnr as $preguntas)
+                            	@foreach($elecciones as $preguntas)
                             		<td><a href="{{ url('/opciones/'.$preguntas->id)}}">Votar</a></td>
-                                    <td><a href="{{ url('/rectificar/'.$preguntas->id)}}">Rectificar</a></td>
                             	@endforeach
                             	</tr>
                             </tbody>
-                            
                         </table>
                     @endif
 			</div>

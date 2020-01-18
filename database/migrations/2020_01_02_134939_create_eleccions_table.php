@@ -20,7 +20,7 @@ class CreateEleccionsTable extends Migration
             $table->string('wallet')->unique()->nullable();
             /**
              * {
-             *  opciones: ["Palomitas saladas", "Palomitas dulces"]
+             *  candidatos: ["Palomitas saladas", "Palomitas dulces"]
              * }
              */
             $table->json('candidatos')->nullable();
