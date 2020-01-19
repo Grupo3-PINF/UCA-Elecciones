@@ -29,7 +29,12 @@ class CreateEleccionsTable extends Migration
             $table->dateTime('fechaFin');
             $table->dateTime('fechaComienzoAnticipada')->nullable();
             $table->dateTime('fechaFinAnticipada')->nullable();
-            
+             /**
+             * {
+             *  votos: [1, 2, 54, 3232...]
+             * }
+             */
+            $table->json('recuento')->nullable();
             $table->string('tipoEleccion');
             $table->boolean('multiGrupo')->default(false); 
             $table->boolean('adscripcion')->default(false); 
