@@ -65,13 +65,13 @@ class ResultadosController extends Controller
 				$prueba=["opciones"=>$array];
 				echo var_dump($prueba);
 				$vector = array_merge($vector,$prueba);
-				if(!isset($candidatos['votos']))
+				if(json_decode($resultados->recuento,true)==null)
 				{
 					$resultados->recuento=["votos"=>[0,0,0]];
 					$vector = array_merge($vector,$resultados->recuento);
 				}
 				else{
-					$vector = array_merge($vector,$candidatos['votos']);
+					$vector = array_merge($vector,json_decode($resultados->recuento,true));
 				}
 			}			
 				$this->closeCon($conn);
