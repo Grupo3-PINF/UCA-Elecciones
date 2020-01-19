@@ -21,6 +21,11 @@
                                 <option value={{$pregunta->id}}>{{$pregunta->titulo}}</option>
                             @endforeach
                         @endisset
+                        @isset($elecciones)
+                            @foreach ($elecciones as $eleccion)
+                                <option value="{{$eleccion->id}}e">{{$eleccion->titulo}}</option>
+                            @endforeach
+                        @endisset
                     </select>
                 <div id ="btn-primary"><a class="btn btn-primary">Enviar</a></div>
                 </form>
